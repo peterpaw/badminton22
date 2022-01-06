@@ -4,7 +4,7 @@ import Link from "next/link"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
-export interface Post {
+interface IPosts {
   title: string
   slug: string
   postPublishDate: Date
@@ -17,19 +17,13 @@ export interface Post {
   }
 }
 
-interface IndexPageTypes {
-  data: {
-    posts: Post[]
-  }
-}
-
-const PressePage = ({ data }: IndexPageTypes) => {
+const PressePage = ({ data }: { data: { posts: IPosts[] } }) => {
   const { posts } = data
 
   return (
     <main className="py-16">
       <h1 className="text-4xl font-black text-center text-gray-600">Presse</h1>
-      {posts?.map((post: Post) => {
+      {posts?.map((post: IPosts) => {
         return (
           <div className="p-4" key={post.slug}>
             <p>{post.title}</p>

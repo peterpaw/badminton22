@@ -19,10 +19,13 @@ export interface IPost {
     name: string
   }
   seoMetaTag: string
-  categories: {
-    name: string
-    slug: string
-  }
+  categories: [
+    {
+      name: string
+      slug: string
+      color: string
+    }
+  ]
   content: {
     markdown: string
   }
@@ -56,6 +59,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         categories {
           name
           slug
+          color
         }
         content {
           markdown
