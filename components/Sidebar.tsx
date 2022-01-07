@@ -24,7 +24,7 @@ const Sidebar: React.FC<ISidebarProps> = ({ showSidebar, setShowSidebar }) => {
       {navigation.map((link) => (
         <Link href={link.href} key={link.href}>
           <a>
-            <h2 className="mt-20 text-4xl font-semibold text-white">
+            <h2 className='mt-12 text-3xl font-semibold text-white'>
               {link.name}
             </h2>
           </a>
