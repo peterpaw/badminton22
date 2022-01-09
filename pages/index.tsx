@@ -3,6 +3,7 @@ import Head from "next/head"
 import Link from "next/link"
 
 import Hero from "@components/Hero"
+import Faq from "@components/Faq"
 
 const Home: NextPage = () => {
   return (
@@ -14,6 +15,7 @@ const Home: NextPage = () => {
       </Head>
 
       <Hero />
+      <Faq />
     </main>
   )
 }
