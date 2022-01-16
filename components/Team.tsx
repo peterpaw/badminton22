@@ -21,7 +21,7 @@ const Team = ({ team }: { team: ITeam }) => {
         ))}
       </div>
       <div className="py-8">
-        <a href={team.nuligaUrl} target="_blank">
+        <a href={team.nuligaUrl} target="_blank" rel="noreferrer">
           Link zur HBV-Tabelle
         </a>
       </div>
