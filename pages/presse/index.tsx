@@ -1,14 +1,12 @@
 import { GetStaticProps, NextPage } from "next"
 import { GraphQLClient, gql } from "graphql-request"
 import Link from "next/link"
-
-import Pagination from "@components/Pagination"
-import { useRouter } from "next/router"
-import { useState } from "react"
+import Head from "next/head"
+import { config } from "@utils/config"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
-interface IPosts {
+export interface IPosts {
   title: string
   slug: string
   postPublishDate: Date
@@ -42,65 +40,67 @@ interface PageProps {
 }
 
 const PressePage: NextPage<PageProps> = ({ data }) => {
-  const [skip, setSkip] = useState(0)
-
-  console.log(skip)
-
   const { edges, pageInfo, aggregate } = data?.postsConnection
 
-  const router = useRouter()
-
   return (
-    <main className='py-16 mx-auto max-w-3xl'>
-      <h1 className='text-4xl font-black text-center text-gray-600 mb-16'>
-        Presse
-      </h1>
-      {edges?.map(({ node }) => {
-        return (
-          <div className='p-4' key={node.slug}>
-            <p>{node.title}</p>
-            <p>{node.author.name}</p>
-            <Link href={`/presse/${node.slug}`}>
-              <a className='text-red-600 hover:underline'>Weiterlesen</a>
+    <>
+      <Head>
+        <title>Presseberichte Rot-Weiss Walldorf Badminton - Seite 1</title>
+      </Head>
+      <main className="py-16 mx-auto max-w-3xl">
+        <h1 className="text-4xl font-black text-center text-gray-600 mb-16">
+          Presse
+        </h1>
+        {edges?.map(({ node }) => {
+          return (
+            <div className="p-4" key={node.slug}>
+              <p>{node.title}</p>
+              <p>{node.author.name}</p>
+              <Link href={`/presse/${node.slug}`}>
+                <a className="text-red-600 hover:underline">Weiterlesen</a>
+              </Link>
+            </div>
+          )
+        })}
+        <div className="py-8 flex justify-center gap-4 items-center">
+          <div>
+            <Link href={`/presse`} passHref>
+              <button
+                disabled={!pageInfo.hasPreviousPage}
+                className="bg-indigo-700 text-white py-1 px-3 rounded disabled:bg-gray-300 disabled:text-gray-400"
+              >
+                zurück
+              </button>
             </Link>
           </div>
-        )
-      })}
-      <div className='py-8 flex justify-center gap-4 items-center'>
-        <div>
-          <button
-            onClick={() => {
-              setSkip(skip - pageInfo.pageSize)
-            }}
-            disabled={!pageInfo.hasPreviousPage}
-            className='bg-indigo-700 text-white py-1 px-3 rounded disabled:bg-gray-300 disabled:text-gray-400'
-          >
-            prev
-          </button>
+          <div className="text-center text-xs text-gray-600">
+            <div>{` Seite 1 von ${aggregate.count / pageInfo.pageSize}`}</div>
+            <div>{`${aggregate.count} Seiten insgesamt`}</div>
+          </div>
+          <div>
+            <Link href={`/presse/seite/2`} passHref>
+              <button
+                disabled={!pageInfo.hasNextPage}
+                className="bg-indigo-700 text-white py-1 px-3 rounded disabled:bg-gray-300 disabled:text-gray-400"
+              >
+                vor
+              </button>
+            </Link>
+          </div>
         </div>
-        <div>
-          <span>{`${aggregate.count / pageInfo.pageSize} Seiten`}</span>
-        </div>
-        <div>
-          <button
-            onClick={() => {
-              setSkip(skip + pageInfo.pageSize)
-            }}
-            disabled={!pageInfo.hasNextPage}
-            className='bg-indigo-700 text-white py-1 px-3 rounded disabled:bg-gray-300 disabled:text-gray-400'
-          >
-            next
-          </button>
-        </div>
-      </div>
-    </main>
+      </main>
+    </>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   const query = gql`
-    query Posts {
-      postsConnection(first: 2, skip: 0, orderBy: postPublishDate_DESC) {
+    query Posts($pageSize: Int!) {
+      postsConnection(
+        first: $pageSize
+        skip: 0
+        orderBy: postPublishDate_DESC
+      ) {
         edges {
           node {
             title
@@ -127,7 +127,9 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   `
 
-  const data = await client.request(query)
+  const { pageSize } = config.pagination
+
+  const data = await client.request(query, { pageSize })
 
   return {
     props: {

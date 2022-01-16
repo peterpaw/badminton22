@@ -18,6 +18,10 @@ export interface ITeam extends ITeamsOverview {
   nuligaUrl: string
 }
 
+const Slug = ({ data }: { data: { team: ITeam } }) => {
+  return <Team team={data.team} />
+}
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string
 
@@ -69,10 +73,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: data.teams.map((team: any) => ({ params: { slug: team.slug } })),
     fallback: "blocking"
   }
-}
-
-const Slug = ({ data }: { data: { team: ITeam } }) => {
-  return <Team team={data.team} />
 }
 
 export default Slug

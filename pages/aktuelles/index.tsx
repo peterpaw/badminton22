@@ -1,40 +1,39 @@
 import { NextPage, GetServerSideProps } from "next"
-import { ParsedUrlQuery } from "querystring"
 import { GraphQLClient, gql } from "graphql-request"
 import Link from "next/link"
 
-const AktuellesPage: NextPage<ParsedUrlQuery> = ({ data, query }) => {
+const AktuellesPage: NextPage<any, number> = ({ data, pageNumber }) => {
   const { edges, pageInfo, aggregate } = data?.postsConnection
-  const page = parseInt(query?.page as string)
+  const page = pageNumber as number
 
   return (
-    <main className='py-16 mx-auto max-w-3xl'>
-      <h1 className='text-4xl font-black text-center text-gray-600 mb-16'>
+    <main className="py-16 mx-auto max-w-3xl">
+      <h1 className="text-4xl font-black text-center text-gray-600 mb-16">
         Presse
       </h1>
-      {edges?.map(({ node }) => {
+      {edges?.map(({ node }: { node: any }) => {
         return (
-          <div className='p-4' key={node.slug}>
+          <div className="p-4" key={node.slug}>
             <p>{node.title}</p>
             <p>{node.author.name}</p>
             <Link href={`/presse/${node.slug}`}>
-              <a className='text-red-600 hover:underline'>Weiterlesen</a>
+              <a className="text-red-600 hover:underline">Weiterlesen</a>
             </Link>
           </div>
         )
       })}
-      <div className='py-8 flex justify-center gap-4 items-center'>
+      <div className="py-8 flex justify-center gap-4 items-center">
         <div>
           <Link href={`/aktuelles?page=${page - 1}`} passHref>
             <button
               disabled={!pageInfo.hasPreviousPage}
-              className='bg-indigo-700 text-white py-1 px-3 rounded disabled:bg-gray-300 disabled:text-gray-400'
+              className="bg-indigo-700 text-white py-1 px-3 rounded disabled:bg-gray-300 disabled:text-gray-400"
             >
               zurück
             </button>
           </Link>
         </div>
-        <div className='text-center text-xs text-gray-600'>
+        <div className="text-center text-xs text-gray-600">
           <div>{` Seite ${page} von ${
             aggregate.count / pageInfo.pageSize
           }`}</div>
@@ -44,7 +43,7 @@ const AktuellesPage: NextPage<ParsedUrlQuery> = ({ data, query }) => {
           <Link href={`/aktuelles?page=${page + 1}`} passHref>
             <button
               disabled={!pageInfo.hasNextPage}
-              className='bg-indigo-700 text-white py-1 px-3 rounded disabled:bg-gray-300 disabled:text-gray-400'
+              className="bg-indigo-700 text-white py-1 px-3 rounded disabled:bg-gray-300 disabled:text-gray-400"
             >
               vor
             </button>
@@ -56,7 +55,7 @@ const AktuellesPage: NextPage<ParsedUrlQuery> = ({ data, query }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { page = 1, count = 2 } = context.query
+  const { page = "1", count = "2" } = context.query
   const pageNumber = parseInt(page as string)
   const countNumber = parseInt(count as string)
   const postsToSkip = (pageNumber - 1) * countNumber
@@ -103,7 +102,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       data,
-      query: context.query
+      pageNumber
     }
   }
 }
