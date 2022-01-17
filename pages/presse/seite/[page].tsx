@@ -6,6 +6,8 @@ import { gql, GraphQLClient } from "graphql-request"
 import type { IPosts } from "../"
 
 import { config } from "@utils/config"
+import PostCard from "@components/PostCard"
+import CardGrid from "@components/CardGrid"
 
 interface PageProps {
   data: {
@@ -39,21 +41,15 @@ const Page: NextPage<PageProps> = ({ data, currentPage }) => {
       <Head>
         <title>{`Presseberichte Rot-Weiss Walldorf Badminton - Seite ${currentPage}`}</title>
       </Head>
-      <main className="py-16 mx-auto max-w-3xl">
+      <main className="p-8 mx-auto max-w-3xl">
         <h1 className="text-4xl font-black text-center text-gray-600 mb-16">
           Presse
         </h1>
-        {edges?.map(({ node }: { node: any }) => {
-          return (
-            <div className="p-4" key={node.slug}>
-              <p>{node.title}</p>
-              <p>{node.author.name}</p>
-              <Link href={`/presse/${node.slug}`}>
-                <a className="text-red-600 hover:underline">Weiterlesen</a>
-              </Link>
-            </div>
-          )
-        })}
+        <CardGrid>
+          {edges?.map(({ node }: { node: any }) => {
+            return <PostCard key={node.slug} post={node} />
+          })}
+        </CardGrid>
         <div className="py-8 flex justify-center gap-4 items-center">
           <div>
             <Link href={`/presse/seite/${page - 1}`} passHref>
@@ -108,6 +104,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             }
             author {
               name
+              foto {
+                url
+              }
             }
           }
         }

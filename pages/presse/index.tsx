@@ -3,6 +3,8 @@ import { GraphQLClient, gql } from "graphql-request"
 import Link from "next/link"
 import Head from "next/head"
 import { config } from "@utils/config"
+import PostCard from "@components/PostCard"
+import CardGrid from "@components/CardGrid"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
@@ -16,6 +18,9 @@ export interface IPosts {
   }
   author: {
     name: string
+    foto: {
+      url: string
+    }
   }
 }
 
@@ -51,17 +56,11 @@ const PressePage: NextPage<PageProps> = ({ data }) => {
         <h1 className="text-4xl font-black text-center text-gray-600 mb-16">
           Presse
         </h1>
-        {edges?.map(({ node }) => {
-          return (
-            <div className="p-4" key={node.slug}>
-              <p>{node.title}</p>
-              <p>{node.author.name}</p>
-              <Link href={`/presse/${node.slug}`}>
-                <a className="text-red-600 hover:underline">Weiterlesen</a>
-              </Link>
-            </div>
-          )
-        })}
+        <CardGrid>
+          {edges?.map(({ node }: { node: any }) => (
+            <PostCard key={node.slug} post={node} />
+          ))}
+        </CardGrid>
         <div className="py-8 flex justify-center gap-4 items-center">
           <div>
             <Link href={`/presse`} passHref>
@@ -112,6 +111,9 @@ export const getStaticProps: GetStaticProps = async () => {
             }
             author {
               name
+              foto {
+                url
+              }
             }
           }
         }

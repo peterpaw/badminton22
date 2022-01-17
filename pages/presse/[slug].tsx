@@ -17,6 +17,9 @@ export interface IPost {
   }
   author: {
     name: string
+    foto: {
+      url: string
+    }
   }
   seoMetaTag: string
   categories: [
@@ -54,6 +57,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         }
         author {
           name
+          foto {
+            url
+          }
         }
         seoMetaTag
         categories {

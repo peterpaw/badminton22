@@ -36,7 +36,7 @@ const Layout: React.FC = ({ children }) => {
 
       <Nav />
 
-      <div className="bg-zinc-200 min-h-screen">{children}</div>
+      <div className="bg-slate-100 min-h-screen">{children}</div>
     </>
   )
 }
