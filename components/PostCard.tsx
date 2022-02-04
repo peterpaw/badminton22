@@ -1,17 +1,17 @@
 import Link from "next/link"
 import Image from "next/image"
 import { format } from "date-fns"
+import { de } from "date-fns/locale"
 
 import { IPost } from "pages/presse/[slug]"
-import { de } from "date-fns/locale"
 
 const PostCard = ({ post }: { post: IPost }) => {
   const date = format(new Date(post.postPublishDate), "dd. MMMM yyyy", {
-    locale: de
+    locale: de,
   })
 
   return (
-    <div className="mx-auto mb-8 md:grid md:grid-cols-3">
+    <div className="mx-auto mb-8 md:grid md:grid-cols-3 shadow-md">
       <div className="relative aspect-[16/9] md:h-auto md:aspect-auto">
         <Image
           src={post.featuredImage.url}
@@ -32,34 +32,33 @@ const PostCard = ({ post }: { post: IPost }) => {
         <p className="text-sm text-gray-600 mt-4">{post.excerpt}</p>
         <div className="flex items-center mt-8">
           <div className="flex items-center w-full">
-            <div className="relative h-10 w-10">
-              <Image
-                src={post.author.foto.url}
-                alt={`Avatar von Autor ${post.author.name}`}
-                layout="fill"
-                className="rounded-full"
-              />
+            <div className="flex flex-col">
+              <div className="ml-4">
+                {post.authors.map((author) => (
+                  <p
+                    key={author.id}
+                    className="text-gray-600 text-xs md:text-sm font-semibold"
+                  >
+                    {author.name}
+                  </p>
+                ))}
+                <p className="text-gray-500 text-xs md:text-sm">{date}</p>
+              </div>
             </div>
-            <div className="ml-4">
-              <p className="text-gray-600 text-xs md:text-sm font-semibold">
-                {post.author.name}
-              </p>
-              <p className="text-gray-500 text-xs md:text-sm">{date}</p>
-            </div>
+
             <Link href={`/presse/${post.slug}`}>
               <a className="w-8 h-8 ml-auto bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
                 <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="img"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 16 16"
+                  className="w-6 h-6"
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    d="M4.096 0C2.319 3.219 2.02 8.13 9 7.966V4l6 6l-6 6v-3.881C.641 12.337-.29 4.741 4.096 0z"
+                    fill="currentColor"
                   ></path>
                 </svg>
               </a>

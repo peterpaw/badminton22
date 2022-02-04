@@ -1,9 +1,16 @@
 import { MDXRemote } from "next-mdx-remote"
 import Head from "next/head"
 import Link from "next/link"
+import { format } from "date-fns"
+import { de } from "date-fns/locale"
+
 import { IPost } from "pages/presse/[slug]"
 
 const Post = ({ post }: { post: IPost }) => {
+  const date = format(new Date(post.postPublishDate), "dd. MMMM yyyy", {
+    locale: de,
+  })
+
   return (
     <>
       <Head>
@@ -12,8 +19,23 @@ const Post = ({ post }: { post: IPost }) => {
       <main className="py-16 container mx-auto max-w-3xl text-lg lg:text-xl">
         <div className="text-center">
           <h1 className="text-3xl font-bold">{post.title}</h1>
-          <h2 className="py-2">{`von ${post.author.name}`}</h2>
-          <h2 className="pb-4">{post.postPublishDate}</h2>
+          <p className="text-gray-500 text-xs md:text-sm mt-8">von</p>
+          <div className="mb-2 flex gap-2 flex-wrap justify-center mt-2">
+            {post.authors.map((author) => (
+              <Link href={`/presse/autoren/${author.slug}`} key={author.id}>
+                <a>
+                  <div className="inline-block rounded-full bg-gray-100 pr-5 h-8">
+                    <img
+                      className="rounded-full float-left h-full"
+                      src={author.foto.url}
+                    />
+                    <span className="ml-3 text-sm">{`${author.name}`}</span>
+                  </div>
+                </a>
+              </Link>
+            ))}
+          </div>
+          <p className="text-gray-500 text-xs md:text-sm">{date}</p>
         </div>
         <img
           src={post.featuredImage.url}
@@ -27,9 +49,7 @@ const Post = ({ post }: { post: IPost }) => {
               key={category.slug}
             >
               <a>
-                <span
-                  className={`m-2 px-3 py-1 bg-${category.color}-200 hover:bg-${category.color}-300 rounded-full text-sm font-semibold text-${category.color}-600`}
-                >
+                <span className="inline-flex items-center justify-center px-4 py-2 mr-2 text-sm font-medium leading-none bg-gray-100 rounded-full">
                   {category.name}
                 </span>
               </a>

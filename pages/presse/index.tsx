@@ -16,12 +16,15 @@ export interface IPosts {
   featuredImage: {
     url: string
   }
-  author: {
-    name: string
-    foto: {
-      url: string
+  authors: [
+    {
+      id: string
+      name: string
+      foto: {
+        url: string
+      }
     }
-  }
+  ]
 }
 
 interface PageProps {
@@ -48,7 +51,7 @@ const PressePage: NextPage<PageProps> = ({ data }) => {
   const { edges, pageInfo, aggregate } = data?.postsConnection
 
   return (
-    <>
+    <div className="bg-gray-50">
       <Head>
         <title>Presseberichte Rot-Weiss Walldorf Badminton - Seite 1</title>
       </Head>
@@ -73,8 +76,10 @@ const PressePage: NextPage<PageProps> = ({ data }) => {
             </Link>
           </div>
           <div className="text-center text-xs text-gray-600">
-            <div>{` Seite 1 von ${aggregate.count / pageInfo.pageSize}`}</div>
-            <div>{`${aggregate.count} Seiten insgesamt`}</div>
+            <div>{` Seite 1 von ${Math.ceil(
+              aggregate.count / config.pagination.pageSize
+            )}`}</div>
+            <div>{`${aggregate.count} Beiträge insgesamt`}</div>
           </div>
           <div>
             <Link href={`/presse/seite/2`} passHref>
@@ -88,7 +93,7 @@ const PressePage: NextPage<PageProps> = ({ data }) => {
           </div>
         </div>
       </main>
-    </>
+    </div>
   )
 }
 
@@ -109,7 +114,8 @@ export const getStaticProps: GetStaticProps = async () => {
             featuredImage {
               url
             }
-            author {
+            authors {
+              id
               name
               foto {
                 url
@@ -135,9 +141,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      data
+      data,
     },
-    revalidate: 60 * 60
+    revalidate: 60 * 60,
   }
 }
 

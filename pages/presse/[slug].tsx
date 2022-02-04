@@ -15,12 +15,16 @@ export interface IPost {
   featuredImage: {
     url: string
   }
-  author: {
-    name: string
-    foto: {
-      url: string
+  authors: [
+    {
+      id: string
+      slug: string
+      name: string
+      foto: {
+        url: string
+      }
     }
-  }
+  ]
   seoMetaTag: string
   categories: [
     {
@@ -55,7 +59,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         featuredImage {
           url
         }
-        author {
+        authors {
+          id
+          slug
           name
           foto {
             url
@@ -78,7 +84,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   if (!data.post) {
     return {
-      notFound: true
+      notFound: true,
     }
   }
 
@@ -86,7 +92,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: { post: { ...data.post, source } },
-    revalidate: 60 * 60
+    revalidate: 60 * 60,
   }
 }
 
@@ -103,6 +109,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: data.posts.map((post: any) => ({ params: { slug: post.slug } })),
-    fallback: "blocking"
+    fallback: false,
   }
 }

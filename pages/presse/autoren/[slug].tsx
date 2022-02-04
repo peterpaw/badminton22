@@ -1,57 +1,51 @@
-import Link from "next/link"
+import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import Head from "next/head"
 import { gql, GraphQLClient } from "graphql-request"
-import { GetStaticPaths, GetStaticProps } from "next"
+
 import CardGrid from "@components/CardGrid"
 import PostCard from "@components/PostCard"
+import { IPost } from "../[slug]"
+
+interface PageProps {
+  data: {
+    postsConnection: {
+      edges: [
+        {
+          node: IPost
+        }
+      ]
+    }
+    author: {
+      name: string
+      foto: {
+        url: string
+      }
+    }
+  }
+}
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
-const CategorySlug = ({
-  data,
-  slug,
-  categories,
-}: {
-  data: any
-  slug: string
-  categories: [{ name: string; slug: string }]
-}) => {
+const AuthorPage: NextPage<PageProps> = ({ data }) => {
   const { edges } = data?.postsConnection
+  const { author } = data
 
   return (
-    <>
+    <div className="bg-gray-50">
       <Head>
-        <title>Kategorie: {slug.toUpperCase()} | Presse</title>
+        <title>Posts von {author.name}</title>
       </Head>
       <main className="py-16 mx-auto max-w-3xl">
         <h1 className="text-4xl font-black text-center text-gray-600 mb-16">
-          Presseberichte sortiert nach Kategorie: {slug.toUpperCase()}
+          Beiträge von {author.name}
         </h1>
         <CardGrid>
           {edges?.map(({ node }: { node: any }) => (
             <PostCard key={node.slug} post={node} />
           ))}
         </CardGrid>
-
-        <p className="text-gray-500 text-xs md:text-sm text-center">
-          Alle Kategorien:
-        </p>
-        <div className="p-4 flex justify-center items-center flex-wrap">
-          {categories.map((category) => (
-            <Link
-              href={`/presse/kategorie/${category.slug}`}
-              key={category.slug}
-            >
-              <a>
-                <span className="inline-flex items-center justify-center px-4 py-2 mr-2 text-sm font-medium leading-none bg-gray-100 rounded-full">
-                  {category.name}
-                </span>
-              </a>
-            </Link>
-          ))}
-        </div>
       </main>
-    </>
+    </div>
   )
 }
 
@@ -59,9 +53,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string
 
   const query = gql`
-    query CategoryPosts($slug: String!) {
+    query AuthorPosts($slug: String!) {
       postsConnection(
-        where: { categories_some: { slug: $slug } }
+        where: { authors_some: { slug: $slug } }
         orderBy: postPublishDate_DESC
       ) {
         edges {
@@ -91,9 +85,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           count
         }
       }
-      categories {
+      author(where: { slug: $slug }) {
         name
-        slug
+        foto {
+          url
+        }
       }
     }
   `
@@ -101,14 +97,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const data = await client.request(query, { slug })
 
   return {
-    props: { data, slug, categories: data.categories },
+    props: {
+      data,
+      slug,
+    },
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const query = gql`
-    query Categories {
-      categories {
+    query Authors {
+      authors {
         slug
       }
     }
@@ -117,11 +116,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await client.request(query)
 
   return {
-    paths: data.categories.map((category: any) => ({
-      params: { slug: category.slug },
+    paths: data.authors.map(({ slug }: { slug: string }) => ({
+      params: { slug },
     })),
-    fallback: "blocking",
+    fallback: false,
   }
 }
 
-export default CategorySlug
+export default AuthorPage

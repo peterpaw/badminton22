@@ -37,7 +37,7 @@ const Page: NextPage<PageProps> = ({ data, currentPage }) => {
   const page = parseInt(currentPage)
 
   return (
-    <>
+    <div className="bg-gray-50">
       <Head>
         <title>{`Presseberichte Rot-Weiss Walldorf Badminton - Seite ${currentPage}`}</title>
       </Head>
@@ -62,10 +62,10 @@ const Page: NextPage<PageProps> = ({ data, currentPage }) => {
             </Link>
           </div>
           <div className="text-center text-xs text-gray-600">
-            <div>{` Seite ${page} von ${
-              aggregate.count / pageInfo.pageSize
-            }`}</div>
-            <div>{`${aggregate.count} Seiten insgesamt`}</div>
+            <div>{` Seite ${page} von ${Math.ceil(
+              aggregate.count / config.pagination.pageSize
+            )}`}</div>
+            <div>{`${aggregate.count} Beiträge insgesamt`}</div>
           </div>
           <div>
             <Link href={`/presse/seite/${page + 1}`} passHref>
@@ -79,7 +79,7 @@ const Page: NextPage<PageProps> = ({ data, currentPage }) => {
           </div>
         </div>
       </main>
-    </>
+    </div>
   )
 }
 
@@ -102,7 +102,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             featuredImage {
               url
             }
-            author {
+            authors {
+              id
               name
               foto {
                 url
@@ -129,7 +130,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: { data, currentPage },
-    revalidate: 60 * 60
+    revalidate: 60 * 60,
   }
 }
 
@@ -158,7 +159,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: "blocking"
+    fallback: "blocking",
   }
 }
 
