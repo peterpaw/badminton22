@@ -51,49 +51,47 @@ const PressePage: NextPage<PageProps> = ({ data }) => {
   const { edges, pageInfo, aggregate } = data?.postsConnection
 
   return (
-    <div className="bg-gray-50">
+    <main className="max-w-4xl">
       <Head>
         <title>Presseberichte Rot-Weiss Walldorf Badminton - Seite 1</title>
       </Head>
-      <main className="py-16 mx-auto max-w-3xl">
-        <h1 className="text-4xl font-black text-center text-gray-600 mb-16">
-          Presse
-        </h1>
-        <CardGrid>
-          {edges?.map(({ node }: { node: any }) => (
-            <PostCard key={node.slug} post={node} />
-          ))}
-        </CardGrid>
-        <div className="py-8 flex justify-center gap-4 items-center">
-          <div>
-            <Link href={`/presse`} passHref>
-              <button
-                disabled={!pageInfo.hasPreviousPage}
-                className="bg-indigo-700 text-white py-1 px-3 rounded disabled:bg-gray-300 disabled:text-gray-400"
-              >
-                zurück
-              </button>
-            </Link>
-          </div>
-          <div className="text-center text-xs text-gray-600">
-            <div>{` Seite 1 von ${Math.ceil(
-              aggregate.count / config.pagination.pageSize
-            )}`}</div>
-            <div>{`${aggregate.count} Beiträge insgesamt`}</div>
-          </div>
-          <div>
-            <Link href={`/presse/seite/2`} passHref>
-              <button
-                disabled={!pageInfo.hasNextPage}
-                className="bg-indigo-700 text-white py-1 px-3 rounded disabled:bg-gray-300 disabled:text-gray-400"
-              >
-                vor
-              </button>
-            </Link>
-          </div>
+      <h1 className="text-4xl font-black text-center text-gray-600 mb-16">
+        Presse
+      </h1>
+      <CardGrid>
+        {edges?.map(({ node }: { node: any }) => (
+          <PostCard key={node.slug} post={node} />
+        ))}
+      </CardGrid>
+      <div className="py-8 flex justify-center gap-4 items-center">
+        <div>
+          <Link href={`/presse`} passHref>
+            <button
+              disabled={!pageInfo.hasPreviousPage}
+              className="bg-indigo-700 text-white py-1 px-3 rounded disabled:bg-gray-300 disabled:text-gray-400"
+            >
+              zurück
+            </button>
+          </Link>
         </div>
-      </main>
-    </div>
+        <div className="text-center text-xs text-gray-600">
+          <div>{` Seite 1 von ${Math.ceil(
+            aggregate.count / config.pagination.pageSize
+          )}`}</div>
+          <div>{`${aggregate.count} Beiträge insgesamt`}</div>
+        </div>
+        <div>
+          <Link href={`/presse/seite/2`} passHref>
+            <button
+              disabled={!pageInfo.hasNextPage}
+              className="bg-indigo-700 text-white py-1 px-3 rounded disabled:bg-gray-300 disabled:text-gray-400"
+            >
+              vor
+            </button>
+          </Link>
+        </div>
+      </div>
+    </main>
   )
 }
 

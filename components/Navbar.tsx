@@ -25,7 +25,7 @@ const Navbar = () => {
               {navigation.map((link) => (
                 <Link key={link.name} href={link.href}>
                   <a>
-                    <button className="flex flex-wrap content-center whitespace-nowrap text-sm font-semibold tracking-wider text-gray-800 uppercase hover:text-red-600">
+                    <button className="flex flex-wrap content-center whitespace-nowrap text-sm font-normal tracking-wider text-slate-600 uppercase hover:text-red-600">
                       {link.name}
                     </button>
                   </a>
