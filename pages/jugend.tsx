@@ -101,8 +101,8 @@ const JugendPage: NextPage = () => {
             height={768}
           />
           <small>
-            Abteilungsleiter Janosch Kreuz, Gasthaus XXL Pächter Predrag "Pedja"
-            Prodanovic, Jugendwart Maurizio Battaglia.
+            {`Abteilungsleiter Janosch Kreuz, Gasthaus XXL Pächter Predrag "Pedja"
+            Prodanovic, Jugendwart Maurizio Battaglia.`}
           </small>
           <p className="mt-8">
             Im Namen der Jugend-Minimannschaft ein{` `}
