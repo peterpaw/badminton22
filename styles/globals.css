@@ -16,7 +16,7 @@
     @apply text-slate-600 font-normal;
   }
 
-  main {
-    @apply px-4 max-w-7xl container mx-auto py-8;
+  .container-narrow {
+    @apply px-4 max-w-7xl container mx-auto;
   }
 }

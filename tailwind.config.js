@@ -10,6 +10,11 @@ module.exports = {
         "fluid-sm": "repeat( auto-fit, minmax(8rem, 1fr) );",
         "fluid-16": "repeat(auto-fit, 16rem);",
       },
+      grayscale: {
+        25: "25%",
+        50: "50%",
+        75: "75%",
+      },
     },
     fontFamily: {
       sans: ["Inter", "ui-sans-serif", "system-ui"],

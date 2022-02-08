@@ -10,39 +10,49 @@ const JugendPage: NextPage = () => {
       <Head>
         <title>Jugend | Rot-Weiss Walldorf Badminton</title>
       </Head>
-      <h1 className="mb-8">Jugend</h1>
-      <div className="aspect-video relative">
-        <Image
-          src="/badminton-jugend-gruppenfoto.jpg"
-          alt="Jugend mit beiden Trainern"
-          layout="fill"
-        />
-      </div>
-      <section>
-        <h2 className="mt-8 md:mt-16">Jugend-Minimannschaft</h2>
-        <div className="grid grid-cols-fluid-sm md:grid-cols-fluid mt-8 gap-1">
-          {jugend
-            .sort((a, b) => a.id - b.id)
-            .filter((p) => p.role === "player")
-            .map((person) => (
-              <div key={person.id} className="mb-4">
-                <div className="relative text-center">
-                  <Image
-                    src={`/${person.foto}`}
-                    alt={`Spielerfoto von ${person.name}`}
-                    width={270}
-                    height={360}
-                  />
-                </div>
-                <h2 className="text-base font-medium leading-none">
-                  {person.name}
-                </h2>
-              </div>
-            ))}
+      <section className="">
+        <div className="aspect-[16/7] relative">
+          <Image
+            src="/badminton-jugend-gruppenfoto.jpg"
+            alt="Jugend-Minimannschaft mit Coaches"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="top"
+            className=""
+          />
         </div>
       </section>
-      <section>
-        <h2 className="mt-8 md:mt-16">Unsere Jugendtrainer</h2>
+      <section className="bg-zinc-100 py-8 md:py-16">
+        <div className="container-narrow">
+          <h2 className="mb-8 md:mb-16 font-black md:text-4xl">
+            Jugend-Minimannschaft
+          </h2>
+          <div className="grid grid-cols-fluid-sm md:grid-cols-fluid gap-1">
+            {jugend
+              .sort((a, b) => a.id - b.id)
+              .filter((p) => p.role === "player")
+              .map((person) => (
+                <div key={person.id} className="mb-4">
+                  <div className="relative text-center">
+                    <Image
+                      src={`/${person.foto}`}
+                      alt={`Spielerfoto von ${person.name}`}
+                      width={270}
+                      height={360}
+                    />
+                  </div>
+                  <h2 className="text-base font-medium leading-none mt-2">
+                    {person.name}
+                  </h2>
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
+      <section className="py-8 md:py-16">
+        <h2 className="mb-8 md:mb-16 font-black md:text-4xl">
+          Unsere Jugendtrainer
+        </h2>
         <div className="grid grid-cols-fluid-16 mt-8 gap-1 justify-center">
           {jugend
             .sort((a, b) => a.id - b.id)
@@ -57,14 +67,15 @@ const JugendPage: NextPage = () => {
                     height={360}
                   />
                 </div>
-                <h2 className="text-base font-medium leading-none">
+                <h2 className="text-base font-medium leading-none mt-2">
                   {person.name}
                 </h2>
               </div>
             ))}
         </div>
       </section>
-      <section className="text-center py-8">
+      <section className="bg-zinc-100 text-center py-8 md:py-16">
+        <h2 className="mb-8 md:mb-16 font-black md:text-4xl">Kontakt</h2>
         <p className="mb-4">
           Bei Fragen zum Kinder- und Jugendtraining steht euch gerne{" "}
           <strong>Maurizio Battaglia</strong> zur Verfügung:
@@ -81,6 +92,32 @@ const JugendPage: NextPage = () => {
           </a>
         </p>
       </section>
+      <section className="aspect-[16/7] relative">
+        <Image
+          src="/jugendtraining-01.jpg"
+          alt="Jugendlicher trainigert"
+          layout="fill"
+          objectFit="cover"
+          className="grayscale-50"
+        />
+      </section>
+      <section className="bg-zinc-100 py-8 md:py-16">
+        <h2 className="mb-8 md:mb-16 font-black md:text-4xl">Jugendtraining</h2>
+        <div className="flex flex-wrap text-center justify-center gap-4 leading-tight">
+          <div className="bg-white p-8 rounded shadow-sm flex-1 min-w-[20rem] max-w-[45vw]">
+            <h3 className="text-xl md:text-2xl mb-4">Montag</h3>
+            <p>Bertha-von-Suttner-Schule</p>
+            <p>An den Nußbäumen 1, Halle A</p>
+            <p>17:30 - 19:30 Uhr</p>
+          </div>
+          <div className="bg-white p-8 rounded shadow-sm flex-1 min-w-[20rem] max-w-[45vw]">
+            <h3 className="text-xl md:text-2xl mb-4">Mittwoch</h3>
+            <p>Sporthalle Walldorf</p>
+            <p>Okrifteler Str. 29</p>
+            <p>17:30 - 19:30 Uhr</p>
+          </div>
+        </div>
+      </section>
       <section className="text-center py-8">
         <Image
           src="/flyer-jugend.jpg"
@@ -89,10 +126,24 @@ const JugendPage: NextPage = () => {
           height={661}
         />
       </section>
-      <section className="py-8 md:py-16">
-        <h2 className="mb-8">
+      <section className="bg-zinc-100 py-8 md:py-16">
+        <h2 className="mb-8 font-black md:text-4xl">Jugendsponsor</h2>
+        <a
+          href="http://www.rotweiss-xxl.de/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative mx-auto block text-center"
+        >
+          <Image
+            src="/gasthaus-xxl.png"
+            alt="Logo Gasthaus XXL"
+            width={150}
+            height={150}
+          />
+        </a>
+        <h3 className="font-normal text-lg mb-8">
           Übergabe der neuen Trikots an unsere Jugend-Minimannschaft
-        </h2>
+        </h3>
         <div className="relative text-center max-w-3xl mx-auto">
           <Image
             src="/wirt-joschi-mauri.jpg"
@@ -109,23 +160,6 @@ const JugendPage: NextPage = () => {
             <u>riesengroßes Dankeschön!</u>
           </p>
         </div>
-      </section>
-
-      <section>
-        <h2 className="mb-8">Partner der Jugendabteilung:</h2>
-        <a
-          href="http://www.rotweiss-xxl.de/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative mx-auto my-4 block text-center"
-        >
-          <Image
-            src="/gasthaus-xxl.png"
-            alt="Logo Gasthaus XXL"
-            width={150}
-            height={150}
-          />
-        </a>
       </section>
     </main>
   )
