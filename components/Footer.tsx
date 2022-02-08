@@ -58,14 +58,14 @@ const Footer = () => {
           objectFit="contain"
         />
       </a>
-      <div className=" bg-red-600 p-2 text-slate-200 text-sm">
-        <div className="max-w-7xl flex justify-between flex-wrap mx-auto">
-          <div className="flex justify-start">
+      <div className=" bg-red-600 p-3 text-slate-200 text-sm">
+        <div className="max-w-7xl flex flex-col lg:flex-row justify-between flex-wrap gap-2 mx-auto">
+          <div className="flex justify-center lg:justify-start">
             &copy;{` `}
             {new Date().getFullYear()}
             {` `}Rot-Weiss Walldorf Badminton
           </div>
-          <div className="flex justify-end gap-2">
+          <div className="flex justify-center lg:justify-end gap-2">
             <Link href="/impressum">
               <a className="">Impressum</a>
             </Link>
