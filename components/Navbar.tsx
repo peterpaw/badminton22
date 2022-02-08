@@ -12,7 +12,7 @@ const Navbar = () => {
               <a className="leading-none">
                 <span className="sr-only">badminton-walldorf.de</span>
                 <Image
-                  src="/rww-logo.svg"
+                  src="/rww-logo.png"
                   alt="Rot-Weiss Walldorf Logo"
                   width={50}
                   height={50}
@@ -25,7 +25,7 @@ const Navbar = () => {
               {navigation.map((link) => (
                 <Link key={link.name} href={link.href}>
                   <a>
-                    <button className="flex flex-wrap content-center whitespace-nowrap text-sm font-normal tracking-wider text-slate-600 uppercase hover:text-red-600">
+                    <button className="flex flex-wrap content-center whitespace-nowrap text-sm font-semibold tracking-wider text-slate-500 uppercase hover:text-red-600">
                       {link.name}
                     </button>
                   </a>

@@ -29,7 +29,7 @@ export const jugend = [
   },
   {
     id: 3,
-    name: "Jonas-Schuhmann",
+    name: "Jonas Schuhmann",
     gender: "male",
     role: "player",
     foto: "jonas-schuhmann.jpg",
