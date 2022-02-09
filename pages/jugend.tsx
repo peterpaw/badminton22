@@ -10,20 +10,19 @@ const JugendPage: NextPage = () => {
       <Head>
         <title>Jugend | Rot-Weiss Walldorf Badminton</title>
       </Head>
-      <section className="">
-        <div className="aspect-[16/7] relative">
-          <Image
-            src="/badminton-jugend-gruppenfoto.jpg"
-            alt="Jugend-Minimannschaft mit Coaches"
-            layout="fill"
-            objectFit="cover"
-            objectPosition="top"
-            className=""
-          />
-        </div>
-      </section>
       <section className="bg-zinc-100 py-8 md:py-16">
         <div className="container-narrow">
+          <h2 className="mb-8 md:mb-16 font-black md:text-4xl">Jugend</h2>
+          <div className="aspect-[16/7] relative mb-16">
+            <Image
+              src="/badminton-jugend-gruppenfoto.jpg"
+              alt="Jugend-Minimannschaft mit Coaches"
+              layout="fill"
+              objectFit="cover"
+              objectPosition="top"
+              className=""
+            />
+          </div>
           <h2 className="mb-8 md:mb-16 font-black md:text-4xl">
             Jugend-Minimannschaft
           </h2>

@@ -2,7 +2,9 @@ import { GetStaticProps, NextPage } from "next"
 import { GraphQLClient, gql } from "graphql-request"
 import Link from "next/link"
 import Head from "next/head"
+
 import { config } from "@utils/config"
+
 import PostCard from "@components/PostCard"
 import CardGrid from "@components/CardGrid"
 
@@ -51,7 +53,7 @@ const PressePage: NextPage<PageProps> = ({ data }) => {
   const { edges, pageInfo, aggregate } = data?.postsConnection
 
   return (
-    <main className="max-w-4xl">
+    <main className="container-narrow max-w-4xl py-8 md:py-16">
       <Head>
         <title>Presseberichte Rot-Weiss Walldorf Badminton - Seite 1</title>
       </Head>
