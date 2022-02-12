@@ -1,8 +1,9 @@
 import Head from "next/head"
 import Link from "next/link"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
-const LandingPage = () => {
+const HomePage = () => {
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -27,46 +28,55 @@ const LandingPage = () => {
   return (
     <>
       <Head>
-        <title>Landing</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Badminton | Rot-Weiss Walldorf</title>
       </Head>
-      <main className="container-narrow">
-        <section className="before:gradient-header-before after:gradient-header-after">
-          <motion.h1
-            initial="hidden"
-            animate="show"
-            variants={{
-              hidden: { opacity: 0, y: 100 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.6,
+      <main className="">
+        <section className="relative bg-gradient-to-r from-red-600 to-purple-900 w-full">
+          <Image
+            priority
+            layout="fill"
+            src="/landing02.jpg"
+            alt="Badminton Spieler beim Smash"
+            className="absolute w-full h-full mix-blend-overlay object-cover"
+          />
+          <div className="container-narrow">
+            <motion.h1
+              initial="hidden"
+              animate="show"
+              variants={{
+                hidden: { opacity: 0, y: 100 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.6,
+                  },
                 },
-              },
-            }}
-            className="text-left text-7xl font-black pt-48 pb-4 text-gray-700"
-          >
-            Badminton
-          </motion.h1>
-          <motion.h1
-            initial="hidden"
-            animate="show"
-            variants={{
-              hidden: { opacity: 0, y: 100 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.6,
+              }}
+              className="text-left text-9xl font-black pt-48 pb-4 text-white"
+            >
+              Badminton
+            </motion.h1>
+            <motion.h1
+              initial="hidden"
+              animate="show"
+              variants={{
+                hidden: { opacity: 0, y: 100 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.6,
+                  },
                 },
-              },
-            }}
-            className="text-left text-5xl font-black pb-[370px] text-gray-700"
-          >
-            Rot-Weiss Walldorf
-          </motion.h1>
-
+              }}
+              className="text-left text-5xl font-black pb-[370px] text-white"
+            >
+              Rot-Weiss Walldorf
+            </motion.h1>
+          </div>
+        </section>
+        <section className="container-narrow mt-[-6rem]">
           <motion.div
             className="grid grid-cols-3 gap-8"
             variants={container}
@@ -76,7 +86,7 @@ const LandingPage = () => {
             <motion.div
               variants={item}
               whileHover={{ translateY: -10 }}
-              className="bg-white shadow-2xl"
+              className="bg-white shadow-2xl z-10"
             >
               <Link href="/mannschaften">
                 <a className="block p-8">
@@ -108,7 +118,7 @@ const LandingPage = () => {
             <motion.div
               variants={item}
               whileHover={{ translateY: -10 }}
-              className="bg-white shadow-2xl"
+              className="bg-white shadow-2xl z-10"
             >
               <Link href="/jugend">
                 <a className="block p-8">
@@ -141,7 +151,7 @@ const LandingPage = () => {
             <motion.div
               variants={item}
               whileHover={{ translateY: -10 }}
-              className="bg-white shadow-2xl"
+              className="bg-white shadow-2xl z-10"
             >
               <Link href="/training">
                 <a className="block p-8">
@@ -176,4 +186,4 @@ const LandingPage = () => {
   )
 }
 
-export default LandingPage
+export default HomePage

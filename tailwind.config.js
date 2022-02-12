@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        landing: "url('/landing01.jpg')",
+      },
       gridTemplateColumns: {
         fluid: "repeat( auto-fit, minmax(16rem, 1fr) );",
         "fluid-sm": "repeat( auto-fit, minmax(8rem, 1fr) );",

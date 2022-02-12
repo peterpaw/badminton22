@@ -30,7 +30,8 @@
     top: -143px;
     left: 0px;
     right: 0px;
-    height: calc(100% + 143px);
+    height: 100%;
+    /* height: calc(100% + 143px); */
     max-height: 1014px;
     background: linear-gradient(
       90deg,
@@ -46,11 +47,12 @@
     top: -143px;
     left: 0px;
     right: 0px;
-    height: calc(100% + 143px);
+    height: 100%;
+    /* height: calc(100% + 143px); */
     max-height: 1014px;
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.9) 40%,
+      rgba(255, 255, 255, 0.9) 0%,
       rgba(255, 255, 255, 0.05) 100%
     );
   }
