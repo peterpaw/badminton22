@@ -1,9 +1,56 @@
+import { useEffect } from "react"
 import Head from "next/head"
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { motion, useAnimation } from "framer-motion"
 import Image from "next/image"
+import { useInView } from "react-intersection-observer"
 
 const HomePage = () => {
+  const [ref1, inView1] = useInView({ threshold: 0.4 })
+  const [ref2, inView2] = useInView({ threshold: 0.4 })
+  const animation = useAnimation()
+  const animation2 = useAnimation()
+
+  useEffect(() => {
+    if (inView1) {
+      animation.start({
+        opacity: 1,
+        x: 0,
+        transition: {
+          duration: 0.7,
+        },
+      })
+    } else if (!inView1) {
+      animation.start({
+        opacity: 0,
+        x: -100,
+        transition: {
+          duration: 0.5,
+        },
+      })
+    }
+  }, [inView1])
+
+  useEffect(() => {
+    if (inView2) {
+      animation2.start({
+        opacity: 1,
+        x: 0,
+        transition: {
+          duration: 0.7,
+        },
+      })
+    } else if (!inView2) {
+      animation2.start({
+        opacity: 0,
+        x: 100,
+        transition: {
+          duration: 0.5,
+        },
+      })
+    }
+  }, [inView2])
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -31,13 +78,13 @@ const HomePage = () => {
         <title>Badminton | Rot-Weiss Walldorf</title>
       </Head>
       <main className="">
-        <section className="relative bg-gradient-to-r from-red-600 to-purple-900 w-full">
+        <section className="relative bg-gradient-to-r from-red-600 to-purple-900 w-full h-[60vh] max-h-[60vh]">
           <Image
             priority
             layout="fill"
             src="/landing02.jpg"
             alt="Badminton Spieler beim Smash"
-            className="absolute w-full h-full mix-blend-overlay object-cover"
+            className="absolute w-full h-full mix-blend-overlay object-cover object-right"
           />
           <div className="container-narrow">
             <motion.h1
@@ -53,7 +100,7 @@ const HomePage = () => {
                   },
                 },
               }}
-              className="text-left text-9xl font-black pt-48 pb-4 text-white"
+              className="md:text-left text-5xl md:text-7xl lg:text-9xl font-black pt-[20vh] pb-0 lg:pb-2 text-white"
             >
               Badminton
             </motion.h1>
@@ -70,15 +117,15 @@ const HomePage = () => {
                   },
                 },
               }}
-              className="text-left text-5xl font-black pb-[370px] text-white"
+              className="md:text-left text-xl md:text-3xl lg:text-5xl font-normal  text-white"
             >
-              Rot-Weiss Walldorf
+              Rot-Weiss Walldorf e.V.
             </motion.h1>
           </div>
         </section>
         <section className="container-narrow mt-[-6rem]">
           <motion.div
-            className="grid grid-cols-3 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={container}
             initial="hidden"
             animate="show"
@@ -180,6 +227,46 @@ const HomePage = () => {
               </Link>
             </motion.div>
           </motion.div>
+        </section>
+        <section className="py-32">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-32 justify-center container-narrow">
+            <motion.div
+              ref={ref1}
+              initial={{ opacity: 0, x: -100 }}
+              animate={animation}
+              className="relative aspect-[16/12] shadow-2xl"
+            >
+              <Image
+                src="/niklas-sandra.jpg"
+                alt="Niklas und Sandra"
+                layout="fill"
+                objectFit="cover"
+              />
+            </motion.div>
+            <motion.div
+              ref={ref2}
+              initial={{ opacity: 0, x: 100 }}
+              animate={animation2}
+            >
+              <h2 className="text-red-600 text-left font-black mb-8">
+                Willkommen bei den Roten!
+              </h2>
+              <p>
+                Wir trainieren zwei mal pro Woche und uns stehen jeweils bis zu
+                9 Felder zur Verfügung.
+              </p>
+              <p>
+                Am frühen Abend beginnen die Kids und Jugendlichen mit ihrem
+                Training und werden von unseren erfahrenen Übungsleitern Annika
+                Horbach und Maurizio Battaglia betreut. Anschließend geht es bei
+                den Erwachsenen weiter.
+              </p>
+              <p>
+                Von lockeren Matches bis hin zu ambitionierten Forderungsspielen
+                im Rahmen der Vereinsrangliste ist alles dabei.
+              </p>
+            </motion.div>
+          </div>
         </section>
       </main>
     </>

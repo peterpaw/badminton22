@@ -13,7 +13,7 @@
   }
 
   p {
-    @apply text-slate-600 font-normal;
+    @apply text-slate-600 font-normal text-base pb-2;
   }
 
   .container-narrow {
