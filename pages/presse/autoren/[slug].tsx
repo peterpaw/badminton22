@@ -119,7 +119,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: data.authors.map(({ slug }: { slug: string }) => ({
       params: { slug },
     })),
-    fallback: false,
+    fallback: "blocking",
   }
 }
 

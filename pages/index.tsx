@@ -4,8 +4,14 @@ import Link from "next/link"
 import { motion, useAnimation } from "framer-motion"
 import Image from "next/image"
 import { useInView } from "react-intersection-observer"
+import { GetStaticProps } from "next"
+import { gql, GraphQLClient } from "graphql-request"
 
-const HomePage = () => {
+import LatestPosts from "@components/LatestPosts"
+
+const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
+
+const HomePage = ({ data }) => {
   const [ref1, inView1] = useInView({ threshold: 0.4 })
   const [ref2, inView2] = useInView({ threshold: 0.4 })
   const animation = useAnimation()
@@ -268,9 +274,40 @@ const HomePage = () => {
             </motion.div>
           </div>
         </section>
+        <LatestPosts data={data} />
       </main>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const query = gql`
+    query LatestPostsQuery {
+      posts(first: 3, orderBy: postPublishDate_DESC) {
+        title
+        id
+        slug
+        authors {
+          name
+        }
+        postPublishDate
+        featuredImage {
+          url
+        }
+        categories {
+          name
+        }
+      }
+    }
+  `
+
+  const data = await client.request(query)
+
+  return {
+    props: {
+      data,
+    },
+  }
 }
 
 export default HomePage

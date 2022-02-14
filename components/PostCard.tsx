@@ -2,16 +2,31 @@ import Link from "next/link"
 import Image from "next/image"
 import { format } from "date-fns"
 import { de } from "date-fns/locale"
+import { motion } from "framer-motion"
 
 import { IPost } from "pages/presse/[slug]"
 
-const PostCard = ({ post }: { post: IPost }) => {
+const PostCard = ({ post, index }: { post: IPost; index: number }) => {
   const date = format(new Date(post.postPublishDate), "dd. MMMM yyyy", {
     locale: de,
   })
 
   return (
-    <div className="mx-auto mb-8 md:grid md:grid-cols-3 shadow-md">
+    <motion.div
+      initial={{
+        opacity: 0,
+        x: -100,
+      }}
+      animate={{
+        opacity: 1,
+        x: 0,
+        transition: {
+          duration: 0.5,
+          delay: index * 0.4,
+        },
+      }}
+      className="mx-auto mb-8 md:grid md:grid-cols-3 shadow-md"
+    >
       <div className="relative aspect-[16/9] md:h-auto md:aspect-auto">
         <Image
           src={post.featuredImage.url}
@@ -66,7 +81,7 @@ const PostCard = ({ post }: { post: IPost }) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

@@ -61,8 +61,8 @@ const PressePage: NextPage<PageProps> = ({ data }) => {
         Presse
       </h1>
       <CardGrid>
-        {edges?.map(({ node }: { node: any }) => (
-          <PostCard key={node.slug} post={node} />
+        {edges?.map(({ node }: { node: any }, index) => (
+          <PostCard post={node} index={index} key={node.slug} />
         ))}
       </CardGrid>
       <div className="py-8 flex justify-center gap-4 items-center">
