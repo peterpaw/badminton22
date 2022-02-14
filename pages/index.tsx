@@ -228,7 +228,7 @@ const HomePage = () => {
             </motion.div>
           </motion.div>
         </section>
-        <section className="py-32">
+        <section className="py-32 overflow-x-hidden">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-32 justify-center container-narrow">
             <motion.div
               ref={ref1}
@@ -248,7 +248,7 @@ const HomePage = () => {
               initial={{ opacity: 0, x: 100 }}
               animate={animation2}
             >
-              <h2 className="text-red-600 text-left font-black mb-8">
+              <h2 className="text-red-600 text-left font-black mb-8 mt-4 md:mt-0">
                 Willkommen bei den Roten!
               </h2>
               <p>
