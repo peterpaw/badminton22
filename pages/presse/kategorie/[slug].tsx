@@ -28,8 +28,8 @@ const CategorySlug = ({
           Presseberichte sortiert nach Kategorie: {slug.toUpperCase()}
         </h1>
         <CardGrid>
-          {edges?.map(({ node }: { node: any }) => (
-            <PostCard key={node.slug} post={node} />
+          {edges?.map(({ node }: { node: any }, index: number) => (
+            <PostCard key={node.slug} post={node} index={index} />
           ))}
         </CardGrid>
 
@@ -102,6 +102,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: { data, slug, categories: data.categories },
+    revalidate: 60,
   }
 }
 

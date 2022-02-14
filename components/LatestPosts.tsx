@@ -1,8 +1,7 @@
 import Image from "next/image"
+import { LatestPostsType } from "pages"
 
-const LatestPosts = ({ data }) => {
-  console.log(data)
-
+const LatestPosts: React.FC<LatestPostsType> = ({ data }) => {
   return (
     <section className="py-8 bg-gradient-to-b from-red-600 to-white">
       <h1 className="text-white font-black text-4xl py-16">Aktuelles</h1>

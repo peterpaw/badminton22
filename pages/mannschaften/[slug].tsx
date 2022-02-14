@@ -49,12 +49,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   if (!data.team) {
     return {
-      notFound: true
+      notFound: true,
     }
   }
 
   return {
-    props: { data }
+    props: { data },
+    revalidate: 60,
   }
 }
 
@@ -71,7 +72,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: data.teams.map((team: any) => ({ params: { slug: team.slug } })),
-    fallback: "blocking"
+    fallback: "blocking",
   }
 }
 

@@ -40,8 +40,8 @@ const AuthorPage: NextPage<PageProps> = ({ data }) => {
           Beiträge von {author.name}
         </h1>
         <CardGrid>
-          {edges?.map(({ node }: { node: any }) => (
-            <PostCard key={node.slug} post={node} />
+          {edges?.map(({ node }: { node: any }, index: number) => (
+            <PostCard key={node.slug} post={node} index={index} />
           ))}
         </CardGrid>
       </main>
@@ -101,6 +101,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       data,
       slug,
     },
+    revalidate: 60,
   }
 }
 
