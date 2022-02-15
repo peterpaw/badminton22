@@ -21,6 +21,7 @@ export interface LatestPostsType {
             name: string
           }
         ]
+        excerpt: string
         postPublishDate: string
         featuredImage: {
           url: string
@@ -110,7 +111,7 @@ const HomePage: NextPage<LatestPostsType> = ({ data }) => {
         <title>Badminton | Rot-Weiss Walldorf</title>
       </Head>
       <main className="">
-        <section className="relative bg-gradient-to-r from-red-600 to-purple-900 w-full h-[60vh] max-h-[60vh]">
+        <section className="relative bg-gradient-to-r from-red-600 to-purple-900 w-full md:min-h-[500px] h-[60vh] max-h-[60vh]">
           <Image
             priority
             layout="fill"
@@ -316,6 +317,7 @@ export const getStaticProps: GetStaticProps = async () => {
         authors {
           name
         }
+        excerpt
         postPublishDate
         featuredImage {
           url
@@ -333,7 +335,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       data,
     },
-    revalidate: 60,
+    revalidate: 60 * 30,
   }
 }
 

@@ -12,6 +12,7 @@ module.exports = {
         fluid: "repeat( auto-fit, minmax(16rem, 1fr) );",
         "fluid-sm": "repeat( auto-fit, minmax(8rem, 1fr) );",
         "fluid-16": "repeat(auto-fit, 16rem);",
+        "fluid-24": "repeat(auto-fit, 24rem);",
       },
       grayscale: {
         25: "25%",
