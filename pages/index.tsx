@@ -9,6 +9,9 @@ import { gql, GraphQLClient } from "graphql-request"
 
 import LatestPosts from "@components/LatestPosts"
 
+import landing from "../public/landing02.jpg"
+import niklasSandra from "../public/niklas-sandra.jpg"
+
 export interface LatestPostsType {
   data: {
     posts: [
@@ -115,7 +118,7 @@ const HomePage: NextPage<LatestPostsType> = ({ data }) => {
           <Image
             priority
             layout="fill"
-            src="/landing02.jpg"
+            src={landing}
             alt="Badminton Spieler beim Smash"
             className="absolute w-full h-full mix-blend-overlay object-cover object-right"
           />
@@ -270,7 +273,7 @@ const HomePage: NextPage<LatestPostsType> = ({ data }) => {
               className="relative aspect-[16/12] shadow-2xl"
             >
               <Image
-                src="/niklas-sandra.jpg"
+                src={niklasSandra}
                 alt="Niklas und Sandra"
                 layout="fill"
                 objectFit="cover"

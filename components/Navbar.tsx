@@ -2,6 +2,8 @@ import { navigation } from "data/navigation"
 import Image from "next/image"
 import Link from "next/link"
 
+import rwwLogo from "../public/rww-logo.png"
+
 const Navbar = () => {
   return (
     <div className="sticky top-0 z-20 border-b bg-opacity-80 bg-gray-100 backdrop-filter backdrop-blur-lg shadow-lg shadow-slate-600/10">
@@ -12,7 +14,7 @@ const Navbar = () => {
               <a className="leading-none">
                 <span className="sr-only">badminton-walldorf.de</span>
                 <Image
-                  src="/rww-logo.png"
+                  src={rwwLogo}
                   alt="Rot-Weiss Walldorf Logo"
                   width={50}
                   height={50}

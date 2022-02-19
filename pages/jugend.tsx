@@ -2,6 +2,12 @@ import { NextPage } from "next"
 import Head from "next/head"
 import Image from "next/image"
 
+import gruppenFoto from "../public/badminton-jugend-gruppenfoto.jpg"
+import redheadKid from "../public/jugendtraining-01.jpg"
+import jugendFlyer from "../public/flyer-jugend.jpg"
+import gasthausXXL from "../public/gasthaus-xxl.png"
+import xxlWirt from "../public/wirt-joschi-mauri.jpg"
+
 import { jugend } from "data/jugend"
 
 const JugendPage: NextPage = () => {
@@ -15,7 +21,7 @@ const JugendPage: NextPage = () => {
           <h2 className="mb-8 md:mb-16 font-black md:text-4xl">Jugend</h2>
           <div className="aspect-[16/7] relative mb-16">
             <Image
-              src="/badminton-jugend-gruppenfoto.jpg"
+              src={gruppenFoto}
               alt="Jugend-Minimannschaft mit Coaches"
               layout="fill"
               objectFit="cover"
@@ -34,7 +40,7 @@ const JugendPage: NextPage = () => {
                 <div key={person.id} className="mb-4">
                   <div className="relative text-center">
                     <Image
-                      src={`/${person.foto}`}
+                      src={person.foto}
                       alt={`Spielerfoto von ${person.name}`}
                       width={270}
                       height={360}
@@ -60,7 +66,7 @@ const JugendPage: NextPage = () => {
               <div key={person.id} className="mb-4">
                 <div className="relative text-center">
                   <Image
-                    src={`/${person.foto}`}
+                    src={person.foto}
                     alt={`Spielerfoto von ${person.name}`}
                     width={270}
                     height={360}
@@ -93,7 +99,7 @@ const JugendPage: NextPage = () => {
       </section>
       <section className="aspect-[16/7] relative">
         <Image
-          src="/jugendtraining-01.jpg"
+          src={redheadKid}
           alt="Jugendlicher trainigert"
           layout="fill"
           objectFit="cover"
@@ -118,12 +124,7 @@ const JugendPage: NextPage = () => {
         </div>
       </section>
       <section className="text-center py-8">
-        <Image
-          src="/flyer-jugend.jpg"
-          alt="Flyer Jugend"
-          width={443}
-          height={661}
-        />
+        <Image src={jugendFlyer} alt="Flyer Jugend" width={443} height={661} />
       </section>
       <section className="bg-zinc-100 py-8 md:py-16">
         <h2 className="mb-8 font-black md:text-4xl">Jugendsponsor</h2>
@@ -134,7 +135,7 @@ const JugendPage: NextPage = () => {
           className="relative mx-auto block text-center"
         >
           <Image
-            src="/gasthaus-xxl.png"
+            src={gasthausXXL}
             alt="Logo Gasthaus XXL"
             width={150}
             height={150}
@@ -145,7 +146,7 @@ const JugendPage: NextPage = () => {
         </h3>
         <div className="relative text-center max-w-3xl mx-auto">
           <Image
-            src="/wirt-joschi-mauri.jpg"
+            src={xxlWirt}
             alt="Rot-Weiss Wirt mit Vorstand Badminton"
             width={1024}
             height={768}

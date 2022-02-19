@@ -1,6 +1,11 @@
 import Image from "next/image"
 import Link from "next/link"
 
+import bschmitt from "../public/bschmitt.jpg"
+import pjourdan from "../public/phjourdan.jpg"
+import plusline from "../public/plusline.jpg"
+import gasthausXXL from "../public/gasthaus-xxl.png"
+
 const Footer = () => {
   return (
     <footer className="bg-gray-100">
@@ -12,7 +17,7 @@ const Footer = () => {
           className="relative w-64 h-16 mx-auto my-4 block"
         >
           <Image
-            src="/bschmitt.jpg"
+            src={bschmitt}
             alt="Logo BSchmitt Mobile"
             layout="fill"
             objectFit="contain"
@@ -25,7 +30,7 @@ const Footer = () => {
           className="relative w-64 h-16 mx-auto my-4 block"
         >
           <Image
-            src="/phjourdan.jpg"
+            src={pjourdan}
             alt="Logo Philipp Jourdan"
             layout="fill"
             objectFit="contain"
@@ -38,7 +43,7 @@ const Footer = () => {
           className="relative w-64 h-16 mx-auto my-4 block"
         >
           <Image
-            src="/plusline.jpg"
+            src={plusline}
             alt="Logo PlusLine"
             layout="fill"
             objectFit="contain"
@@ -52,7 +57,7 @@ const Footer = () => {
         className="relative w-64 h-16 mx-auto my-4 block"
       >
         <Image
-          src="/gasthaus-xxl.png"
+          src={gasthausXXL}
           alt="Logo Gasthaus XXL"
           layout="fill"
           objectFit="contain"

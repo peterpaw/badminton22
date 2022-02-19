@@ -1,72 +1,83 @@
+import adrianp from "../public/adrian-prodanovic.jpg"
+import annikah from "../public/annika-horbach.jpg"
+import corneliusf from "../public/cornelius-fuchs.jpg"
+import fabiant from "../public/fabian-tietze.jpg"
+import jonass from "../public/jonas-schuhmann.jpg"
+import juliam from "../public/julia-natalie-messner.jpg"
+import kait from "../public/kai-tietze.jpg"
+import maurib from "../public/maurizio-battaglia.jpg"
+import monam from "../public/mona-messner.jpg"
+import pengz from "../public/pengyang-zhao.jpg"
+
 export const jugend = [
   {
     id: 8,
     name: "Adrian Prodanovic",
     gender: "male",
     role: "player",
-    foto: "adrian-prodanovic.jpg",
+    foto: adrianp,
   },
   {
     id: 9,
     name: "Annika Horbach",
     gender: "female",
     role: "coach",
-    foto: "annika-horbach.jpg",
+    foto: annikah,
   },
   {
     id: 5,
     name: "Cornelius Fuchs",
     gender: "male",
     role: "player",
-    foto: "cornelius-fuchs.jpg",
+    foto: corneliusf,
   },
   {
     id: 6,
     name: "Fabian Tietze",
     gender: "male",
     role: "player",
-    foto: "fabian-tietze.jpg",
+    foto: fabiant,
   },
   {
     id: 3,
     name: "Jonas Schuhmann",
     gender: "male",
     role: "player",
-    foto: "jonas-schuhmann.jpg",
+    foto: jonass,
   },
   {
     id: 1,
     name: "Julia Natalie Messner",
     gender: "female",
     role: "player",
-    foto: "julia-natalie-messner.jpg",
+    foto: juliam,
   },
   {
     id: 4,
     name: "Kai Tietze",
     gender: "male",
     role: "player",
-    foto: "kai-tietze.jpg",
+    foto: kait,
   },
   {
     id: 10,
     name: "Maurizio Battaglia",
     gender: "male",
     role: "coach",
-    foto: "maurizio-battaglia.jpg",
+    foto: maurib,
   },
   {
     id: 2,
     name: "Mona Messner",
     gender: "female",
     role: "player",
-    foto: "mona-messner.jpg",
+    foto: monam,
   },
   {
     id: 7,
     name: "Pengyang Zhao",
     gender: "male",
     role: "player",
-    foto: "pengyang-zhao.jpg",
+    foto: pengz,
   },
 ]
