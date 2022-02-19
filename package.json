@@ -17,7 +17,8 @@
     "next-mdx-remote": "^3.0.8",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intersection-observer": "^8.33.1"
+    "react-intersection-observer": "^8.33.1",
+    "react-swipeable": "^6.2.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.2",
