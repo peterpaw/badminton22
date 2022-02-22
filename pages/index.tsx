@@ -313,7 +313,7 @@ const HomePage: NextPage<LatestPostsType> = ({ data }) => {
 export const getStaticProps: GetStaticProps = async () => {
   const query = gql`
     query LatestPostsQuery {
-      posts(first: 3, orderBy: postPublishDate_DESC) {
+      posts(first: 5, orderBy: postPublishDate_DESC) {
         title
         id
         slug

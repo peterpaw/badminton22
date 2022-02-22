@@ -107,19 +107,23 @@ const JugendPage: NextPage = () => {
         />
       </section>
       <section className="bg-zinc-100 py-8 md:py-16">
-        <h2 className="mb-8 md:mb-16 font-black md:text-4xl">Jugendtraining</h2>
-        <div className="flex flex-wrap text-center justify-center gap-4 leading-tight">
-          <div className="bg-white p-8 rounded shadow-sm flex-1 min-w-[20rem] max-w-[45vw]">
-            <h3 className="text-xl md:text-2xl mb-4">Montag</h3>
-            <p>Bertha-von-Suttner-Schule</p>
-            <p>An den Nußbäumen 1, Halle A</p>
-            <p>17:30 - 19:30 Uhr</p>
-          </div>
-          <div className="bg-white p-8 rounded shadow-sm flex-1 min-w-[20rem] max-w-[45vw]">
-            <h3 className="text-xl md:text-2xl mb-4">Mittwoch</h3>
-            <p>Sporthalle Walldorf</p>
-            <p>Okrifteler Str. 29</p>
-            <p>17:30 - 19:30 Uhr</p>
+        <div className="container-narrow">
+          <h2 className="mb-8 md:mb-16 font-black md:text-4xl">
+            Jugendtraining
+          </h2>
+          <div className="flex flex-wrap text-center justify-center gap-4 leading-tight">
+            <div className="bg-white p-8 rounded shadow-sm flex-1 min-w-[20rem] max-w-[45vw]">
+              <h3 className="text-xl md:text-2xl mb-4">Montag</h3>
+              <p>Bertha-von-Suttner-Schule</p>
+              <p>An den Nußbäumen 1, Halle A</p>
+              <p>17:30 - 19:30 Uhr</p>
+            </div>
+            <div className="bg-white p-8 rounded shadow-sm flex-1 min-w-[20rem] max-w-[45vw]">
+              <h3 className="text-xl md:text-2xl mb-4">Mittwoch</h3>
+              <p>Sporthalle Walldorf</p>
+              <p>Okrifteler Str. 29</p>
+              <p>17:30 - 19:30 Uhr</p>
+            </div>
           </div>
         </div>
       </section>
