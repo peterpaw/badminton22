@@ -3,5 +3,6 @@ export const navigation = [
   { name: "Mannschaften", href: "/mannschaften", current: false },
   { name: "Jugend", href: "/jugend", current: false },
   { name: "Presse", href: "/presse", current: false },
+  { name: "Mitgliedschaft", href: "/mitgliedschaft", current: false },
   { name: "Kontakt", href: "/kontakt", current: false },
 ]

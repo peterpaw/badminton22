@@ -4,6 +4,11 @@ import Image from "next/image"
 import { LatestPostsType } from "pages"
 import { useSwipeable } from "react-swipeable"
 import Link from "next/link"
+import {
+  ArrowNarrowLeftIcon,
+  ArrowNarrowRightIcon,
+  ArrowRightIcon,
+} from "@heroicons/react/solid"
 
 const LatestPosts: React.FC<LatestPostsType> = ({ data }) => {
   const [position, setPosition] = useState(0)
@@ -88,41 +93,18 @@ const LatestPosts: React.FC<LatestPostsType> = ({ data }) => {
       </div>
       <div className="flex justify-center items-center gap-4">
         <button onClick={clickLeft}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-8 text-red-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M7 16l-4-4m0 0l4-4m-4 4h18"
-            />
-          </svg>
+          <ArrowNarrowLeftIcon className="h-8 w-8 text-red-600" />
         </button>
         <button onClick={clickRight}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-8 text-red-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
+          <ArrowNarrowRightIcon className="h-8 w-8 text-red-600" />
         </button>
       </div>
       <div className="mt-4 text-center">
         <Link href="/presse" passHref>
-          <button className="py-2 capitalize">Alle Presseberichte</button>
+          <button className="btn-primary">
+            Alle Presseberichte
+            <ArrowRightIcon className="text-white w-4 h-4" />
+          </button>
         </Link>
       </div>
     </section>
