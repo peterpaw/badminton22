@@ -1,3 +1,4 @@
+import TeamListItem from "@components/TeamListItem"
 import { gql, GraphQLClient } from "graphql-request"
 import { GetStaticProps } from "next"
 import Link from "next/link"
@@ -42,14 +43,7 @@ const MannschaftenPage = ({ data }: { data: { teams: ITeamsOverview[] } }) => {
     <main className="text-center container py-16 max-w-sm mx-auto">
       <h1 className="text-4xl font-black mb-16">Mannschaften</h1>
       {data?.teams?.map((team) => (
-        <div key={team.slug}>
-          <Link href={`/mannschaften/${team.slug}`}>
-            <a>
-              <h2 className="text-2xl">{team.mannschaft}</h2>
-              <p>{team.liga}</p>
-            </a>
-          </Link>
-        </div>
+        <TeamListItem team={team} key={team.slug} />
       ))}
     </main>
   )
