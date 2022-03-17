@@ -41,8 +41,44 @@ export interface IPost {
   }
 }
 
-export default function Slug({ post }: { post: IPost }) {
-  return <Post post={post} />
+export interface IPostIds {
+  id: string
+  title: string
+  slug: string
+  postPublishDate: Date
+  excerpt: string
+  featuredImage: {
+    url: string
+  }
+  authors: [
+    {
+      id: string
+      slug: string
+      name: string
+      foto: {
+        url: string
+      }
+    }
+  ]
+  categories: [
+    {
+      name: string
+      slug: string
+      color: string
+    }
+  ]
+}
+
+export default function Slug({
+  post,
+  prevPost,
+  nextPost,
+}: {
+  post: IPost
+  prevPost: IPostIds
+  nextPost: IPostIds
+}) {
+  return <Post post={post} prevPost={prevPost} nextPost={nextPost} />
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -71,16 +107,51 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         categories {
           name
           slug
-          color
         }
         content {
           markdown
         }
       }
+      posts(orderBy: postPublishDate_DESC) {
+        id
+        slug
+        title
+        postPublishDate
+        excerpt
+        featuredImage {
+          url
+        }
+        categories {
+          name
+          slug
+        }
+        authors {
+          id
+          slug
+          name
+          foto {
+            url
+          }
+        }
+      }
     }
   `
 
-  const data: { post: IPost | null } = await client.request(query, { slug })
+  const data: { post: IPost | null; posts: IPostIds[] } = await client.request(
+    query,
+    { slug }
+  )
+
+  const currentPostIndex = data.posts.findIndex(
+    (element) => element.id === data?.post?.id
+  )
+
+  const prevPost =
+    currentPostIndex === 0 ? null : data.posts[currentPostIndex - 1]
+  const nextPost =
+    currentPostIndex === data.posts.length - 1
+      ? null
+      : data.posts[currentPostIndex + 1]
 
   if (!data.post) {
     return {
@@ -91,7 +162,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const source = await serialize(data.post.content.markdown)
 
   return {
-    props: { post: { ...data.post, source } },
+    props: { post: { ...data.post, source }, prevPost, nextPost },
     revalidate: 60 * 30,
   }
 }
