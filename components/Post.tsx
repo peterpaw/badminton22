@@ -69,7 +69,7 @@ const Post = ({
         <article className="px-2 prose md:prose-lg mx-auto">
           <MDXRemote {...post.source} />
         </article>
-        <div className="my-8">
+        <div className="mt-24">
           <ConnectedPosts prevPost={prevPost} nextPost={nextPost} />
         </div>
       </main>
