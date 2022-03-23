@@ -1,15 +1,33 @@
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/solid"
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/solid"
 import { IPostIds } from "pages/presse/[slug]"
+import CategoryBadge from "./CategoryBadge"
+import { format } from "date-fns"
+import { de } from "date-fns/locale"
 
 const PrevNextLink = ({
   post,
   prev,
 }: {
-  post: { slug: string; featuredImage: { url: string }; title: string }
+  post: {
+    slug: string
+    featuredImage: { url: string }
+    title: string
+    categories: [
+      {
+        name: string
+        slug: string
+        color: string
+      }
+    ]
+    postPublishDate: Date
+  }
   prev: boolean
 }) => {
+  const date = format(new Date(post.postPublishDate), "dd. MMMM yyyy", {
+    locale: de,
+  })
   return (
     <Link href={`/presse/${post.slug}`}>
       <a>
@@ -30,8 +48,16 @@ const PrevNextLink = ({
               layout="fill"
             />
           </div>
+          <div className="flex flex-wrap justify-center items-center gap-2 my-2">
+            <span className="text-xs">{date}</span>
+            <div className="flex">
+              {post.categories.map((tag) => {
+                return <CategoryBadge category={tag} key={tag.name} />
+              })}
+            </div>
+          </div>
           <h3
-            className={`text-sm md:text-base md:mt-4 text-center md:text-center`}
+            className={`text-sm md:text-base md:mt-2 text-center md:text-center`}
           >
             {post.title}
           </h3>
