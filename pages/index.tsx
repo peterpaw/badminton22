@@ -65,7 +65,7 @@ const HomePage: NextPage<LatestPostsType> = ({ data }) => {
         },
       })
     }
-  }, [inView1])
+  }, [inView1, animation])
 
   useEffect(() => {
     if (inView2) {
@@ -85,7 +85,7 @@ const HomePage: NextPage<LatestPostsType> = ({ data }) => {
         },
       })
     }
-  }, [inView2])
+  }, [inView2, animation2])
 
   const container = {
     hidden: { opacity: 0 },

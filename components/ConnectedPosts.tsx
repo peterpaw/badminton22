@@ -14,24 +14,16 @@ const PrevNextLink = ({
     <Link href={`/presse/${post.slug}`}>
       <a>
         <h4
-          className={`text-sm md:text-base mb-2 flex justify-${
-            prev === true ? "start" : "end"
-          } items-center`}
+          className={`text-sm md:text-base mb-2 flex justify-center items-center`}
         >
           {prev ? (
-            <>
-              <ArrowLeftIcon className="w-6 h-6" />
-              <span className="ml-2">voriger Bericht</span>
-            </>
+            <ArrowLeftIcon className="w-6 h-6" />
           ) : (
-            <>
-              <span className="mr-2">nächster Bericht</span>
-              <ArrowRightIcon className="w-6 h-6" />
-            </>
+            <ArrowRightIcon className="w-6 h-6" />
           )}
         </h4>
         <div className="p-2">
-          <div className="hidden md:block relative h-48 aspect-video">
+          <div className="hidden md:block relative h-48 aspect-video mx-auto">
             <Image
               src={post.featuredImage.url}
               alt={post.title}
@@ -39,9 +31,7 @@ const PrevNextLink = ({
             />
           </div>
           <h3
-            className={`text-sm md:text-base md:mt-4 text-${
-              prev === true ? "left" : "right"
-            } md:text-center`}
+            className={`text-sm md:text-base md:mt-4 text-center md:text-center`}
           >
             {post.title}
           </h3>
@@ -54,22 +44,16 @@ const PrevNextLink = ({
 const ConnectedPosts = ({
   prevPost,
   nextPost,
+  className,
 }: {
   prevPost: IPostIds
   nextPost: IPostIds
+  className: string
 }) => {
-  const oneColumn = prevPost === null || nextPost === null
-
   return (
-    <div>
-      <div
-        className={`grid grid-cols-${
-          oneColumn ? "1" : "2"
-        } gap-4 my-4 justify-center`}
-      >
-        {prevPost && <PrevNextLink post={prevPost} prev={true} />}
-        {nextPost && <PrevNextLink post={nextPost} prev={false} />}
-      </div>
+    <div className={className}>
+      {prevPost && <PrevNextLink post={prevPost} prev={true} />}
+      {nextPost && <PrevNextLink post={nextPost} prev={false} />}
     </div>
   )
 }

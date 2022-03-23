@@ -7,6 +7,7 @@ import { de } from "date-fns/locale"
 import { IPost, IPostIds } from "pages/presse/[slug]"
 
 import ConnectedPosts from "@components/ConnectedPosts"
+import CategoryBadge from "./CategoryBadge"
 
 const Post = ({
   post,
@@ -38,6 +39,7 @@ const Post = ({
                     <img
                       className="rounded-full float-left h-full"
                       src={author.foto.url}
+                      alt={`Profilfoto von ${author.name}`}
                     />
                     <span className="ml-3 text-xs">{`${author.name}`}</span>
                   </div>
@@ -53,25 +55,22 @@ const Post = ({
           className="my-4 mx-auto"
         />
         <div className="p-4 flex justify-center items-center flex-wrap">
-          {post.categories.map((category) => (
-            <Link
-              href={`/presse/kategorie/${category.slug}`}
-              key={category.slug}
-            >
-              <a>
-                <span className="inline-flex items-center justify-center px-4 py-2 mr-2 text-xs font-medium leading-none bg-gray-100 rounded-full">
-                  {category.name}
-                </span>
-              </a>
-            </Link>
-          ))}
+          {post.categories.map((category) => {
+            return <CategoryBadge category={category} key={category.name} />
+          })}
         </div>
         <article className="px-2 prose md:prose-lg mx-auto">
           <MDXRemote {...post.source} />
         </article>
-        <div className="mt-24">
-          <ConnectedPosts prevPost={prevPost} nextPost={nextPost} />
-        </div>
+        <ConnectedPosts
+          prevPost={prevPost}
+          nextPost={nextPost}
+          className={
+            prevPost === null || nextPost === null
+              ? "grid grid-cols-1 gap-4 my-4 justify-center mt-24"
+              : "grid grid-cols-2 gap-4 my-4 justify-center mt-24"
+          }
+        />
       </main>
     </>
   )

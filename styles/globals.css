@@ -25,6 +25,22 @@
   .btn-primary {
     @apply flex py-2 px-3 text-white font-semibold tracking-wide text-sm rounded-sm bg-red-600 capitalize mx-auto justify-center items-center gap-2 hover:bg-red-500 transition duration-200;
   }
+
+  .badge {
+    @apply inline-flex items-center justify-center px-4 py-2 mr-2 text-xs font-medium leading-none rounded-full;
+  }
+  .badge-blue {
+    @apply bg-blue-100;
+  }
+  .badge-green {
+    @apply bg-green-100;
+  }
+  .badge-yellow {
+    @apply bg-yellow-100;
+  }
+  .badge-red {
+    @apply bg-red-100;
+  }
 }
 
 @layer utilities {

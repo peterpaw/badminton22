@@ -3,8 +3,6 @@ import Link from "next/link"
 import { ITeamsOverview } from "pages/mannschaften"
 
 const TeamListItem = ({ team }: { team: ITeamsOverview }) => {
-  console.log(team)
-
   return (
     <Link href={`/mannschaften/${team.slug}`}>
       <a className="mb-8 block">

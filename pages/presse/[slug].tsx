@@ -107,6 +107,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         categories {
           name
           slug
+          color
         }
         content {
           markdown
@@ -124,6 +125,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         categories {
           name
           slug
+          color
         }
         authors {
           id
