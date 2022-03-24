@@ -56,7 +56,16 @@ const Post = ({
         />
         <div className="p-4 flex justify-center items-center flex-wrap">
           {post.categories.map((category) => {
-            return <CategoryBadge category={category} key={category.name} />
+            return (
+              <Link
+                href={`/presse/kategorie/${category.slug}`}
+                key={category.slug}
+              >
+                <a>
+                  <CategoryBadge category={category} key={category.name} />
+                </a>
+              </Link>
+            )
           })}
         </div>
         <article className="px-2 prose md:prose-lg mx-auto">
