@@ -1,8 +1,8 @@
 export const navigation = [
-  { name: "Training", href: "/training", current: false },
-  { name: "Mannschaften", href: "/mannschaften", current: false },
-  { name: "Jugend", href: "/jugend", current: false },
-  { name: "Presse", href: "/presse", current: false },
-  { name: "Mitgliedschaft", href: "/mitgliedschaft", current: false },
-  { name: "Kontakt", href: "/kontakt", current: false },
+  { name: "Training", href: "/training" },
+  { name: "Mannschaften", href: "/mannschaften" },
+  { name: "Jugend", href: "/jugend" },
+  { name: "Presse", href: "/presse" },
+  { name: "Mitgliedschaft", href: "/mitgliedschaft" },
+  { name: "Kontakt", href: "/kontakt" },
 ]
