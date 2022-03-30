@@ -11,6 +11,7 @@ import LatestPosts from "@components/LatestPosts"
 
 import landing from "../public/landing02.jpg"
 import niklasSandra from "../public/niklas-sandra.jpg"
+import { Text } from "@mantine/core"
 
 export interface LatestPostsType {
   data: {
@@ -287,20 +288,20 @@ const HomePage: NextPage<LatestPostsType> = ({ data }) => {
               <h2 className="text-red-600 text-left font-black mb-8 mt-4 md:mt-0">
                 Willkommen bei den Roten!
               </h2>
-              <p>
+              <Text>
                 Wir trainieren zwei mal pro Woche und uns stehen jeweils bis zu
                 9 Felder zur Verfügung.
-              </p>
-              <p>
+              </Text>
+              <Text>
                 Am frühen Abend beginnen die Kids und Jugendlichen mit ihrem
                 Training und werden von unseren erfahrenen Übungsleitern Annika
                 Horbach und Maurizio Battaglia betreut. Anschließend geht es bei
                 den Erwachsenen weiter.
-              </p>
-              <p>
+              </Text>
+              <Text>
                 Von lockeren Matches bis hin zu ambitionierten Forderungsspielen
                 im Rahmen der Vereinsrangliste ist alles dabei.
-              </p>
+              </Text>
             </motion.div>
           </div>
         </section>

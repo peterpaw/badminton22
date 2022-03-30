@@ -70,6 +70,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           withNormalizeCSS
           theme={{
             colorScheme,
+            fontFamily: "Inter, sans-serif",
           }}
         >
           {/* <Layout> */}
@@ -106,14 +107,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                       </a>
                     </Anchor>
                   </div>
-                  <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-                    <Burger
-                      opened={opened}
-                      onClick={() => setOpened((o) => !o)}
-                      size="md"
-                      color={theme.colors.gray[8]}
-                    />
-                  </MediaQuery>
+
                   <div className="flex gap-4 items-center">
                     <div className={classes.links}>
                       <div className="flex gap-4">
@@ -122,17 +116,18 @@ function MyApp({ Component, pageProps }: AppProps) {
                             component={Link}
                             href={navLink.href}
                             key={navLink.name}
+                            color={
+                              dark ? theme.colors.gray[2] : theme.colors.gray[8]
+                            }
                           >
-                            <a className="text-sm font-medium text-gray-700 tracking-wider">
-                              {navLink.name}
-                            </a>
+                            {/* <a className="text-sm font-medium text-gray-700 tracking-wider"> */}
+                            <a className="text-sm font-light">{navLink.name}</a>
+                            {/* </a> */}
                           </Anchor>
                         ))}
                       </div>
                     </div>
                     <ActionIcon
-                      variant="outline"
-                      color={dark ? "yellow" : "blue"}
                       onClick={() => toggleColorScheme()}
                       title="Toggle color scheme"
                     >
@@ -142,6 +137,16 @@ function MyApp({ Component, pageProps }: AppProps) {
                         <MoonIcon className="w-8 h-8" />
                       )}
                     </ActionIcon>
+                    <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+                      <Burger
+                        opened={opened}
+                        onClick={() => setOpened((o) => !o)}
+                        size="md"
+                        color={
+                          dark ? theme.colors.gray[2] : theme.colors.gray[8]
+                        }
+                      />
+                    </MediaQuery>
                   </div>
                 </div>
               </Header>
@@ -159,15 +164,19 @@ function MyApp({ Component, pageProps }: AppProps) {
                 // viewport size > theme.breakpoints.lg – width is 400px
                 width={{ base: "100%", sm: 0 }}
               >
-                {navigation.map((navLink) => (
-                  <Anchor
-                    component={Link}
-                    href={navLink.href}
-                    key={navLink.name}
-                  >
-                    <a onClick={() => setOpened(false)}>{navLink.name}</a>
-                  </Anchor>
-                ))}
+                <div className="flex flex-col gap-8 justify-center items-center mt-8">
+                  {navigation.map((navLink) => (
+                    <Anchor
+                      component={Link}
+                      href={navLink.href}
+                      key={navLink.name}
+                    >
+                      <a onClick={() => setOpened(false)} className="text-xl">
+                        {navLink.name}
+                      </a>
+                    </Anchor>
+                  ))}
+                </div>
               </Navbar>
             }
           >

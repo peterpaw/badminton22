@@ -9,16 +9,22 @@ import gasthausXXL from "../public/gasthaus-xxl.png"
 import xxlWirt from "../public/wirt-joschi-mauri.jpg"
 
 import { jugend } from "data/jugend"
+import { Container, Text, useMantineColorScheme } from "@mantine/core"
 
 const JugendPage: NextPage = () => {
+  const { colorScheme } = useMantineColorScheme()
+  const dark = colorScheme === "dark"
+
   return (
     <main>
       <Head>
         <title>Jugend | Rot-Weiss Walldorf Badminton</title>
       </Head>
-      <section className="bg-zinc-100 py-8 md:py-16">
+      <section className="py-8 md:py-16">
         <div className="container-narrow">
-          <h2 className="mb-8 md:mb-16 font-black md:text-4xl">Jugend</h2>
+          <Text component="h2" className="mb-8 md:mb-16 font-black md:text-4xl">
+            Jugend
+          </Text>
           <div className="aspect-[16/7] relative mb-16">
             <Image
               src={gruppenFoto}
@@ -29,9 +35,9 @@ const JugendPage: NextPage = () => {
               className=""
             />
           </div>
-          <h2 className="mb-8 md:mb-16 font-black md:text-4xl">
+          <Text component="h2" className="mb-8 md:mb-16 font-black md:text-4xl">
             Jugend-Minimannschaft
-          </h2>
+          </Text>
           <div className="grid grid-cols-fluid-sm md:grid-cols-fluid gap-1">
             {jugend
               .sort((a, b) => a.id - b.id)
@@ -46,18 +52,21 @@ const JugendPage: NextPage = () => {
                       height={360}
                     />
                   </div>
-                  <h2 className="text-base font-medium leading-none mt-2">
+                  <Text
+                    component="h2"
+                    className="text-base font-medium leading-none mt-2"
+                  >
                     {person.name}
-                  </h2>
+                  </Text>
                 </div>
               ))}
           </div>
         </div>
       </section>
       <section className="py-8 md:py-16">
-        <h2 className="mb-8 md:mb-16 font-black md:text-4xl">
+        <Text component="h2" className="mb-8 md:mb-16 font-black md:text-4xl">
           Unsere Jugendtrainer
-        </h2>
+        </Text>
         <div className="grid grid-cols-fluid-16 mt-8 gap-1 justify-center">
           {jugend
             .sort((a, b) => a.id - b.id)
@@ -72,30 +81,43 @@ const JugendPage: NextPage = () => {
                     height={360}
                   />
                 </div>
-                <h2 className="text-base font-medium leading-none mt-2">
+                <Text
+                  component="h2"
+                  className="text-base font-medium leading-none mt-2"
+                >
                   {person.name}
-                </h2>
+                </Text>
               </div>
             ))}
         </div>
       </section>
-      <section className="bg-zinc-100 text-center py-8 md:py-16">
-        <h2 className="mb-8 md:mb-16 font-black md:text-4xl">Kontakt</h2>
-        <p className="mb-4">
-          Bei Fragen zum Kinder- und Jugendtraining steht euch gerne{" "}
-          <strong>Maurizio Battaglia</strong> zur Verfügung:
-        </p>
-        <p>
-          Telefon: 0160 / 753 58 33
-          <br />
-          Email:{" "}
-          <a
-            href="mailto:maurizio_battaglia1978@yahoo.com"
-            className="underline"
-          >
-            maurizio_battaglia1978@yahoo.com
-          </a>
-        </p>
+      <section>
+        <Container
+          fluid
+          sx={(theme) => ({
+            backgroundColor: dark ? theme.colors.gray[8] : theme.colors.gray[0],
+          })}
+          className="text-center py-8 md:py-16"
+        >
+          <Text component="h2" className="mb-8 md:mb-16 font-black md:text-4xl">
+            Kontakt
+          </Text>
+          <Text className="mb-4">
+            Bei Fragen zum Kinder- und Jugendtraining steht euch gerne{" "}
+            <strong>Maurizio Battaglia</strong> zur Verfügung:
+          </Text>
+          <Text>
+            Telefon: 0160 / 753 58 33
+            <br />
+            Email:{" "}
+            <a
+              href="mailto:maurizio_battaglia1978@yahoo.com"
+              className="underline"
+            >
+              maurizio_battaglia1978@yahoo.com
+            </a>
+          </Text>
+        </Container>
       </section>
       <section className="aspect-[16/7] relative">
         <Image
@@ -106,11 +128,17 @@ const JugendPage: NextPage = () => {
           className="grayscale-50"
         />
       </section>
-      <section className="bg-zinc-100 py-8 md:py-16">
-        <div className="container-narrow">
-          <h2 className="mb-8 md:mb-16 font-black md:text-4xl">
+      <section>
+        <Container
+          fluid
+          sx={(theme) => ({
+            backgroundColor: dark ? theme.colors.gray[8] : theme.colors.gray[0],
+          })}
+          className="text-center py-8 md:py-16"
+        >
+          <Text component="h2" className="mb-8 md:mb-16 font-black md:text-4xl">
             Jugendtraining
-          </h2>
+          </Text>
           <div className="flex flex-wrap text-center justify-center gap-4 leading-tight">
             <div className="bg-white p-8 rounded shadow-sm flex-1 min-w-[20rem] max-w-[45vw]">
               <h3 className="text-xl md:text-2xl mb-4">Montag</h3>
@@ -125,7 +153,7 @@ const JugendPage: NextPage = () => {
               <p>17:30 - 19:30 Uhr</p>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
       <section className="text-center py-8">
         <Image src={jugendFlyer} alt="Flyer Jugend" width={443} height={661} />

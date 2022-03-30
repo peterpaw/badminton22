@@ -19,9 +19,9 @@ module.exports = {
         50: "50%",
         75: "75%",
       },
-    },
-    fontFamily: {
-      sans: ["Inter", "ui-sans-serif", "system-ui"],
+      fontFamily: {
+        sans: ["Inter", "ui-sans-serif", "system-ui"],
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

@@ -10,7 +10,7 @@ const LandingPage = () => {
           layout="fill"
           objectFit="cover"
         />
-        <h1 className="absolute">Landing Page</h1>
+        <h1 className="absolute font-inter">Landing Page</h1>
       </div>
     </div>
   )
