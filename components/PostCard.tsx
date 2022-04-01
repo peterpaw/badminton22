@@ -3,10 +3,15 @@ import Image from "next/image"
 import { format } from "date-fns"
 import { de } from "date-fns/locale"
 import { motion } from "framer-motion"
+import { PostDetailsType } from "types"
 
-import { IPost } from "pages/presse/[slug]"
-
-const PostCard = ({ post, index }: { post: IPost; index: number }) => {
+const PostCard = ({
+  post,
+  index,
+}: {
+  post: PostDetailsType
+  index: number
+}) => {
   const date = format(new Date(post.postPublishDate), "dd. MMMM yyyy", {
     locale: de,
   })

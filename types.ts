@@ -50,4 +50,11 @@ export interface AdjacentPostType {
   featuredImage: {
     url: string
   }
+  categories: [
+    {
+      name: string
+      slug: string
+      color: string
+    }
+  ]
 }

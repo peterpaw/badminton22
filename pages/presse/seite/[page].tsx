@@ -3,18 +3,17 @@ import Head from "next/head"
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import { gql, GraphQLClient } from "graphql-request"
 
-import type { IPosts } from "../"
-
 import { config } from "@utils/config"
 import PostCard from "@components/PostCard"
 import CardGrid from "@components/CardGrid"
+import { PostType } from "types"
 
 interface PageProps {
   data: {
     postsConnection: {
       edges: [
         {
-          node: IPosts
+          node: PostType
         }
       ]
       pageInfo: {

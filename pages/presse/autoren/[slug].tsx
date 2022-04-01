@@ -4,14 +4,14 @@ import { gql, GraphQLClient } from "graphql-request"
 
 import CardGrid from "@components/CardGrid"
 import PostCard from "@components/PostCard"
-import { IPost } from "../[slug]"
+import { PostDetailsType } from "types"
 
 interface PageProps {
   data: {
     postsConnection: {
       edges: [
         {
-          node: IPost
+          node: PostDetailsType
         }
       ]
     }
