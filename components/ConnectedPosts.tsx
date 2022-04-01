@@ -1,10 +1,10 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/solid"
-import { IPostIds } from "pages/presse/[slug]"
 import CategoryBadge from "./CategoryBadge"
 import { format } from "date-fns"
 import { de } from "date-fns/locale"
+import { AdjacentPostType } from "types"
 
 const PrevNextLink = ({
   post,
@@ -72,8 +72,8 @@ const ConnectedPosts = ({
   nextPost,
   className,
 }: {
-  prevPost: IPostIds
-  nextPost: IPostIds
+  prevPost: AdjacentPostType
+  nextPost: AdjacentPostType
   className: string
 }) => {
   return (
