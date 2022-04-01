@@ -7,41 +7,19 @@ import { config } from "@utils/config"
 
 import PostCard from "@components/PostCard"
 import CardGrid from "@components/CardGrid"
+import { PageInfo, PostType } from "types"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
-
-export interface IPosts {
-  title: string
-  slug: string
-  postPublishDate: Date
-  excerpt: string
-  featuredImage: {
-    url: string
-  }
-  authors: [
-    {
-      id: string
-      name: string
-      foto: {
-        url: string
-      }
-    }
-  ]
-}
 
 interface PageProps {
   data: {
     postsConnection: {
       edges: [
         {
-          node: IPosts
+          node: PostType
         }
       ]
-      pageInfo: {
-        hasNextPage: boolean
-        hasPreviousPage: boolean
-        pageSize: number
-      }
+      pageInfo: PageInfo
       aggregate: {
         count: number
       }

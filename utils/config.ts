@@ -1,6 +1,6 @@
 export const config = {
   pagination: {
-    pageSize: 6,
-    recentPostsSize: 3
-  }
+    pageSize: 8,
+    recentPostsSize: 3,
+  },
 }

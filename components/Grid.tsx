@@ -1,25 +1,23 @@
 import { useState } from "react"
 import Image from "next/image"
 import { Text } from "@mantine/core"
+import { cn } from "@utils/cn"
+import { PostType } from "types"
 
-function cn(...classes: string[]) {
-  return classes.filter(Boolean).join(" ")
-}
-
-const Grid = ({ posts }) => {
+const Grid = ({ posts }: { posts: [{ node: PostType }] }) => {
   return (
     <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-        {posts.map(({ node }) => (
-          <BlurImage post={node} key={node.slug} />
-        ))}
+        {posts.map(({ node }) => {
+          return <BlurImage post={node} key={node.slug} />
+        })}
       </div>
     </div>
   )
 }
 
-function BlurImage({ post }) {
-  const [isLoading, setIsLoading] = useState(false)
+function BlurImage({ post }: { post: PostType }) {
+  const [isLoading, setIsLoading] = useState(true)
 
   return (
     <a href="#" className="group">
@@ -30,12 +28,12 @@ function BlurImage({ post }) {
           layout="fill"
           objectFit="cover"
           className={cn(
-            "group-hover:opacity-75",
+            "group-hover:opacity-75 duration-700 ease-in-out",
             isLoading
               ? "grayscale blur-2xl scale-110"
               : "grayscale-0 blur-0 scale-100"
           )}
-          onLoadingComplete={() => setIsLoading(true)}
+          onLoadingComplete={() => setIsLoading(false)}
         />
       </div>
       <Text component="h3" className="mt-4 text-sm text-left font-medium">

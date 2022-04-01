@@ -3,80 +3,18 @@ import { GetStaticPaths, GetStaticProps } from "next"
 import { serialize } from "next-mdx-remote/serialize"
 
 import Post from "@components/Post"
+import { PostDetailsType, AdjacentPostType } from "types"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
-
-export interface IPost {
-  id: string
-  title: string
-  slug: string
-  postPublishDate: Date
-  excerpt: string
-  featuredImage: {
-    url: string
-  }
-  authors: [
-    {
-      id: string
-      slug: string
-      name: string
-      foto: {
-        url: string
-      }
-    }
-  ]
-  seoMetaTag: string
-  categories: [
-    {
-      name: string
-      slug: string
-      color: string
-    }
-  ]
-  content: {
-    markdown: string
-  }
-  source: {
-    compiledSource: string
-  }
-}
-
-export interface IPostIds {
-  id: string
-  title: string
-  slug: string
-  postPublishDate: Date
-  excerpt: string
-  featuredImage: {
-    url: string
-  }
-  authors: [
-    {
-      id: string
-      slug: string
-      name: string
-      foto: {
-        url: string
-      }
-    }
-  ]
-  categories: [
-    {
-      name: string
-      slug: string
-      color: string
-    }
-  ]
-}
 
 export default function Slug({
   post,
   prevPost,
   nextPost,
 }: {
-  post: IPost
-  prevPost: IPostIds
-  nextPost: IPostIds
+  post: PostDetailsType
+  prevPost: AdjacentPostType
+  nextPost: AdjacentPostType
 }) {
   return <Post post={post} prevPost={prevPost} nextPost={nextPost} />
 }
@@ -139,10 +77,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   `
 
-  const data: { post: IPost | null; posts: IPostIds[] } = await client.request(
-    query,
-    { slug }
-  )
+  const data: { post: PostDetailsType | null; posts: AdjacentPostType[] } =
+    await client.request(query, { slug })
 
   const currentPostIndex = data.posts.findIndex(
     (element) => element.id === data?.post?.id

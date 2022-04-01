@@ -4,19 +4,18 @@ import Link from "next/link"
 import { format } from "date-fns"
 import { de } from "date-fns/locale"
 
-import { IPost, IPostIds } from "pages/presse/[slug]"
-
 import ConnectedPosts from "@components/ConnectedPosts"
 import CategoryBadge from "./CategoryBadge"
+import { AdjacentPostType, PostDetailsType } from "types"
 
 const Post = ({
   post,
   prevPost,
   nextPost,
 }: {
-  post: IPost
-  prevPost: IPostIds
-  nextPost: IPostIds
+  post: PostDetailsType
+  prevPost: AdjacentPostType
+  nextPost: AdjacentPostType
 }) => {
   const date = format(new Date(post.postPublishDate), "dd. MMMM yyyy", {
     locale: de,

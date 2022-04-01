@@ -2,15 +2,27 @@ import Grid from "@components/Grid"
 import { Text } from "@mantine/core"
 import { config } from "@utils/config"
 import { gql, GraphQLClient } from "graphql-request"
-import { GetStaticProps } from "next"
+import { GetStaticProps, NextPage } from "next"
+import { PageInfo, PostType } from "types"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
-const BerichtePage = ({ data }) => {
-  console.log(data)
+interface PageProps {
+  data: {
+    postsConnection: {
+      edges: [{ node: PostType }]
+      pageInfo: PageInfo
+      aggregate: {
+        count: number
+      }
+    }
+  }
+}
+
+const BerichtePage: NextPage<PageProps> = ({ data }) => {
   return (
     <div>
-      <Text component="h1" className="text-4xl py-16 lg:py:24 font-black">
+      <Text component="h1" className="text-4xl pt-16 lg:py:24 font-black">
         Berichte
       </Text>
       <Grid posts={data.postsConnection.edges} />
@@ -28,6 +40,7 @@ export const getStaticProps: GetStaticProps = async () => {
       ) {
         edges {
           node {
+            id
             title
             slug
             postPublishDate
@@ -41,6 +54,11 @@ export const getStaticProps: GetStaticProps = async () => {
               foto {
                 url
               }
+            }
+            categories {
+              name
+              slug
+              color
             }
           }
         }
@@ -64,7 +82,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       data,
     },
-    revalidate: 60 * 30,
   }
 }
 
