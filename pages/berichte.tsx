@@ -1,5 +1,5 @@
 import Grid from "@components/Grid"
-import { Text } from "@mantine/core"
+import { Center, Pagination, Text } from "@mantine/core"
 import { config } from "@utils/config"
 import { gql, GraphQLClient } from "graphql-request"
 import { GetStaticProps, NextPage } from "next"
@@ -26,6 +26,9 @@ const BerichtePage: NextPage<PageProps> = ({ data }) => {
         Berichte
       </Text>
       <Grid posts={data.postsConnection.edges} />
+      <Center className="mb-8">
+        <Pagination total={10} />
+      </Center>
     </div>
   )
 }

@@ -1,8 +1,12 @@
 import { useState } from "react"
 import Image from "next/image"
-import { Text } from "@mantine/core"
+import { Anchor, Text, useMantineColorScheme } from "@mantine/core"
 import { cn } from "@utils/cn"
 import { PostType } from "types"
+import { format } from "date-fns"
+import { de } from "date-fns/locale"
+import Link from "next/link"
+import { useHover } from "@mantine/hooks"
 
 const Grid = ({ posts }: { posts: [{ node: PostType }] }) => {
   return (
@@ -18,31 +22,69 @@ const Grid = ({ posts }: { posts: [{ node: PostType }] }) => {
 
 function BlurImage({ post }: { post: PostType }) {
   const [isLoading, setIsLoading] = useState(true)
+  const authorsList = post.authors.map((author) => author.name).join(", ")
+
+  const date = format(new Date(post.postPublishDate), "dd. MMMM yyyy", {
+    locale: de,
+  })
+
+  const { colorScheme } = useMantineColorScheme()
+  const dark = colorScheme === "dark"
+
+  const { hovered, ref } = useHover()
 
   return (
-    <a href="#" className="group">
-      <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden rounded-lg bg-gray-200">
-        <Image
-          src={post.featuredImage.url}
-          alt={post.title}
-          layout="fill"
-          objectFit="cover"
-          className={cn(
-            "group-hover:opacity-75 duration-700 ease-in-out",
-            isLoading
-              ? "grayscale blur-2xl scale-110"
-              : "grayscale-0 blur-0 scale-100"
-          )}
-          onLoadingComplete={() => setIsLoading(false)}
-        />
-      </div>
-      <Text component="h3" className="mt-4 text-sm text-left font-medium">
-        {post.title}
-      </Text>
-      <Text component="p" className="mt-2 text-xs font-normal">
-        {post.authors[0].name}
-      </Text>
-    </a>
+    <div ref={ref}>
+      <Anchor component={Link} href="/berichte">
+        <a className="group">
+          <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden rounded-lg bg-gray-200">
+            <Image
+              src={post.featuredImage.url}
+              alt={post.title}
+              layout="fill"
+              objectFit="cover"
+              className={cn(
+                "group-hover:opacity-75 duration-700 ease-in-out",
+                isLoading
+                  ? "grayscale blur-2xl scale-110"
+                  : "grayscale-0 blur-0 scale-100"
+              )}
+              onLoadingComplete={() => setIsLoading(false)}
+            />
+          </div>
+          <Text
+            component="h3"
+            className="my-2 text-sm text-left font-medium duration-500 ease-in-out"
+            sx={(theme) =>
+              hovered
+                ? { color: theme.colors.red[7] }
+                : { color: dark ? theme.colors.gray[5] : theme.colors.gray[8] }
+            }
+          >
+            {post.title}
+          </Text>
+
+          <Text
+            component="p"
+            className="text-xs p-0"
+            sx={(theme) => ({
+              color: dark ? theme.colors.gray[6] : theme.colors.gray[7],
+            })}
+          >
+            {date}
+          </Text>
+          <Text
+            component="p"
+            className="text-xs p-0"
+            sx={(theme) => ({
+              color: dark ? theme.colors.gray[6] : theme.colors.gray[7],
+            })}
+          >
+            {authorsList}
+          </Text>
+        </a>
+      </Anchor>
+    </div>
   )
 }
 
