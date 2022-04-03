@@ -56,7 +56,7 @@ const Box = ({
           <a className="block p-8">
             <Text
               component="h2"
-              className="text-left mb-4 text-xl"
+              className="text-left mb-4 text-xl font-bold"
               sx={(theme) => ({ color: theme.colors.red[5] })}
             >
               {heading}
