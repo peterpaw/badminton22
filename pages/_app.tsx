@@ -16,6 +16,7 @@ import {
   ColorSchemeProvider,
   ColorScheme,
   ActionIcon,
+  Text,
 } from "@mantine/core"
 import { useLocalStorage } from "@mantine/hooks"
 import { SunIcon, MoonIcon } from "@heroicons/react/outline"
@@ -71,6 +72,20 @@ function MyApp({ Component, pageProps }: AppProps) {
           theme={{
             colorScheme,
             fontFamily: "Inter, sans-serif",
+            colors: {
+              red: [
+                "hsl(3deg 76% 69%)",
+                "hsl(3deg 76% 65%)",
+                "hsl(3deg 76% 61%)",
+                "hsl(3deg 76% 57%)",
+                "hsl(3deg 76% 53%)",
+                "hsl(3deg 76% 49%)",
+                "hsl(3deg 76% 45%)",
+                "hsl(3deg 76% 41%)",
+                "hsl(3deg 76% 37%)",
+                "hsl(3deg 76% 33%)",
+              ],
+            },
           }}
         >
           {/* <Layout> */}
@@ -90,6 +105,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                     justifyContent: "space-between",
                     height: "100%",
                   }}
+                  className="max-w-5xl mx-auto"
                 >
                   <div
                     style={{
@@ -108,46 +124,44 @@ function MyApp({ Component, pageProps }: AppProps) {
                     </Anchor>
                   </div>
 
-                  <div className="flex gap-4 items-center">
-                    <div className={classes.links}>
-                      <div className="flex gap-4">
-                        {navigation.map((navLink) => (
-                          <Anchor
-                            component={Link}
-                            href={navLink.href}
-                            key={navLink.name}
-                            color={
-                              dark ? theme.colors.gray[2] : theme.colors.gray[8]
-                            }
+                  <div className={classes.links}>
+                    <div className="flex gap-4">
+                      {navigation.map((navLink) => (
+                        <Link href={navLink.href} key={navLink.name} passHref>
+                          <Text
+                            component="a"
+                            className="text-sm font-medium duration-300 ease-in-out uppercase"
+                            sx={(theme) => ({
+                              color: dark
+                                ? theme.colors.gray[5]
+                                : theme.colors.gray[6],
+                              "&:hover": { color: theme.colors.red[5] },
+                            })}
                           >
-                            {/* <a className="text-sm font-medium text-gray-700 tracking-wider"> */}
-                            <a className="text-sm font-light">{navLink.name}</a>
-                            {/* </a> */}
-                          </Anchor>
-                        ))}
-                      </div>
+                            {navLink.name}
+                          </Text>
+                        </Link>
+                      ))}
                     </div>
-                    <ActionIcon
-                      onClick={() => toggleColorScheme()}
-                      title="Toggle color scheme"
-                    >
-                      {dark ? (
-                        <SunIcon className="w-8 h-8" />
-                      ) : (
-                        <MoonIcon className="w-8 h-8" />
-                      )}
-                    </ActionIcon>
-                    <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-                      <Burger
-                        opened={opened}
-                        onClick={() => setOpened((o) => !o)}
-                        size="md"
-                        color={
-                          dark ? theme.colors.gray[2] : theme.colors.gray[8]
-                        }
-                      />
-                    </MediaQuery>
                   </div>
+                  <ActionIcon
+                    onClick={() => toggleColorScheme()}
+                    title="Toggle color scheme"
+                  >
+                    {dark ? (
+                      <SunIcon className="w-8 h-8" />
+                    ) : (
+                      <MoonIcon className="w-8 h-8" />
+                    )}
+                  </ActionIcon>
+                  <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+                    <Burger
+                      opened={opened}
+                      onClick={() => setOpened((o) => !o)}
+                      size="md"
+                      color={dark ? theme.colors.gray[2] : theme.colors.gray[8]}
+                    />
+                  </MediaQuery>
                 </div>
               </Header>
             }
@@ -166,15 +180,21 @@ function MyApp({ Component, pageProps }: AppProps) {
               >
                 <div className="flex flex-col gap-8 justify-center items-center mt-8">
                   {navigation.map((navLink) => (
-                    <Anchor
-                      component={Link}
-                      href={navLink.href}
-                      key={navLink.name}
-                    >
-                      <a onClick={() => setOpened(false)} className="text-xl">
+                    <Link href={navLink.href} key={navLink.name} passHref>
+                      <Text
+                        component="a"
+                        sx={(theme) => ({
+                          color: dark
+                            ? theme.colors.gray[5]
+                            : theme.colors.gray[6],
+                          "&:hover": { color: theme.colors.red[5] },
+                        })}
+                        onClick={() => setOpened(false)}
+                        className="text-xl duration-300 ease-in-out uppercase"
+                      >
                         {navLink.name}
-                      </a>
-                    </Anchor>
+                      </Text>
+                    </Link>
                   ))}
                 </div>
               </Navbar>

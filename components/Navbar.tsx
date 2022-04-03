@@ -6,7 +6,6 @@ import { MenuIcon } from "@heroicons/react/outline"
 import { navigation } from "data/navigation"
 
 import rwwLogo from "../public/rww-logo.png"
-import { useMantineColorScheme } from "@mantine/styles"
 
 const Navbar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)")

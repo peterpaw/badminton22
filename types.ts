@@ -58,3 +58,30 @@ export interface AdjacentPostType {
     }
   ]
 }
+
+export interface LatestPostsType {
+  data: {
+    posts: [
+      {
+        id: string
+        title: string
+        slug: string
+        authors: [
+          {
+            name: string
+          }
+        ]
+        excerpt: string
+        postPublishDate: string
+        featuredImage: {
+          url: string
+        }
+        categories: [
+          {
+            name: string
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -6,47 +6,96 @@ import Image from "next/image"
 import { useInView } from "react-intersection-observer"
 import { GetStaticProps, NextPage } from "next"
 import { gql, GraphQLClient } from "graphql-request"
+import { Center, Text, useMantineColorScheme } from "@mantine/core"
 
 import LatestPosts from "@components/LatestPosts"
 
+import { LatestPostsType } from "types"
+
 import landing from "../public/landing02.jpg"
 import niklasSandra from "../public/niklas-sandra.jpg"
-import { Text } from "@mantine/core"
-
-export interface LatestPostsType {
-  data: {
-    posts: [
-      {
-        id: string
-        title: string
-        slug: string
-        authors: [
-          {
-            name: string
-          }
-        ]
-        excerpt: string
-        postPublishDate: string
-        featuredImage: {
-          url: string
-        }
-        categories: [
-          {
-            name: string
-          }
-        ]
-      }
-    ]
-  }
-}
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
+
+const Box = ({
+  heading,
+  text,
+  href,
+}: {
+  heading: string
+  text: string
+  href: string
+}) => {
+  const { colorScheme } = useMantineColorScheme()
+  const dark = colorScheme === "dark"
+
+  const item = {
+    hidden: { opacity: 0, y: 100 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+      },
+    },
+  }
+
+  return (
+    <motion.div
+      variants={item}
+      whileHover={{ translateY: -10 }}
+      className="shadow-2xl z-10"
+    >
+      <Center
+        sx={(theme) => ({
+          backgroundColor: dark ? theme.colors.gray[9] : theme.colors.gray[0],
+        })}
+        className="h-full flex items-start justify-start"
+      >
+        <Link href={href}>
+          <a className="block p-8">
+            <Text
+              component="h2"
+              className="text-left mb-4 text-xl"
+              sx={(theme) => ({ color: theme.colors.red[5] })}
+            >
+              {heading}
+            </Text>
+            <Text component="p" className="mb-4">
+              {text}
+            </Text>
+            <div className="flex gap-2 text-sm">
+              Mehr erfahren
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </div>
+          </a>
+        </Link>
+      </Center>
+    </motion.div>
+  )
+}
 
 const HomePage: NextPage<LatestPostsType> = ({ data }) => {
   const [ref1, inView1] = useInView({ threshold: 0.4 })
   const [ref2, inView2] = useInView({ threshold: 0.4 })
   const animation = useAnimation()
   const animation2 = useAnimation()
+
+  const { colorScheme } = useMantineColorScheme()
+  const dark = colorScheme === "dark"
 
   useEffect(() => {
     if (inView1) {
@@ -167,102 +216,21 @@ const HomePage: NextPage<LatestPostsType> = ({ data }) => {
             initial="hidden"
             animate="show"
           >
-            <motion.div
-              variants={item}
-              whileHover={{ translateY: -10 }}
-              className="bg-white shadow-2xl z-10"
-            >
-              <Link href="/mannschaften">
-                <a className="block p-8">
-                  <h2 className="text-left mb-4 text-xl">Mannschaften</h2>
-                  <p className="mb-4 text-sm">
-                    Spieler, Fotos, Tabellen und weitere Infos
-                  </p>
-                  <div className="flex gap-2 text-sm">
-                    Mehr erfahren
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </div>
-                </a>
-              </Link>
-            </motion.div>
-
-            <motion.div
-              variants={item}
-              whileHover={{ translateY: -10 }}
-              className="bg-white shadow-2xl z-10"
-            >
-              <Link href="/jugend">
-                <a className="block p-8">
-                  <h2 className="text-left mb-4 text-xl">Jugend</h2>
-                  <p className="mb-4 text-sm">
-                    Alle Infos zur Jugend, Minimannschaft, Trainigszeiten und
-                    Coaches
-                  </p>
-                  <div className="flex gap-2 text-sm">
-                    Mehr erfahren
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </div>
-                </a>
-              </Link>
-            </motion.div>
-
-            <motion.div
-              variants={item}
-              whileHover={{ translateY: -10 }}
-              className="bg-white shadow-2xl z-10"
-            >
-              <Link href="/training">
-                <a className="block p-8">
-                  <h2 className="text-left mb-4 text-xl">Training</h2>
-                  <p className="mb-4 text-sm">
-                    Trainingstage, Uhrzeiten und Trainingsorte
-                  </p>
-                  <div className="flex gap-2 text-sm">
-                    Mehr erfahren
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </div>
-                </a>
-              </Link>
-            </motion.div>
+            <Box
+              heading="Mannschaften"
+              text="Spieler, Fotos, Tabellen und weitere Infos"
+              href="/mannschaften"
+            />
+            <Box
+              heading="Jugend"
+              text="Alle Infos zur Jugend, Minimannschaft, Trainigszeiten und Coaches"
+              href="/jugend"
+            />
+            <Box
+              heading="Training"
+              text="Trainingstage, Uhrzeiten und Trainingsorte"
+              href="/training"
+            />
           </motion.div>
         </section>
         <section className="py-32 overflow-x-hidden">
@@ -285,22 +253,42 @@ const HomePage: NextPage<LatestPostsType> = ({ data }) => {
               initial={{ opacity: 0, x: 100 }}
               animate={animation2}
             >
-              <h2 className="text-red-600 text-left font-black mb-8 mt-4 md:mt-0">
+              <Text
+                component="h2"
+                className="text-left font-black mb-8 mt-4 md:mt-0 text-2xl md:text-3xl"
+                sx={(theme) => ({
+                  color: theme.colors.red[5],
+                })}
+              >
                 Willkommen bei den Roten!
-              </h2>
-              <Text>
-                Wir trainieren zwei mal pro Woche und uns stehen jeweils bis zu
-                9 Felder zur Verfügung.
               </Text>
-              <Text>
-                Am frühen Abend beginnen die Kids und Jugendlichen mit ihrem
-                Training und werden von unseren erfahrenen Übungsleitern Annika
-                Horbach und Maurizio Battaglia betreut. Anschließend geht es bei
-                den Erwachsenen weiter.
+              <Text component="p">
+                Bei uns kannst du zwei mal pro Woche auf 9 Feldern trainieren.
               </Text>
-              <Text>
+              <Text component="p">
+                Für die Kids und Jugendlichen geht das Training bereits ab{" "}
+                <strong>17:30</strong> Uhr los.
+              </Text>
+              <Text component="p">
+                Ab <strong>19:30</strong> Uhr starten die Erwachsenen mit ihrem
+                Training.
+              </Text>
+              <Text component="p">
                 Von lockeren Matches bis hin zu ambitionierten Forderungsspielen
-                im Rahmen der Vereinsrangliste ist alles dabei.
+                im Rahmen der Vereinsrangliste ist alles dabei. Falls du
+                interesse hast reinzuschnuppern schau einfach vorbei.{" "}
+                <Link href="/training" passHref>
+                  <Text
+                    component="a"
+                    sx={(theme) => ({
+                      color: theme.colors.red[5],
+                      "&:hover": { color: theme.colors.red[3] },
+                    })}
+                  >
+                    Hier
+                  </Text>
+                </Link>{" "}
+                bekommst du alle nötigen Informationen zum Training.
               </Text>
             </motion.div>
           </div>
