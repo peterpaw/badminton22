@@ -3,13 +3,14 @@ import Head from "next/head"
 import { gql, GraphQLClient } from "graphql-request"
 
 import { PostDetailsType } from "types"
-import { Paper, Text, useMantineColorScheme } from "@mantine/core"
+import { Button, Paper, Text, useMantineColorScheme } from "@mantine/core"
 import { format } from "date-fns"
 import { de } from "date-fns/locale"
 import Link from "next/link"
 import Image from "next/image"
 import { cn } from "@utils/cn"
 import { useState } from "react"
+import { motion } from "framer-motion"
 
 interface PageProps {
   data: {
@@ -26,6 +27,18 @@ interface PageProps {
         url: string
       }
     }
+    authors: [
+      {
+        slug: string
+        name: string
+      }
+    ]
+    categories: [
+      {
+        name: string
+        slug: string
+      }
+    ]
   }
 }
 
@@ -42,7 +55,7 @@ function BlurImage({ src, authorName }: { src: string; authorName: string }) {
         layout="fill"
         objectFit="cover"
         className={cn(
-          "hover:opacity-75 duration-700 ease-in-out",
+          "duration-700 ease-in-out",
           isLoading
             ? "grayscale blur-2xl scale-110"
             : "grayscale-0 blur-0 scale-100"
@@ -55,7 +68,7 @@ function BlurImage({ src, authorName }: { src: string; authorName: string }) {
 
 const AuthorPage: NextPage<PageProps> = ({ data }) => {
   const { edges } = data?.postsConnection
-  const { author } = data
+  const { author, authors, categories } = data
 
   const { colorScheme } = useMantineColorScheme()
   const dark = colorScheme === "dark"
@@ -79,43 +92,148 @@ const AuthorPage: NextPage<PageProps> = ({ data }) => {
             color: dark ? theme.colors.gray[6] : theme.colors.gray[5],
           })}
           className="mb-4"
+          size="xs"
         >
-          {edges.length} Beiträge
+          {`${edges.length} ${edges.length === 1 ? "Beitrag" : "Beiträge"}`}
         </Text>
         <BlurImage src={author.foto.url} authorName={author.name} />
-        {edges.map(({ node }) => {
-          const date = format(new Date(node.postPublishDate), "dd. MMMM yyyy", {
-            locale: de,
-          })
 
-          return (
-            <Link href={`/berichte/${node.slug}`} passHref key={node.id}>
+        <div className="md:grid md:grid-cols-12 gap-2">
+          <div className="col-span-1 md:col-span-8">
+            {edges.map(({ node }) => {
+              const date = format(
+                new Date(node.postPublishDate),
+                "dd. MMMM yyyy",
+                {
+                  locale: de,
+                }
+              )
+
+              return (
+                <motion.div whileHover={{ translateX: 2 }} key={node.id}>
+                  <Link href={`/berichte/${node.slug}`} passHref>
+                    <Paper
+                      component="a"
+                      shadow="xs"
+                      p="md"
+                      m="sm"
+                      sx={(theme) => ({
+                        backgroundColor: dark
+                          ? theme.colors.dark[6]
+                          : theme.colors.gray[0],
+                        "&:hover": { color: theme.colors.red[5] },
+                      })}
+                      className="duration-500 ease-in-out"
+                    >
+                      <Text component="h2" className="text-left">
+                        {node.title}
+                      </Text>
+                      <Text
+                        component="p"
+                        size="xs"
+                        sx={(theme) => ({
+                          color: theme.colors.gray[6],
+                        })}
+                      >
+                        {date}
+                      </Text>
+                      <Text
+                        component="p"
+                        size="xs"
+                        sx={(theme) => ({
+                          color: theme.colors.gray[6],
+                        })}
+                      >
+                        {node.excerpt}
+                      </Text>
+                    </Paper>
+                  </Link>
+                </motion.div>
+              )
+            })}
+          </div>
+
+          <div className="mt-16 md:mt-0 md:col-span-4">
+            <div className="md:sticky md:top-16">
               <Paper
-                component="a"
                 shadow="xs"
                 p="md"
-                my="sm"
+                m="sm"
                 sx={(theme) => ({
                   backgroundColor: dark
-                    ? theme.colors.dark[4]
+                    ? theme.colors.dark[6]
                     : theme.colors.gray[0],
-                  "&:hover": { color: theme.colors.red[5] },
                 })}
-                className="duration-500 ease-in-out"
               >
-                <Text component="h2" className="text-left">
-                  {node.title}
+                <Text component="h3" mb="xs" align="left">
+                  Autoren:
                 </Text>
-                <Text component="p" size="xs">
-                  {date}
-                </Text>
-                <Text component="p" size="xs">
-                  {node.excerpt}
-                </Text>
+
+                {authors.map((author) => (
+                  <Link
+                    key={author.slug}
+                    passHref
+                    href={`/autoren/${author.slug}`}
+                  >
+                    <Text
+                      component="a"
+                      sx={(theme) => ({
+                        color: dark
+                          ? theme.colors.gray[6]
+                          : theme.colors.gray[8],
+                        "&:hover": {
+                          color: theme.colors.red[5],
+                        },
+                      })}
+                      className="duration-300 ease-in-out font-normal block text-sm"
+                    >
+                      {author.name}
+                    </Text>
+                  </Link>
+                ))}
               </Paper>
-            </Link>
-          )
-        })}
+
+              <Paper
+                shadow="xs"
+                p="md"
+                m="sm"
+                sx={(theme) => ({
+                  backgroundColor: dark
+                    ? theme.colors.dark[6]
+                    : theme.colors.gray[0],
+                })}
+                className="relative md:sticky md:top-16"
+              >
+                <Text component="h3" mb="xs" align="left">
+                  Tags:
+                </Text>
+
+                {categories.map((tag) => (
+                  <Link
+                    key={tag.slug}
+                    passHref
+                    href={`/berichte/tags/${tag.slug}`}
+                  >
+                    <Text
+                      component="a"
+                      sx={(theme) => ({
+                        color: dark
+                          ? theme.colors.gray[6]
+                          : theme.colors.gray[8],
+                        "&:hover": {
+                          color: theme.colors.red[5],
+                        },
+                      })}
+                      className="duration-300 ease-in-out font-normal block text-sm"
+                    >
+                      {tag.name}
+                    </Text>
+                  </Link>
+                ))}
+              </Paper>
+            </div>
+          </div>
+        </div>
       </main>
     </>
   )
@@ -132,6 +250,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       ) {
         edges {
           node {
+            id
             title
             slug
             postPublishDate
@@ -152,6 +271,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         foto {
           url
         }
+      }
+      authors(where: { slug_not: $slug }, orderBy: name_ASC) {
+        slug
+        name
+      }
+      categories {
+        name
+        slug
       }
     }
   `

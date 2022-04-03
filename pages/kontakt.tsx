@@ -1,3 +1,4 @@
+import { Text } from "@mantine/core"
 import { NextPage } from "next"
 import Head from "next/head"
 
@@ -8,7 +9,9 @@ const KontaktPage: NextPage = () => {
         <title>Kontakt | Rot-Weiss Walldorf Badminton</title>
       </Head>
       <div className="container-narrow py-8 md:py-16">
-        <h2 className="mb-8 md:mb-16 font-black md:text-4xl">Kontakt</h2>
+        <Text component="h1" className="mb-8 md:mb-16 font-black md:text-4xl">
+          Kontakt
+        </Text>
       </div>
     </main>
   )

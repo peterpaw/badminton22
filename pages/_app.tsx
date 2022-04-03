@@ -25,6 +25,7 @@ import { navigation } from "data/navigation"
 // import Layout from "@components/Layout"
 
 import "../styles/globals.css"
+import Footer from "@components/Footer"
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -201,6 +202,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             }
           >
             <Component {...pageProps} />
+            <Footer />
           </AppShell>
 
           {/* </Layout> */}

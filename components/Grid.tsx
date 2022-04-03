@@ -54,10 +54,10 @@ function BlurImage({ post }: { post: PostType }) {
           </div>
           <Text
             component="h3"
-            className="my-2 text-sm text-left font-medium duration-500 ease-in-out"
+            className="my-2 text-base text-left font-medium duration-500 ease-in-out"
             sx={(theme) =>
               hovered
-                ? { color: theme.colors.red[7] }
+                ? { color: theme.colors.red[5] }
                 : { color: dark ? theme.colors.gray[5] : theme.colors.gray[8] }
             }
           >
@@ -66,18 +66,18 @@ function BlurImage({ post }: { post: PostType }) {
 
           <Text
             component="p"
-            className="text-xs p-0"
+            className="text-sm p-0 font-medium"
             sx={(theme) => ({
-              color: dark ? theme.colors.gray[6] : theme.colors.gray[7],
+              color: dark ? theme.colors.dark[3] : theme.colors.dark[1],
             })}
           >
             {date}
           </Text>
           <Text
             component="p"
-            className="text-xs p-0"
+            className="text-sm p-0 font-medium"
             sx={(theme) => ({
-              color: dark ? theme.colors.gray[6] : theme.colors.gray[7],
+              color: dark ? theme.colors.dark[3] : theme.colors.dark[1],
             })}
           >
             {authorsList}

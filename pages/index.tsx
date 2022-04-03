@@ -50,13 +50,13 @@ const Box = ({
         sx={(theme) => ({
           backgroundColor: dark ? theme.colors.gray[9] : theme.colors.gray[0],
         })}
-        className="h-full flex items-start justify-start"
+        className="h-full flex items-start justify-start relative"
       >
         <Link href={href}>
-          <a className="block p-8">
+          <a className="block p-8 pb-16">
             <Text
               component="h2"
-              className="text-left mb-4 text-xl font-bold"
+              className="text-left mb-4 text-xl font-bold "
               sx={(theme) => ({ color: theme.colors.red[5] })}
             >
               {heading}
@@ -64,7 +64,7 @@ const Box = ({
             <Text component="p" className="mb-4">
               {text}
             </Text>
-            <div className="flex gap-2 text-sm">
+            <div className="flex gap-2 text-sm absolute bottom-8 left-8">
               Mehr erfahren
               <svg
                 xmlns="http://www.w3.org/2000/svg"
