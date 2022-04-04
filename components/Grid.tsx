@@ -2,7 +2,7 @@ import { useState } from "react"
 import Image from "next/image"
 import { Anchor, Text, useMantineColorScheme } from "@mantine/core"
 import { cn } from "@utils/cn"
-import { PostType } from "types"
+import { LatestPostsType, PostType } from "types"
 import { format } from "date-fns"
 import { de } from "date-fns/locale"
 import Link from "next/link"
@@ -20,7 +20,7 @@ const Grid = ({ posts }: { posts: [{ node: PostType }] }) => {
   )
 }
 
-function BlurImage({ post }: { post: PostType }) {
+export function BlurImage({ post }: { post: PostType }) {
   const [isLoading, setIsLoading] = useState(true)
   const authorsList = post.authors.map((author) => author.name).join(", ")
 

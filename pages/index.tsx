@@ -10,10 +10,11 @@ import { Center, Text, useMantineColorScheme } from "@mantine/core"
 
 import LatestPosts from "@components/LatestPosts"
 
-import { LatestPostsType } from "types"
+import { PostType } from "types"
 
 import landing from "../public/landing02.jpg"
 import niklasSandra from "../public/niklas-sandra.jpg"
+import TeamSection from "@components/TeamSection"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
@@ -88,7 +89,12 @@ const Box = ({
   )
 }
 
-const HomePage: NextPage<LatestPostsType> = ({ data }) => {
+interface PageProps {
+  posts: PostType[]
+  teams: [{ mannschaft: string; slug: string; liga: string }]
+}
+
+const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
   const [ref1, inView1] = useInView({ threshold: 0.4 })
   const [ref2, inView2] = useInView({ threshold: 0.4 })
   const animation = useAnimation()
@@ -293,7 +299,8 @@ const HomePage: NextPage<LatestPostsType> = ({ data }) => {
             </motion.div>
           </div>
         </section>
-        <LatestPosts data={data} />
+        <LatestPosts posts={posts} />
+        <TeamSection teams={teams} />
       </main>
     </>
   )
@@ -301,8 +308,8 @@ const HomePage: NextPage<LatestPostsType> = ({ data }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const query = gql`
-    query LatestPostsQuery {
-      posts(first: 5, orderBy: postPublishDate_DESC) {
+    query LandingPageQuery {
+      posts(first: 3, orderBy: postPublishDate_DESC) {
         title
         id
         slug
@@ -318,6 +325,11 @@ export const getStaticProps: GetStaticProps = async () => {
           name
         }
       }
+      teams(orderBy: mannschaft_ASC) {
+        mannschaft
+        slug
+        liga
+      }
     }
   `
 
@@ -325,7 +337,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      data,
+      posts: data.posts,
+      teams: data.teams,
     },
     revalidate: 60 * 30,
   }
