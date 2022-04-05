@@ -1,6 +1,6 @@
-import { Text } from "@mantine/core"
 import { NextPage } from "next"
 import Head from "next/head"
+import { Text } from "@mantine/core"
 
 const KontaktPage: NextPage = () => {
   return (

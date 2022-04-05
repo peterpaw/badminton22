@@ -5,6 +5,7 @@ import CategoryBadge from "./CategoryBadge"
 import { format } from "date-fns"
 import { de } from "date-fns/locale"
 import { AdjacentPostType } from "types"
+import { Text, useMantineColorScheme } from "@mantine/core"
 
 const PrevNextLink = ({
   post,
@@ -28,20 +29,30 @@ const PrevNextLink = ({
   const date = format(new Date(post.postPublishDate), "dd. MMMM yyyy", {
     locale: de,
   })
+
+  const { colorScheme } = useMantineColorScheme()
+  const dark = colorScheme === "dark"
+
   return (
     <Link href={`/presse/${post.slug}`}>
-      <a>
+      <a className="max-w-[70%] mx-auto">
         <h4
           className={`text-sm md:text-base mb-2 flex justify-center items-center`}
         >
           {prev ? (
-            <ArrowLeftIcon className="w-6 h-6" />
+            <ArrowLeftIcon
+              className="w-6 h-6"
+              style={{ color: dark ? "#d2d2d2" : "#3d3d3d" }}
+            />
           ) : (
-            <ArrowRightIcon className="w-6 h-6" />
+            <ArrowRightIcon
+              className="w-6 h-6"
+              style={{ color: dark ? "#d2d2d2" : "#3d3d3d" }}
+            />
           )}
         </h4>
         <div className="p-2">
-          <div className="hidden md:block relative h-48 aspect-video mx-auto">
+          <div className="hidden md:block aspect-w-16 aspect-h-9 w-full overflow-hidden">
             <Image
               src={post.featuredImage.url}
               alt={post.title}
@@ -50,17 +61,18 @@ const PrevNextLink = ({
           </div>
           <div className="flex flex-wrap justify-center items-center gap-2 my-2">
             <span className="text-xs">{date}</span>
-            <div className="flex">
+            {/* <div className="flex">
               {post.categories.map((tag) => {
                 return <CategoryBadge category={tag} key={tag.name} />
               })}
-            </div>
+            </div> */}
           </div>
-          <h3
+          <Text
+            component="h3"
             className={`text-sm md:text-base md:mt-2 text-center md:text-center`}
           >
             {post.title}
-          </h3>
+          </Text>
         </div>
       </a>
     </Link>

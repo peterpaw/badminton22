@@ -1,5 +1,6 @@
 import { MDXRemote } from "next-mdx-remote"
 import Head from "next/head"
+import Image from "next/image"
 import Link from "next/link"
 import { format } from "date-fns"
 import { de } from "date-fns/locale"
@@ -7,6 +8,7 @@ import { de } from "date-fns/locale"
 import ConnectedPosts from "@components/ConnectedPosts"
 import CategoryBadge from "./CategoryBadge"
 import { AdjacentPostType, PostDetailsType } from "types"
+import { Text, useMantineColorScheme } from "@mantine/core"
 
 const Post = ({
   post,
@@ -21,6 +23,38 @@ const Post = ({
     locale: de,
   })
 
+  const { colorScheme } = useMantineColorScheme()
+  const dark = colorScheme === "dark"
+
+  const components = {
+    h1: (props: any) => (
+      <h1 {...props} className={dark ? "text-[#b4b4b4]" : "text-gray-800"} />
+    ),
+    h2: (props: any) => (
+      <h2 {...props} className={dark ? "text-[#b4b4b4]" : "text-gray-800"} />
+    ),
+    h3: (props: any) => (
+      <h3 {...props} className={dark ? "text-[#b4b4b4]" : "text-gray-800"} />
+    ),
+    h4: (props: any) => (
+      <h4 {...props} className={dark ? "text-[#b4b4b4]" : "text-gray-800"} />
+    ),
+    h5: (props: any) => (
+      <h5 {...props} className={dark ? "text-[#b4b4b4]" : "text-gray-800"} />
+    ),
+    p: (props: any) => (
+      <p {...props} className={dark ? "text-[#b4b4b4]" : "text-gray-800"} />
+    ),
+    strong: (props: any) => (
+      <strong
+        {...props}
+        className={dark ? "text-[#b4b4b4]" : "text-gray-800"}
+      />
+    ),
+  }
+
+  const authorsCount = post.authors.length
+
   return (
     <>
       <Head>
@@ -28,36 +62,49 @@ const Post = ({
       </Head>
       <main className="py-16 px-4 container mx-auto max-w-3xl text-lg lg:text-xl">
         <div className="text-center">
-          <h1 className="text-3xl font-bold">{post.title}</h1>
-          <p className="text-gray-500 text-xs mt-8 pb-1">von</p>
-          <div className="mb-2 flex gap-2 flex-wrap justify-center mt-0">
-            {post.authors.map((author) => (
-              <Link href={`/presse/autoren/${author.slug}`} key={author.id}>
-                <a>
-                  <div className="flex items-center rounded-full bg-gray-100 pr-5 h-6">
-                    <img
-                      className="rounded-full float-left h-full"
-                      src={author.foto.url}
-                      alt={`Profilfoto von ${author.name}`}
-                    />
-                    <span className="ml-3 text-xs">{`${author.name}`}</span>
-                  </div>
-                </a>
-              </Link>
+          <Text component="h1" className="text-3xl font-black mb-4">
+            {post.title}
+          </Text>
+          <div className="leading-none">
+            {post.authors.map((author, index) => (
+              <span key={author.id}>
+                <Link href={`/autoren/${author.slug}`} passHref>
+                  <Text
+                    component="a"
+                    sx={(theme) => ({
+                      "&:hover": {
+                        color: theme.colors.red[5],
+                      },
+                    })}
+                    className="text-xs leading-none duration-300 ease-in-out"
+                  >
+                    {author.name}
+                  </Text>
+                </Link>
+                {index + 1 === authorsCount ? (
+                  ""
+                ) : index === authorsCount - 2 ? (
+                  <Text component="span" className="text-xs leading-none">
+                    {" "}
+                    und{" "}
+                  </Text>
+                ) : (
+                  <Text component="span" className="text-xs leading-none">
+                    ,{" "}
+                  </Text>
+                )}
+              </span>
             ))}
           </div>
-          <p className="text-gray-500 text-xs ">{date}</p>
+          <Text component="p" className="text-xs mt-2 leading-none">
+            {date}
+          </Text>
         </div>
-        <img
-          src={post.featuredImage.url}
-          alt={post.title}
-          className="my-4 mx-auto"
-        />
-        <div className="p-4 flex justify-center items-center flex-wrap">
+        <div className="p-2 mb-4 flex justify-center items-center flex-wrap">
           {post.categories.map((category) => {
             return (
               <Link
-                href={`/presse/kategorie/${category.slug}`}
+                href={`/berichte/kategorie/${category.slug}`}
                 key={category.slug}
               >
                 <a>
@@ -67,8 +114,16 @@ const Post = ({
             )
           })}
         </div>
-        <article className="px-2 prose md:prose-lg mx-auto">
-          <MDXRemote {...post.source} />
+        <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden">
+          <Image
+            src={post.featuredImage.url}
+            alt={post.title}
+            layout="fill"
+            className="my-4 mx-auto"
+          />
+        </div>
+        <article className="px-2 prose md:prose-lg mx-auto mt-8 text-white">
+          <MDXRemote {...post.source} components={components} />
         </article>
         <ConnectedPosts
           prevPost={prevPost}

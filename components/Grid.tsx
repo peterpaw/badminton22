@@ -35,7 +35,7 @@ export function BlurImage({ post }: { post: PostType }) {
 
   return (
     <div ref={ref}>
-      <Anchor component={Link} href="/berichte">
+      <Anchor component={Link} href={`/berichte/${post.slug}`}>
         <a className="group">
           <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden rounded-lg bg-gray-200">
             <Image
