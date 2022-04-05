@@ -1,5 +1,4 @@
-import { Button, Container, Text, useMantineColorScheme } from "@mantine/core"
-import Link from "next/link"
+import { Container, Text, useMantineColorScheme } from "@mantine/core"
 import { PostType } from "types"
 import { BlurImage } from "./Grid"
 
@@ -14,14 +13,16 @@ const LatestPosts = ({ posts }: { posts: PostType[] }) => {
         backgroundColor: dark ? theme.colors.gray[9] : theme.colors.gray[0],
       })}
     >
-      <Text component="h2" className="py-16 text-3xl font-black">
-        Neueste Beiträge
-      </Text>
-      <div className="max-w-2xl mx-auto pb-16 px-4 sm:pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div className="grid grid-cols-1 gap-y-10 gap-x-6 md:grid-cols-3">
-          {posts.map((post) => {
-            return <BlurImage post={post} key={post.slug} />
-          })}
+      <div className="container-narrow p-0">
+        <Text component="h2" className="py-16 text-3xl font-black">
+          Neueste Beiträge
+        </Text>
+        <div className="max-w-2xl mx-auto pb-16 px-4 sm:pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
+          <div className="grid grid-cols-1 gap-y-10 gap-x-6 md:grid-cols-3">
+            {posts.map((post) => {
+              return <BlurImage post={post} key={post.slug} />
+            })}
+          </div>
         </div>
       </div>
     </Container>
