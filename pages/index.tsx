@@ -15,6 +15,7 @@ import { PostType } from "types"
 import landing from "../public/landing02.jpg"
 import niklasSandra from "../public/niklas-sandra.jpg"
 import TeamSection from "@components/TeamSection"
+import SocialMedia from "@components/SocialMedia"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
@@ -301,6 +302,7 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
         </section>
         <LatestPosts posts={posts} />
         <TeamSection teams={teams} />
+        <SocialMedia />
       </main>
     </>
   )
