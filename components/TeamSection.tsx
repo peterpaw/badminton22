@@ -42,8 +42,9 @@ const TeamSection = ({
             initial="offscreen"
             whileInView="onscreen"
             viewport={{ once: true, amount: 0.8 }}
+            key={team.slug}
           >
-            <Link href={`/mannschaften/${team.slug}`} passHref key={team.slug}>
+            <Link href={`/mannschaften/${team.slug}`} passHref>
               <motion.a
                 variants={cardVariants}
                 whileHover={{ translateY: -6 }}
@@ -77,7 +78,7 @@ const TeamSection = ({
             </Link>
           </motion.div>
         ))}
-      </div>{" "}
+      </div>
     </>
   )
 }

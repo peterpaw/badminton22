@@ -9,11 +9,13 @@ import {
   Anchor,
   Center,
   Container,
+  Text,
   Title,
   useMantineColorScheme,
 } from "@mantine/core"
 import { FaFacebook } from "react-icons/fa"
 import { navigation } from "data/navigation"
+import { motion } from "framer-motion"
 
 const Footer = () => {
   const { colorScheme } = useMantineColorScheme()
@@ -24,16 +26,17 @@ const Footer = () => {
       <Container
         fluid
         sx={(theme) => ({
-          backgroundColor: dark ? theme.colors.dark[8] : theme.colors.dark[7],
+          backgroundColor: dark ? theme.colors.dark[8] : theme.colors.white,
         })}
         className="border-t-2 border-[#dc271e]"
       >
         <div className="grid md:grid-cols-3 justify-center gap-2 p-4 py-12 max-w-7xl mx-auto">
-          <a
+          <motion.a
             href="https://www.b-schmitt.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="relative w-64 h-16 mx-auto my-4 block"
+            whileHover={{ y: -2 }}
           >
             <Image
               src={bschmitt}
@@ -41,12 +44,13 @@ const Footer = () => {
               layout="fill"
               objectFit="contain"
             />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="https://www.ph-jourdan.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="relative w-64 h-16 mx-auto my-4 block"
+            whileHover={{ y: -2 }}
           >
             <Image
               src={pjourdan}
@@ -54,12 +58,13 @@ const Footer = () => {
               layout="fill"
               objectFit="contain"
             />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="https://www.plusline.net/"
             target="_blank"
             rel="noopener noreferrer"
             className="relative w-64 h-16 mx-auto my-4 block"
+            whileHover={{ y: -2 }}
           >
             <Image
               src={plusline}
@@ -67,12 +72,13 @@ const Footer = () => {
               layout="fill"
               objectFit="contain"
             />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="http://www.rotweiss-xxl.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="relative w-64 h-16 mx-auto my-4 block md:col-span-3"
+            whileHover={{ y: -2 }}
           >
             <Image
               src={gasthausXXL}
@@ -80,13 +86,46 @@ const Footer = () => {
               layout="fill"
               objectFit="contain"
             />
-          </a>
+          </motion.a>
+        </div>
+      </Container>
+
+      <Container
+        fluid
+        sx={(theme) => ({
+          backgroundColor: dark ? theme.colors.dark[7] : theme.colors.gray[1],
+        })}
+        className="py-16 text-center"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 max-w-xl mx-auto">
+          <Title order={3} className="mb-8">
+            Sitemap
+          </Title>
+          <div className="flex flex-col items-center">
+            {navigation.map((link) => (
+              <Anchor component={Link} href={link.href} key={link.name}>
+                <Text
+                  component="a"
+                  className="cursor-pointer duration-300"
+                  sx={(theme) => ({
+                    "&:hover": {
+                      color: theme.colors.red[5],
+                    },
+                  })}
+                >
+                  {link.name}
+                </Text>
+              </Anchor>
+            ))}
+          </div>
         </div>
       </Container>
       <Container
         fluid
-        sx={(theme) => ({ backgroundColor: theme.colors.dark[8] })}
-        className="py-12 border-t-2 border-[#dc271e] text-center"
+        sx={(theme) => ({
+          backgroundColor: dark ? theme.colors.dark[8] : "white",
+        })}
+        className="py-4 text-center"
       >
         <Center>
           <Anchor href="https://facebook.com/rww.badminton" target="_blank">
@@ -94,26 +133,7 @@ const Footer = () => {
           </Anchor>
         </Center>
       </Container>
-      <Container
-        fluid
-        sx={(theme) => ({ backgroundColor: theme.colors.dark[7] })}
-        className="py-16 text-center"
-      >
-        <Title
-          order={3}
-          sx={(theme) => ({ color: theme.colors.gray[2] })}
-          className="mb-8"
-        >
-          Sitemap
-        </Title>
-        <Container>
-          {navigation.map((link) => (
-            <Anchor component={Link} href={link.href} key={link.name}>
-              <a className="block text-gray-200">{link.name}</a>
-            </Anchor>
-          ))}
-        </Container>
-      </Container>
+
       <Container
         fluid
         sx={(theme) => ({ backgroundColor: theme.colors.red[5] })}

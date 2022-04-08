@@ -263,11 +263,9 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
               <Text
                 component="h2"
                 className="text-left font-black mb-8 mt-4 md:mt-0 text-2xl md:text-3xl"
-                sx={(theme) => ({
-                  color: theme.colors.red[5],
-                })}
               >
-                Willkommen bei den Roten!
+                Willkommen bei den <span className="text-[#dc271e]">Roten</span>
+                !
               </Text>
               <Text component="p">
                 Bei uns kannst du zwei mal pro Woche auf 9 Feldern trainieren.
