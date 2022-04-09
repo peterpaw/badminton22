@@ -16,6 +16,7 @@ import landing from "../public/landing02.jpg"
 import niklasSandra from "../public/niklas-sandra.jpg"
 import TeamSection from "@components/TeamSection"
 import SocialMedia from "@components/SocialMedia"
+import BlurImg from "@components/BlurImg"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
@@ -246,14 +247,10 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
               ref={ref1}
               initial={{ opacity: 0, x: -100 }}
               animate={animation}
-              className="relative aspect-[16/12] shadow-2xl"
             >
-              <Image
-                src={niklasSandra}
-                alt="Niklas und Sandra"
-                layout="fill"
-                objectFit="cover"
-              />
+              <div className="aspect-w-16 aspect-h-12 w-full overflow-hidden rounded-lg">
+                <BlurImg src={niklasSandra} alt="Niklas und Sandra posen" />
+              </div>
             </motion.div>
             <motion.div
               ref={ref2}
