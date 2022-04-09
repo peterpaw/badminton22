@@ -135,7 +135,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                             sx={(theme) => ({
                               color: dark
                                 ? theme.colors.gray[5]
-                                : theme.colors.gray[6],
+                                : theme.colors.gray[8],
                               "&:hover": { color: theme.colors.red[5] },
                             })}
                           >
@@ -187,7 +187,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                         sx={(theme) => ({
                           color: dark
                             ? theme.colors.gray[5]
-                            : theme.colors.gray[6],
+                            : theme.colors.gray[8],
                           "&:hover": { color: theme.colors.red[5] },
                         })}
                         onClick={() => setOpened(false)}

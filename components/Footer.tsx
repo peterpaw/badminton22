@@ -26,68 +26,70 @@ const Footer = () => {
       <Container
         fluid
         sx={(theme) => ({
-          backgroundColor: dark ? theme.colors.dark[8] : theme.colors.white,
+          backgroundColor: dark ? theme.colors.dark[8] : "white",
         })}
         className="border-t-2 border-[#dc271e]"
       >
-        <div className="grid md:grid-cols-3 justify-center gap-2 p-4 py-12 max-w-7xl mx-auto">
-          <motion.a
-            href="https://www.b-schmitt.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative w-64 h-16 mx-auto my-4 block"
-            whileHover={{ y: -2 }}
-          >
-            <Image
-              src={bschmitt}
-              alt="Logo BSchmitt Mobile"
-              layout="fill"
-              objectFit="contain"
-            />
-          </motion.a>
-          <motion.a
-            href="https://www.ph-jourdan.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative w-64 h-16 mx-auto my-4 block"
-            whileHover={{ y: -2 }}
-          >
-            <Image
-              src={pjourdan}
-              alt="Logo Philipp Jourdan"
-              layout="fill"
-              objectFit="contain"
-            />
-          </motion.a>
-          <motion.a
-            href="https://www.plusline.net/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative w-64 h-16 mx-auto my-4 block"
-            whileHover={{ y: -2 }}
-          >
-            <Image
-              src={plusline}
-              alt="Logo PlusLine"
-              layout="fill"
-              objectFit="contain"
-            />
-          </motion.a>
-          <motion.a
-            href="http://www.rotweiss-xxl.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative w-64 h-16 mx-auto my-4 block md:col-span-3"
-            whileHover={{ y: -2 }}
-          >
-            <Image
-              src={gasthausXXL}
-              alt="Logo Gasthaus XXL"
-              layout="fill"
-              objectFit="contain"
-            />
-          </motion.a>
-        </div>
+        <Container>
+          <div className="grid md:grid-cols-3 justify-center gap-2 p-4 py-12 mx-auto">
+            <motion.a
+              href="https://www.b-schmitt.de/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative w-64 h-16 mx-auto my-4 block"
+              whileHover={{ y: -2 }}
+            >
+              <Image
+                src={bschmitt}
+                alt="Logo BSchmitt Mobile"
+                layout="fill"
+                objectFit="contain"
+              />
+            </motion.a>
+            <motion.a
+              href="https://www.ph-jourdan.de/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative w-64 h-16 mx-auto my-4 block"
+              whileHover={{ y: -2 }}
+            >
+              <Image
+                src={pjourdan}
+                alt="Logo Philipp Jourdan"
+                layout="fill"
+                objectFit="contain"
+              />
+            </motion.a>
+            <motion.a
+              href="https://www.plusline.net/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative w-64 h-16 mx-auto my-4 block"
+              whileHover={{ y: -2 }}
+            >
+              <Image
+                src={plusline}
+                alt="Logo PlusLine"
+                layout="fill"
+                objectFit="contain"
+              />
+            </motion.a>
+            <motion.a
+              href="http://www.rotweiss-xxl.de/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative w-64 h-16 mx-auto my-4 block md:col-span-3"
+              whileHover={{ y: -2 }}
+            >
+              <Image
+                src={gasthausXXL}
+                alt="Logo Gasthaus XXL"
+                layout="fill"
+                objectFit="contain"
+              />
+            </motion.a>
+          </div>
+        </Container>
       </Container>
 
       <Container
@@ -123,15 +125,21 @@ const Footer = () => {
       <Container
         fluid
         sx={(theme) => ({
-          backgroundColor: dark ? theme.colors.dark[8] : "white",
+          backgroundColor: dark ? theme.colors.dark[8] : theme.colors.gray[0],
         })}
-        className="py-4 text-center"
+        className="py-2 text-center"
       >
-        <Center>
-          <Anchor href="https://facebook.com/rww.badminton" target="_blank">
-            <FaFacebook size={36} color="#1b74e4" className="" />
-          </Anchor>
-        </Center>
+        <Container>
+          <motion.a
+            href="https://facebook.com/rww.badminton"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ y: -2 }}
+            className="inline-block"
+          >
+            <FaFacebook size={24} color="#1b74e4" className="inline" />
+          </motion.a>
+        </Container>
       </Container>
 
       <Container
@@ -139,7 +147,7 @@ const Footer = () => {
         sx={(theme) => ({ backgroundColor: theme.colors.red[5] })}
         className="p-3 text-slate-200 text-sm"
       >
-        <div className="max-w-7xl flex flex-col lg:flex-row justify-between flex-wrap gap-2 mx-auto">
+        <Container className="flex flex-col lg:flex-row justify-between flex-wrap gap-2 mx-auto">
           <div className="flex justify-center lg:justify-start">
             &copy;{` `}
             {new Date().getFullYear()}
@@ -153,7 +161,7 @@ const Footer = () => {
               <a className="">Datenschutzerklärung</a>
             </Link>
           </div>
-        </div>
+        </Container>
       </Container>
     </footer>
   )

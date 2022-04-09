@@ -36,7 +36,7 @@ const TeamSection = ({
           Mannschaften
         </Text>
       </Container>
-      <div className="flex flex-col justify-center max-w-3xl mx-auto gap-y-8 py-24 px-8">
+      <div className="flex flex-col justify-center max-w-xl mx-auto gap-y-8 py-24 px-8">
         {teams.map((team) => (
           <motion.div
             initial="offscreen"

@@ -45,7 +45,7 @@ const Box = ({
   return (
     <motion.div
       variants={item}
-      whileHover={{ translateY: -10 }}
+      whileHover={{ translateY: -4 }}
       className="shadow-2xl z-10"
     >
       <Center
@@ -58,12 +58,12 @@ const Box = ({
           <a className="block p-8 pb-16">
             <Text
               component="h2"
-              className="text-left mb-4 text-xl font-bold "
+              className="text-left mb-4 text-lg md:text-xl font-bold "
               sx={(theme) => ({ color: theme.colors.red[5] })}
             >
               {heading}
             </Text>
-            <Text component="p" className="mb-4">
+            <Text component="p" className="md:mb-4 text-sm md:text-base">
               {text}
             </Text>
             <div className="flex gap-2 text-sm absolute bottom-8 left-8">
@@ -241,7 +241,7 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
           </motion.div>
         </section>
         <section className="py-32 overflow-x-hidden">
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-32 justify-center container-narrow">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-16 justify-center container-narrow">
             <motion.div
               ref={ref1}
               initial={{ opacity: 0, x: -100 }}
