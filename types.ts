@@ -83,3 +83,24 @@ export interface LatestPostsType {
     }
   ]
 }
+
+export interface TeamListTypes {
+  slug: string
+  mannschaft: string
+  liga: string
+  teamPhoto: {
+    url: string
+  }
+}
+
+export interface TeamTypes extends TeamListTypes {
+  player: [
+    {
+      id: string
+      name: string
+      gender: string
+      captain: boolean
+    }
+  ]
+  nuligaUrl: string
+}

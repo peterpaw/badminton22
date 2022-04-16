@@ -1,17 +1,23 @@
 import { NextPage } from "next"
 import Head from "next/head"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion, Variants } from "framer-motion"
 
 import gruppenFoto from "../public/badminton-jugend-gruppenfoto.jpg"
-import redheadKid from "../public/jugendtraining-01.jpg"
 import gasthausXXL from "../public/gasthaus-xxl.png"
 import xxlWirt from "../public/wirt-joschi-mauri.jpg"
 import joschiMats from "../public/joschi-mats.jpg"
 
 import { jugend } from "data/jugend"
-import { Container, Text, Title, useMantineColorScheme } from "@mantine/core"
+import {
+  Button,
+  Container,
+  Text,
+  Title,
+  useMantineColorScheme,
+} from "@mantine/core"
 import BlurImg from "@components/BlurImg"
+import Link from "next/link"
 
 const JugendPage: NextPage = () => {
   const { colorScheme } = useMantineColorScheme()
@@ -56,6 +62,32 @@ const JugendPage: NextPage = () => {
     },
   }
 
+  const fadeIn: Variants = {
+    offscreen: {
+      opacity: 0,
+    },
+    onscreen: {
+      opacity: 1,
+      transition: {
+        duration: 1,
+      },
+    },
+  }
+
+  const spring: Variants = {
+    offscreen: {
+      x: 100,
+    },
+    onscreen: {
+      x: 0,
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 0.8,
+      },
+    },
+  }
+
   return (
     <main>
       <Head>
@@ -81,7 +113,7 @@ const JugendPage: NextPage = () => {
         sx={(theme) => ({
           backgroundColor: dark ? theme.colors.gray[9] : theme.colors.gray[0],
         })}
-        className="py-8 md:py-16"
+        className="py-16"
       >
         <Container>
           <Title order={2} className="mb-0 font-black md:text-3xl">
@@ -90,7 +122,7 @@ const JugendPage: NextPage = () => {
           <Title
             order={3}
             sx={(theme) => ({ color: theme.colors.red[5] })}
-            className="mb-8"
+            className="mb-16"
           >
             meet the players:
           </Title>
@@ -126,14 +158,14 @@ const JugendPage: NextPage = () => {
           </motion.div>
         </Container>
       </Container>
-      <Container className="py-8 md:py-16">
+      <Container className="py-16">
         <Title order={2} className="mb-0 font-black md:text-3xl">
           Trainerstab
         </Title>
         <Title
           order={3}
           sx={(theme) => ({ color: theme.colors.red[5] })}
-          className="mb-8"
+          className="mb-16"
         >
           meet the coaches:
         </Title>
@@ -172,7 +204,7 @@ const JugendPage: NextPage = () => {
         sx={(theme) => ({
           backgroundColor: dark ? theme.colors.gray[8] : theme.colors.gray[0],
         })}
-        className="py-8 md:py-16"
+        className="py-16"
       >
         <Container className="px-12">
           <Title order={2} className="mb-0 font-black md:text-3xl">
@@ -187,10 +219,10 @@ const JugendPage: NextPage = () => {
           </Title>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={even}
+              initial="offscreen"
+              whileInView="onscreen"
+              viewport={{ once: true, amount: 0.8 }}
+              variants={fadeIn}
             >
               <Text component="p">
                 Für die Jüngsten bieten wir ein gesondertes Training an.
@@ -204,10 +236,10 @@ const JugendPage: NextPage = () => {
             </motion.div>
 
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={odd}
+              initial="offscreen"
+              whileInView="onscreen"
+              viewport={{ once: true, amount: 0.8 }}
+              variants={fadeIn}
               className="w-[202px] h-[277px] relative overflow-hidden rounded-lg mb-16 mx-auto"
             >
               <BlurImg src={joschiMats} alt="Jugendwart Joschi Kreuz" />
@@ -216,33 +248,37 @@ const JugendPage: NextPage = () => {
         </Container>
       </Container>
 
-      <section>
-        <Container
-          fluid
-          sx={(theme) => ({
-            backgroundColor: dark ? theme.colors.gray[8] : theme.colors.gray[0],
-          })}
-          className="text-center py-8 md:py-16"
+      <Container fluid className="text-center py-16">
+        <Title order={2} className="mb-0 font-black md:text-3xl">
+          Wann und wo?
+        </Title>
+        <Title
+          order={3}
+          sx={(theme) => ({ color: theme.colors.red[5] })}
+          className="mb-16"
         >
-          <Text component="h2" className="mb-8 md:mb-16 font-black md:text-4xl">
-            Jugendtraining
-          </Text>
-          <div className="flex flex-wrap text-center justify-center gap-4 leading-tight">
-            <div className="bg-white p-8 rounded shadow-sm flex-1 min-w-[20rem] max-w-[45vw]">
-              <h3 className="text-xl md:text-2xl mb-4">Montag</h3>
-              <p>Bertha-von-Suttner-Schule</p>
-              <p>An den Nußbäumen 1, Halle A</p>
-              <p>17:30 - 19:30 Uhr</p>
-            </div>
-            <div className="bg-white p-8 rounded shadow-sm flex-1 min-w-[20rem] max-w-[45vw]">
-              <h3 className="text-xl md:text-2xl mb-4">Mittwoch</h3>
-              <p>Sporthalle Walldorf</p>
-              <p>Okrifteler Str. 29</p>
-              <p>17:30 - 19:30 Uhr</p>
-            </div>
-          </div>
-        </Container>
-      </section>
+          Alle Infos zum Trainingsablauf
+        </Title>
+        <motion.div
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.8 }}
+          variants={spring}
+        >
+          <Link href="/training" passHref>
+            <Button
+              component="a"
+              uppercase
+              sx={(theme) => ({
+                color: theme.colors.gray[0],
+              })}
+              className="bg-red-600 hover:bg-red-500 duration-300"
+            >
+              Hier klicken
+            </Button>
+          </Link>
+        </motion.div>
+      </Container>
       <section className="bg-zinc-100 py-8 md:py-16">
         <h2 className="mb-8 font-black md:text-4xl">Jugendsponsor</h2>
         <a

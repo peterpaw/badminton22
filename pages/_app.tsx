@@ -12,7 +12,6 @@ import {
   useMantineTheme,
   createStyles,
   Anchor,
-  Image,
   ColorSchemeProvider,
   ColorScheme,
   ActionIcon,
@@ -72,7 +71,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           withNormalizeCSS
           theme={{
             colorScheme,
-            fontFamily: "Inter, sans-serif",
+
             colors: {
               red: [
                 "hsl(3deg 76% 69%)",
@@ -116,11 +115,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                   >
                     <Anchor component={Link} href="/">
                       <a>
-                        <Image
-                          radius="md"
-                          src="/rww-logo.png"
-                          alt="Rot-Weiß Walldorf Logo"
-                        />
+                        <img src="/rww-logo.svg" alt="Rot-Weiß Walldorf Logo" />
                       </a>
                     </Anchor>
                   </div>

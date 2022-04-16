@@ -1,22 +1,33 @@
-import { ITeam } from "pages/mannschaften/[slug]"
+import { Container, Text, Title } from "@mantine/core"
+import Image from "next/image"
+import { TeamTypes } from "types"
 
-const Team = ({ team }: { team: ITeam }) => {
+const Team = ({ team }: { team: TeamTypes }) => {
   return (
-    <main className="text-center container py-16 mx-auto">
-      <h1 className="text-3xl font-bold">{team.mannschaft}</h1>
-      <h2 className="mb-8">{team.liga}</h2>
-      <img
-        src={team.teamPhoto.url}
-        alt={`Mannschaftsfoto der ${team.mannschaft}`}
-      />
+    <Container className="text-center py-16 mx-auto">
+      <Title order={1} className="text-3xl font-bold">
+        {team.mannschaft}
+      </Title>
+      <Title order={2} className="mb-8 font-normal text-lg">
+        {team.liga}
+      </Title>
+      <div className="aspect-w-16 aspect-h-9">
+        <Image
+          src={team.teamPhoto.url}
+          alt={`Mannschaftsfoto der ${team.mannschaft}`}
+          layout="fill"
+          objectFit="cover"
+          priority
+        />
+      </div>
       <div className="mt-16">
         {team?.player?.map((p) => (
           <div key={p.id}>
-            <h4>
+            <Text component="p" className="py-1">
               {p.name}
               {p.captain &&
                 ` (Mannschaftsführer${p.gender === "female" ? "in" : ""})`}
-            </h4>
+            </Text>
           </div>
         ))}
       </div>
@@ -25,7 +36,7 @@ const Team = ({ team }: { team: ITeam }) => {
           Link zur HBV-Tabelle
         </a>
       </div>
-    </main>
+    </Container>
   )
 }
 

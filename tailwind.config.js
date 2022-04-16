@@ -20,7 +20,7 @@ module.exports = {
         75: "75%",
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui"],
+        sans: ["system-ui"],
       },
     },
   },

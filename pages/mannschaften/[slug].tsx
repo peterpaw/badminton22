@@ -1,24 +1,11 @@
 import Team from "@components/Team"
 import { gql, GraphQLClient } from "graphql-request"
 import { GetStaticPaths, GetStaticProps } from "next"
-
-import { ITeamsOverview } from "."
+import { TeamTypes } from "types"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
-export interface ITeam extends ITeamsOverview {
-  player: [
-    {
-      id: string
-      name: string
-      gender: string
-      captain: boolean
-    }
-  ]
-  nuligaUrl: string
-}
-
-const Slug = ({ data }: { data: { team: ITeam } }) => {
+const TeamPage = ({ data }: { data: { team: TeamTypes } }) => {
   return <Team team={data.team} />
 }
 
@@ -45,7 +32,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   `
 
-  const data: { team: ITeam | null } = await client.request(query, { slug })
+  const data: { team: TeamTypes | null } = await client.request(query, { slug })
 
   if (!data.team) {
     return {
@@ -76,4 +63,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export default Slug
+export default TeamPage

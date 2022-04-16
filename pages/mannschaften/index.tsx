@@ -1,18 +1,10 @@
 import TeamListItem from "@components/TeamListItem"
+import { Container, Title } from "@mantine/core"
 import { gql, GraphQLClient } from "graphql-request"
 import { GetStaticProps } from "next"
-import Link from "next/link"
+import { TeamListTypes } from "types"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
-
-export interface ITeamsOverview {
-  slug: string
-  mannschaft: string
-  liga: string
-  teamPhoto: {
-    url: string
-  }
-}
 
 export const getStaticProps: GetStaticProps = async () => {
   const query = gql`
@@ -38,14 +30,16 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-const MannschaftenPage = ({ data }: { data: { teams: ITeamsOverview[] } }) => {
+const MannschaftenPage = ({ data }: { data: { teams: TeamListTypes[] } }) => {
   return (
-    <main className="text-center container py-16 max-w-sm mx-auto">
-      <h1 className="text-4xl font-black mb-16">Mannschaften</h1>
-      {data?.teams?.map((team) => (
-        <TeamListItem team={team} key={team.slug} />
+    <Container fluid className="text-center py-16 px-0">
+      <Title order={1} className="text-4xl font-black mb-16">
+        Mannschaften
+      </Title>
+      {data?.teams?.map((team, index) => (
+        <TeamListItem team={team} index={index} key={team.slug} />
       ))}
-    </main>
+    </Container>
   )
 }
 
