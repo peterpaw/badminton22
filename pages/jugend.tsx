@@ -1,14 +1,8 @@
 import { NextPage } from "next"
+import Link from "next/link"
 import Head from "next/head"
 import Image from "next/image"
 import { motion, Variants } from "framer-motion"
-
-import gruppenFoto from "../public/badminton-jugend-gruppenfoto.jpg"
-import gasthausXXL from "../public/gasthaus-xxl.png"
-import xxlWirt from "../public/wirt-joschi-mauri.jpg"
-import joschiMats from "../public/joschi-mats.jpg"
-
-import { jugend } from "data/jugend"
 import {
   Button,
   Container,
@@ -17,26 +11,17 @@ import {
   useMantineColorScheme,
 } from "@mantine/core"
 import BlurImg from "@components/BlurImg"
-import Link from "next/link"
+
+import gruppenFoto from "../public/badminton-jugend-gruppenfoto.jpg"
+import gasthausXXL from "../public/gasthaus-xxl.png"
+import xxlWirt from "../public/wirt-joschi-mauri.jpg"
+import joschiMats from "../public/joschi-mats.jpg"
+
+import { jugend } from "data/jugend"
 
 const JugendPage: NextPage = () => {
   const { colorScheme } = useMantineColorScheme()
   const dark = colorScheme === "dark"
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-      },
-    },
-  }
-
-  const item = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1 },
-  }
 
   const even = {
     hidden: { x: -300 },
@@ -70,20 +55,6 @@ const JugendPage: NextPage = () => {
       opacity: 1,
       transition: {
         duration: 1,
-      },
-    },
-  }
-
-  const spring: Variants = {
-    offscreen: {
-      x: 100,
-    },
-    onscreen: {
-      x: 0,
-      transition: {
-        type: "spring",
-        bounce: 0.4,
-        duration: 0.8,
       },
     },
   }
@@ -268,25 +239,19 @@ const JugendPage: NextPage = () => {
         >
           Alle Infos zum Trainingsablauf
         </Title>
-        <motion.div
-          initial="offscreen"
-          whileInView="onscreen"
-          viewport={{ once: true, amount: 0.8 }}
-          variants={spring}
-        >
-          <Link href="/training" passHref>
-            <Button
-              component="a"
-              uppercase
-              sx={(theme) => ({
-                color: theme.colors.gray[0],
-              })}
-              className="bg-red-600 hover:bg-red-500 duration-300"
-            >
-              Hier klicken
-            </Button>
-          </Link>
-        </motion.div>
+
+        <Link href="/training" passHref>
+          <Button
+            component="a"
+            uppercase
+            sx={(theme) => ({
+              color: theme.colors.gray[0],
+            })}
+            className="bg-red-600 hover:bg-red-500 duration-300"
+          >
+            Hier klicken
+          </Button>
+        </Link>
       </Container>
       <Container
         fluid

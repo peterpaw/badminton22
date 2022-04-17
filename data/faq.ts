@@ -1,7 +1,4 @@
-import { Disclosure, Transition } from "@headlessui/react"
-import { ChevronUpIcon } from "@heroicons/react/solid"
-
-const data = [
+export const faq = [
   {
     title: `Welche Sachen muss ich zum Training mitbringen?`,
     content: `Du benötigst lediglich Sportkleidung (kurze oder lange Hose sowie
@@ -48,42 +45,3 @@ const data = [
         andere, die am Training teilnehmen (siehe oben).`,
   },
 ]
-
-const Faq = () => {
-  return (
-    <div className="w-full px-4 py-16">
-      <div className="w-full max-w-2xl p-2 mx-auto bg-white rounded-2xl">
-        {data.map((item) => (
-          <Disclosure key={item.title} as="div" className="mb-4 last:mb-0">
-            {({ open }) => (
-              <>
-                <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-red-600 bg-red-100 rounded-lg hover:bg-red-200 focus:outline-none focus-visible:ring focus-visible:ring-red-500 focus-visible:ring-opacity-75">
-                  <span>{item.title}</span>
-                  <ChevronUpIcon
-                    className={`${
-                      open ? "transform rotate-180" : ""
-                    } w-5 h-5 text-red-500`}
-                  />
-                </Disclosure.Button>
-                <Transition
-                  enter="transition duration-100 ease-out"
-                  enterFrom="transform scale-95 opacity-0"
-                  enterTo="transform scale-100 opacity-100"
-                  leave="transition duration-75 ease-out"
-                  leaveFrom="transform scale-100 opacity-100"
-                  leaveTo="transform scale-95 opacity-0"
-                >
-                  <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                    {item.content}
-                  </Disclosure.Panel>
-                </Transition>
-              </>
-            )}
-          </Disclosure>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-export default Faq
