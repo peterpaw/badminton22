@@ -1,6 +1,6 @@
 import { Container, Text, Title } from "@mantine/core"
-import Image from "next/image"
 import { TeamTypes } from "types"
+import BlurImg from "./BlurImg"
 
 const Team = ({ team }: { team: TeamTypes }) => {
   return (
@@ -12,12 +12,10 @@ const Team = ({ team }: { team: TeamTypes }) => {
         {team.liga}
       </Title>
       <div className="aspect-w-16 aspect-h-9">
-        <Image
+        <BlurImg
           src={team.teamPhoto.url}
           alt={`Mannschaftsfoto der ${team.mannschaft}`}
-          layout="fill"
-          objectFit="cover"
-          priority
+          priority="true"
         />
       </div>
       <div className="mt-16">

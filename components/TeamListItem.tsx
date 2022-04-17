@@ -1,7 +1,7 @@
 import { Container, Text, Title, useMantineColorScheme } from "@mantine/core"
-import Image from "next/image"
 import Link from "next/link"
 import { TeamListTypes } from "types"
+import BlurImg from "./BlurImg"
 
 const TeamListItem = ({
   team,
@@ -31,13 +31,10 @@ const TeamListItem = ({
         <a>
           <Container>
             <div className="aspect-w-16 aspect-h-9">
-              <Image
+              <BlurImg
                 src={team.teamPhoto.url}
                 alt={`Mannschaftsfoto ${team.mannschaft}`}
-                layout="fill"
-                objectFit="cover"
-                className="rounded"
-                priority
+                priority="true"
               />
             </div>
             <Title order={2} className="text-2xl mt-4">

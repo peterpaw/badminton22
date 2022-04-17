@@ -7,9 +7,11 @@ import { StaticImageData } from "next/image"
 const BlurImg = ({
   src,
   alt,
+  priority,
 }: {
   src: string | StaticImageData
   alt: string
+  priority: string
 }) => {
   const [isLoading, setIsLoading] = useState(true)
 
@@ -19,6 +21,7 @@ const BlurImg = ({
       alt={alt}
       layout="fill"
       objectFit="cover"
+      priority={priority === "true"}
       className={cn(
         "group-hover:opacity-75 duration-700 ease-in-out",
         isLoading
