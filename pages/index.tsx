@@ -6,7 +6,7 @@ import Image from "next/image"
 import { useInView } from "react-intersection-observer"
 import { GetStaticProps, NextPage } from "next"
 import { gql, GraphQLClient } from "graphql-request"
-import { Center, Text, useMantineColorScheme } from "@mantine/core"
+import { Center, Container, Text, useMantineColorScheme } from "@mantine/core"
 
 import LatestPosts from "@components/LatestPosts"
 
@@ -217,7 +217,7 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
             </motion.h1>
           </div>
         </section>
-        <section className="container-narrow mt-[-6rem]">
+        <Container className="mt-[-6rem]">
           <motion.div
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={container}
@@ -240,16 +240,20 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
               href="/training"
             />
           </motion.div>
-        </section>
+        </Container>
         <section className="py-32 overflow-x-hidden">
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-16 justify-center container-narrow">
+          <Container className="grid md:grid-cols-2 gap-8 lg:gap-16 justify-center">
             <motion.div
               ref={ref1}
               initial={{ opacity: 0, x: -100 }}
               animate={animation}
             >
-              <div className="aspect-w-16 aspect-h-12 w-full overflow-hidden rounded-lg">
-                <BlurImg src={niklasSandra} alt="Niklas und Sandra posen" />
+              <div className="aspect-w-16 aspect-h-12 w-full overflow-hidden">
+                <BlurImg
+                  src={niklasSandra}
+                  alt="Niklas und Sandra posen"
+                  priority="true"
+                />
               </div>
             </motion.div>
             <motion.div
@@ -293,7 +297,7 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
                 bekommst du alle nötigen Informationen zum Training.
               </Text>
             </motion.div>
-          </div>
+          </Container>
         </section>
         <LatestPosts posts={posts} />
         <TeamSection teams={teams} />

@@ -104,8 +104,12 @@ const JugendPage: NextPage = () => {
         <Title order={1} className="mb-8 md:mb-16 font-black md:text-5xl">
           Jugend
         </Title>
-        <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden rounded-lg mb-16">
-          <BlurImg src={gruppenFoto} alt="Jugend-Minimannschaft mit Coaches" />
+        <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden mb-16">
+          <BlurImg
+            src={gruppenFoto}
+            alt="Jugend-Minimannschaft mit Coaches"
+            priority="true"
+          />
         </div>
       </Container>
       <Container
@@ -126,22 +130,13 @@ const JugendPage: NextPage = () => {
           >
             meet the players:
           </Title>
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="grid grid-cols-fluid-sm md:grid-cols-fluid gap-1"
-          >
+          <motion.div className="grid grid-cols-fluid-sm md:grid-cols-fluid gap-1">
             {jugend
               .sort((a, b) => a.id - b.id)
               .filter((p) => p.role === "player")
               .map((person) => (
-                <motion.div
-                  key={person.id}
-                  variants={item}
-                  whileHover={{ y: -2 }}
-                >
-                  <div className="aspect-w-[27] aspect-h-[36] overflow-hidden rounded-lg">
+                <motion.div key={person.id} whileHover={{ y: -2 }}>
+                  <div className="aspect-w-[27] aspect-h-[36] overflow-hidden">
                     <BlurImg
                       src={person.foto}
                       alt={`Spielerfoto von ${person.name}`}
@@ -183,7 +178,7 @@ const JugendPage: NextPage = () => {
                 variants={i % 2 === 0 ? even : odd}
                 whileHover={{ y: -2 }}
               >
-                <div className="aspect-w-[27] aspect-h-[36] overflow-hidden rounded-lg">
+                <div className="aspect-w-[27] aspect-h-[36] overflow-hidden">
                   <BlurImg
                     src={person.foto}
                     alt={`Foto von Trainer ${person.name}`}
@@ -217,22 +212,36 @@ const JugendPage: NextPage = () => {
           >
             Training für die ganz Kleinen
           </Title>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto justify-center">
             <motion.div
               initial="offscreen"
               whileInView="onscreen"
               viewport={{ once: true, amount: 0.8 }}
               variants={fadeIn}
+              className="col-span-2"
             >
-              <Text component="p">
-                Für die Jüngsten bieten wir ein gesondertes Training an.
-              </Text>
-              <Text component="p">
-                Unser
-                <strong>Jugendwart Joschi Kreuz</strong> ist seit vielen Jahren
-                als Trainer aktiv und bringt unserem Nachwuchs mit all seiner
-                Erfahrung von Anfang an das Badmintonspielen bei.
-              </Text>
+              <Container
+                sx={(theme) => ({
+                  backgroundColor: dark
+                    ? theme.colors.dark[6]
+                    : theme.colors.gray[1],
+                })}
+                className="p-8"
+              >
+                <Text component="p">
+                  Für die Jüngsten bieten wir ein gesondertes Training an.
+                </Text>
+                <Text component="p">
+                  Unser{" "}
+                  <strong>
+                    Jugendwart{" "}
+                    <span className="text-[#dc271e]">Joschi Kreuz</span>
+                  </strong>{" "}
+                  ist seit vielen Jahren als Trainer aktiv und bringt unserem
+                  Nachwuchs mit all seiner Erfahrung von Anfang an das
+                  Badmintonspielen bei.
+                </Text>
+              </Container>
             </motion.div>
 
             <motion.div
@@ -240,7 +249,7 @@ const JugendPage: NextPage = () => {
               whileInView="onscreen"
               viewport={{ once: true, amount: 0.8 }}
               variants={fadeIn}
-              className="w-[202px] h-[277px] relative overflow-hidden rounded-lg mb-16 mx-auto"
+              className="w-[202px] h-[277px] relative overflow-hidden mb-16 mx-auto -mt-8 md:mt-4 md:-ml-8"
             >
               <BlurImg src={joschiMats} alt="Jugendwart Joschi Kreuz" />
             </motion.div>
@@ -279,41 +288,59 @@ const JugendPage: NextPage = () => {
           </Link>
         </motion.div>
       </Container>
-      <section className="bg-zinc-100 py-8 md:py-16">
-        <h2 className="mb-8 font-black md:text-4xl">Jugendsponsor</h2>
-        <a
-          href="http://www.rotweiss-xxl.de/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative mx-auto block text-center"
-        >
-          <Image
-            src={gasthausXXL}
-            alt="Logo Gasthaus XXL"
-            width={150}
-            height={150}
-          />
-        </a>
-        <h3 className="font-normal text-lg mb-8">
-          Übergabe der neuen Trikots an unsere Jugend-Minimannschaft
-        </h3>
-        <div className="relative text-center max-w-3xl mx-auto">
-          <Image
-            src={xxlWirt}
-            alt="Rot-Weiss Wirt mit Vorstand Badminton"
-            width={1024}
-            height={768}
-          />
-          <small>
-            {`Abteilungsleiter Janosch Kreuz, Gasthaus XXL Pächter Predrag "Pedja"
-            Prodanovic, Jugendwart Maurizio Battaglia.`}
-          </small>
-          <p className="mt-8">
-            Im Namen der Jugend-Minimannschaft ein{` `}
-            <u>riesengroßes Dankeschön!</u>
-          </p>
-        </div>
-      </section>
+      <Container
+        fluid
+        sx={(theme) => ({
+          backgroundColor: dark ? theme.colors.dark[6] : theme.colors.gray[1],
+        })}
+        className="py-16"
+      >
+        <Container>
+          <Title
+            order={3}
+            sx={(theme) => ({ color: theme.colors.red[5] })}
+            className="-mb-1"
+          >
+            Jugend
+          </Title>
+          <Title order={2} className="mb-16 font-black md:text-3xl">
+            Supporter
+          </Title>
+          <a
+            href="http://www.rotweiss-xxl.de/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative mx-auto block text-center mb-8"
+          >
+            <Image
+              src={gasthausXXL}
+              alt="Logo Gasthaus XXL"
+              width={150}
+              height={150}
+            />
+          </a>
+          <div className="aspect-w-[1024] aspect-h-[768]">
+            <BlurImg
+              src={xxlWirt}
+              alt="Rot-Weiss Wirt mit Vorstand Badminton"
+            />
+          </div>
+          <Text
+            component="small"
+            sx={(theme) => ({
+              color: dark ? theme.colors.gray[6] : theme.colors.gray[7],
+            })}
+            className="text-center block text-xs md:text-sm mt-2"
+          >
+            {`Jugendwart Janosch Kreuz, Gasthaus XXL Pächter Predrag "Pedja"
+            Prodanovic, Jugendtrainer Maurizio Battaglia.`}
+          </Text>
+          <Title order={3} className="my-16">
+            Ein <span className="text-[#dc271e]">großes Dankeschön</span> im
+            Namen der Jugend-Minimannschaft!
+          </Title>
+        </Container>
+      </Container>
     </main>
   )
 }

@@ -7,9 +7,16 @@ const NavLink = ({ navLink }: { navLink: { name: string; href: string } }) => {
 
   return (
     <Link href={navLink.href} passHref>
-      <span className="text-sm font-medium duration-300 ease-in-out uppercase">
+      <Text
+        component="a"
+        sx={(theme) => ({
+          color: dark ? theme.colors.gray[5] : theme.colors.gray[8],
+          "&:hover": { color: theme.colors.red[5] },
+        })}
+        className="text-sm font-medium duration-300 ease-in-out uppercase"
+      >
         {navLink.name}
-      </span>
+      </Text>
     </Link>
   )
 }

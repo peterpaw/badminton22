@@ -11,7 +11,7 @@ const BlurImg = ({
 }: {
   src: string | StaticImageData
   alt: string
-  priority: string
+  priority?: string
 }) => {
   const [isLoading, setIsLoading] = useState(true)
 
