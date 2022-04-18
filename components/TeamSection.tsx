@@ -32,7 +32,11 @@ const TeamSection = ({
           backgroundColor: theme.colors.red[5],
         })}
       >
-        <Text component="h2" color="white" className="py-4 text-3xl font-black">
+        <Text
+          component="h2"
+          color="white"
+          className="py-4 text-2xl md:text-3xl font-black"
+        >
           Mannschaften
         </Text>
       </Container>

@@ -85,7 +85,8 @@ const Footer = () => {
               <Image
                 src={gasthausXXL}
                 alt="Logo Gasthaus XXL"
-                layout="fill"
+                width={256}
+                height={64}
                 objectFit="contain"
               />
             </motion.a>
@@ -102,11 +103,21 @@ const Footer = () => {
       >
         <Container className="grid grid-cols-1 sm:grid-cols-2 mx-auto">
           <div className="w-32 p-4 mx-auto">
-            <Anchor component={Link} href="/">
-              <a>
-                <img src="/rww-logo.svg" alt="Rot-Weiß Walldorf Logo" />
-              </a>
-            </Anchor>
+            <Title
+              order={3}
+              className="mb-6 text-center text-lg text-[#dc271e]"
+            >
+              Hauptverein
+            </Title>
+            <motion.a
+              whileHover={{ y: -2 }}
+              href="http://rw-walldorf.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <img src="/rww-logo.svg" alt="Rot-Weiß Walldorf Logo" />
+            </motion.a>
           </div>
           <div className="p-4 mx-auto">
             <Title order={3} className="mb-4 text-left text-lg text-[#dc271e]">
@@ -162,7 +173,7 @@ const Footer = () => {
                   color: theme.colors.red[5],
                 },
               })}
-              className="cursor-pointer text-sm"
+              className="cursor-pointer text-sm duration-300"
             >
               Impressum
             </Text>
@@ -176,7 +187,7 @@ const Footer = () => {
                   color: theme.colors.red[5],
                 },
               })}
-              className="cursor-pointer text-sm"
+              className="cursor-pointer text-sm duration-300"
             >
               Datenschutzerklärung
             </Text>
