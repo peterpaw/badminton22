@@ -9,6 +9,7 @@ import {
   Anchor,
   Center,
   Container,
+  Divider,
   Text,
   Title,
   useMantineColorScheme,
@@ -97,39 +98,50 @@ const Footer = () => {
         sx={(theme) => ({
           backgroundColor: dark ? theme.colors.dark[7] : theme.colors.gray[1],
         })}
-        className="py-16 text-center"
+        className="pt-16 pb-8"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 max-w-xl mx-auto">
-          <Title order={3} className="mb-8">
-            Sitemap
-          </Title>
-          <div className="flex flex-col items-center">
-            {navigation.map((link) => (
-              <Anchor component={Link} href={link.href} key={link.name}>
-                <Text
-                  component="a"
-                  className="cursor-pointer duration-300"
-                  sx={(theme) => ({
-                    "&:hover": {
-                      color: theme.colors.red[5],
-                    },
-                  })}
-                >
-                  {link.name}
-                </Text>
-              </Anchor>
-            ))}
+        <Container className="grid grid-cols-1 sm:grid-cols-2 mx-auto">
+          <div className="w-32 p-4 mx-auto">
+            <Anchor component={Link} href="/">
+              <a>
+                <img src="/rww-logo.svg" alt="Rot-Weiß Walldorf Logo" />
+              </a>
+            </Anchor>
           </div>
-        </div>
+          <div className="p-4 mx-auto">
+            <Title order={3} className="mb-4 text-left text-lg text-[#dc271e]">
+              Navigation
+            </Title>
+            <div className="flex flex-col">
+              {navigation.map((link) => (
+                <Anchor component={Link} href={link.href} key={link.name}>
+                  <Text
+                    component="a"
+                    className="text-base cursor-pointer duration-300"
+                    sx={(theme) => ({
+                      color: theme.colors.gray[6],
+                      "&:hover": {
+                        color: theme.colors.red[5],
+                      },
+                    })}
+                  >
+                    {link.name}
+                  </Text>
+                </Anchor>
+              ))}
+            </div>
+          </div>
+        </Container>
       </Container>
       <Container
         fluid
         sx={(theme) => ({
-          backgroundColor: dark ? theme.colors.dark[8] : theme.colors.gray[0],
+          backgroundColor: dark ? theme.colors.dark[7] : theme.colors.gray[1],
         })}
         className="py-2 text-center"
       >
         <Container>
+          <Divider my="lg" />
           <motion.a
             href="https://facebook.com/rww.badminton"
             target="_blank"
@@ -140,26 +152,74 @@ const Footer = () => {
             <FaFacebook size={24} color="#1b74e4" className="inline" />
           </motion.a>
         </Container>
+        <div className="flex justify-center gap-2 mt-4">
+          <Link href="/impressum" passHref>
+            <Text
+              component="a"
+              sx={(theme) => ({
+                color: theme.colors.gray[6],
+                "&:hover": {
+                  color: theme.colors.red[5],
+                },
+              })}
+              className="cursor-pointer text-sm"
+            >
+              Impressum
+            </Text>
+          </Link>
+          <Link href="/datenschutz" passHref>
+            <Text
+              component="a"
+              sx={(theme) => ({
+                color: theme.colors.gray[6],
+                "&:hover": {
+                  color: theme.colors.red[5],
+                },
+              })}
+              className="cursor-pointer text-sm"
+            >
+              Datenschutzerklärung
+            </Text>
+          </Link>
+        </div>
       </Container>
 
       <Container
         fluid
-        sx={(theme) => ({ backgroundColor: theme.colors.red[5] })}
-        className="p-3 text-slate-200 text-sm"
+        sx={(theme) => ({
+          backgroundColor: dark ? theme.colors.dark[7] : theme.colors.gray[1],
+        })}
+        className="p-3 text-sm"
       >
-        <Container className="flex flex-col lg:flex-row justify-between flex-wrap gap-2 mx-auto">
-          <div className="flex justify-center lg:justify-start">
-            &copy;{` `}
-            {new Date().getFullYear()}
-            {` `}Rot-Weiss Walldorf Badminton
-          </div>
-          <div className="flex justify-center lg:justify-end gap-2">
-            <Link href="/impressum">
-              <a className="">Impressum</a>
-            </Link>
-            <Link href="/datenschutz">
-              <a className="">Datenschutzerklärung</a>
-            </Link>
+        <Container className="flex flex-col lg:flex-row justify-between flex-wrap gap-2 mx-auto mt-4">
+          <div className="lg:flex flex-wrap justify-center lg:justify-between w-full text-center">
+            <Text
+              component="p"
+              sx={(theme) => ({
+                color: theme.colors.gray[6],
+              })}
+              className="text-sm"
+            >
+              &copy;{` `}
+              {new Date().getFullYear()}
+              {` `}Rot-Weiss Walldorf Badminton
+            </Text>
+            <Text
+              component="p"
+              sx={(theme) => ({
+                color: theme.colors.gray[6],
+              })}
+              className="text-sm"
+            >
+              Mit ❤️ erstellt von{" "}
+              <a
+                href="https://peterpaw.de"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Peter Pawelczyk
+              </a>
+            </Text>
           </div>
         </Container>
       </Container>
