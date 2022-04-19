@@ -163,7 +163,7 @@ const Footer = () => {
             <FaFacebook size={24} color="#1b74e4" className="inline" />
           </motion.a>
         </Container>
-        <div className="flex justify-center gap-2 mt-4">
+        <div className="flex justify-center gap-2 mt-4 leading-none">
           <Link href="/impressum" passHref>
             <Text
               component="a"
@@ -178,6 +178,14 @@ const Footer = () => {
               Impressum
             </Text>
           </Link>
+          <Text
+            className="text-sm"
+            sx={(theme) => ({
+              color: theme.colors.gray[6],
+            })}
+          >
+            |
+          </Text>
           <Link href="/datenschutz" passHref>
             <Text
               component="a"
