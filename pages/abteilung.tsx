@@ -33,30 +33,64 @@ const Person = ({
   firstName,
   lastName,
   position,
-  index,
 }: {
   firstName: string
   lastName: string
   position: string
-  index: number
 }) => {
+  const { colorScheme } = useMantineColorScheme()
+  const dark = colorScheme === "dark"
+
   return (
-    <motion.div
-      initial={{ x: index % 2 === 0 ? 200 : -200, opacity: 0 }}
-      whileInView={{
-        opacity: 1,
-        x: 0,
-        transition: {
-          duration: 0.8,
-          type: "spring",
-          bounce: 0.4,
-        },
-      }}
-      viewport={{ margin: "0px", once: true }}
-    >
-      <Title order={3}>{`${firstName} ${lastName}`}</Title>
-      <Text className="my-32 p-8 bg-blue-500">{position}</Text>
-    </motion.div>
+    <Container className="my-8 max-w-lg mx-auto">
+      <motion.div
+        initial={{ x: -200, opacity: 0 }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          transition: {
+            duration: 1.2,
+            type: "spring",
+            bounce: 0.4,
+          },
+        }}
+        viewport={{ margin: "0px", once: true }}
+      >
+        <Text
+          component="p"
+          sx={(theme) => ({
+            color: dark ? theme.colors.gray[5] : theme.colors.gray[6],
+            backgroundColor: dark ? theme.colors.dark[6] : theme.colors.gray[0],
+          })}
+          className="py-2 px-4 mr-8 text-lg md:text-xl font-semibold border-b-4 border-red-600"
+        >
+          {`${position}:`}
+        </Text>
+      </motion.div>
+      <motion.div
+        initial={{ x: 200, opacity: 0 }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          transition: {
+            duration: 1.2,
+            type: "spring",
+            bounce: 0.4,
+            delay: 0.1,
+          },
+        }}
+        viewport={{ margin: "0px", once: true }}
+      >
+        <Text
+          component="p"
+          sx={(theme) => ({
+            color: dark ? theme.colors.gray[1] : theme.colors.gray[7],
+            backgroundColor: dark ? theme.colors.dark[3] : theme.colors.gray[1],
+          })}
+          className="font-bold text-xl lg:text-2xl py-2 px-4 text-right ml-8"
+        >{`${firstName} ${lastName}`}</Text>
+      </motion.div>
+    </Container>
   )
 }
 
@@ -67,7 +101,7 @@ const Abteilung = () => {
   return (
     <>
       <Container fluid className="py-16">
-        <Title order={1} className="font-black text-2xl md:text-4xl">
+        <Title order={1} className="font-black text-3xl md:text-4xl">
           Abteilung
         </Title>
         <Title
@@ -86,14 +120,21 @@ const Abteilung = () => {
         })}
         className="py-16"
       >
-        <Title order={2}>Vorstand</Title>
+        <Title
+          order={2}
+          sx={(theme) => ({
+            color: dark ? theme.colors.gray[3] : theme.colors.gray[6],
+          })}
+          className="text-2xl md:text-3xl font-black"
+        >
+          Vorstand
+        </Title>
         {personData.map((person, index) => (
           <Person
             key={person.position}
             firstName={person.firstName}
             lastName={person.lastName}
             position={person.position}
-            index={index}
           />
         ))}
       </Container>
