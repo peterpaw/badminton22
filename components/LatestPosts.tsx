@@ -19,11 +19,11 @@ const LatestPosts = ({ posts }: { posts: PostType[] }) => {
     [Autoplay({ stopOnInteraction: false, stopOnMouseEnter: true })]
   )
 
-  embla?.on("settle", () => {
-    console.log(embla.slidesInView())
-  })
+  // embla?.on("settle", () => {
+  //   console.log(embla.slidesInView())
+  // })
 
-  console.log(embla)
+  // console.log(embla)
 
   // embla?.off("scroll", () => {
   //   console.log("off")
