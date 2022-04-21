@@ -62,7 +62,7 @@ const Person = ({
             color: dark ? theme.colors.gray[5] : theme.colors.gray[6],
             backgroundColor: dark ? theme.colors.dark[6] : theme.colors.gray[0],
           })}
-          className="py-2 px-4 mr-8 text-lg md:text-xl font-semibold border-b-4 border-red-600"
+          className="py-2 px-4 mr-8 ml-8 text-lg md:text-xl font-semibold border-b-4 border-red-600"
         >
           {`${position}:`}
         </Text>
@@ -85,10 +85,21 @@ const Person = ({
           component="p"
           sx={(theme) => ({
             color: dark ? theme.colors.gray[1] : theme.colors.gray[7],
-            backgroundColor: dark ? theme.colors.dark[3] : theme.colors.gray[1],
+            backgroundColor: dark ? theme.colors.dark[5] : theme.colors.gray[1],
           })}
-          className="font-bold text-xl lg:text-2xl py-2 px-4 text-right ml-8"
-        >{`${firstName} ${lastName}`}</Text>
+          className="font-bold text-xl lg:text-2xl py-2 px-4 text-right ml-16 mr-8 leading-none"
+        >
+          <Text
+            component="span"
+            sx={(theme) => ({
+              color: theme.colors.red[5],
+            })}
+            className="block font-medium text-base leading-none"
+          >
+            {firstName}
+          </Text>
+          {lastName}
+        </Text>
       </motion.div>
     </Container>
   )
@@ -125,7 +136,7 @@ const Abteilung = () => {
           sx={(theme) => ({
             color: dark ? theme.colors.gray[3] : theme.colors.gray[6],
           })}
-          className="text-2xl md:text-3xl font-black"
+          className="text-2xl md:text-3xl font-black mb-16"
         >
           Vorstand
         </Title>

@@ -94,13 +94,16 @@ export interface TeamListTypes {
 }
 
 export interface TeamTypes extends TeamListTypes {
-  player: [
-    {
-      id: string
-      name: string
-      gender: string
-      captain: boolean
-    }
-  ]
+  player: PlayerType[]
   nuligaUrl: string
+}
+
+export interface PlayerType {
+  id: string
+  name: string
+  firstName: string
+  lastName: string
+  gender: string
+  captain: boolean
+  clubRank: number
 }

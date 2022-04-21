@@ -301,7 +301,7 @@ const JugendPage: NextPage = () => {
             Prodanovic, Jugendtrainer Maurizio Battaglia.`}
           </Text>
           <Title order={3} className="my-16">
-            Ein <span className="text-[#dc271e]">großes Dankeschön</span> im
+            Ein <span className="text-[#dc271e]">großes Dankeschön</span> ❤️ im
             Namen der Jugend-Minimannschaft!
           </Title>
         </Container>

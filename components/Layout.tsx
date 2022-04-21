@@ -114,17 +114,17 @@ const Layout: React.FC = ({ children }) => {
           // viewport size > theme.breakpoints.lg – width is 400px
           width={{ base: "100%", sm: 0 }}
         >
-          <div className="flex flex-col gap-8 justify-center items-center mt-8">
+          <div className="flex flex-col gap-y-12 justify-center items-center mt-8">
             {navigation.map((navLink) => (
               <Link href={navLink.href} key={navLink.name} passHref>
                 <Text
                   component="a"
                   sx={(theme) => ({
-                    color: dark ? theme.colors.gray[5] : theme.colors.gray[8],
+                    color: dark ? theme.colors.gray[5] : theme.colors.gray[7],
                     "&:hover": { color: theme.colors.red[5] },
                   })}
                   onClick={() => setOpened(false)}
-                  className="text-xl duration-300 ease-in-out uppercase"
+                  className="text-2xl duration-300 ease-in-out uppercase font-bold tracking-normal"
                 >
                   {navLink.name}
                 </Text>

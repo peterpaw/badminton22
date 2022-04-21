@@ -23,6 +23,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           name
           gender
           captain
+          firstName
+          lastName
+          clubRank
         }
         teamPhoto {
           url
