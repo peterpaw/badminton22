@@ -62,7 +62,7 @@ const Post = ({
       </Head>
       <main className="py-16 px-4 container mx-auto max-w-3xl text-lg lg:text-xl">
         <div className="text-center">
-          <Text component="h1" className="text-3xl font-black mb-4">
+          <Text component="h1" className="text-xl md:text-3xl font-black mb-4">
             {post.title}
           </Text>
           <div className="leading-none">

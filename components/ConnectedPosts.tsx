@@ -34,7 +34,7 @@ const PrevNextLink = ({
   const dark = colorScheme === "dark"
 
   return (
-    <Link href={`/presse/${post.slug}`}>
+    <Link href={`/berichte/${post.slug}`}>
       <a className="max-w-[70%] mx-auto">
         <h4
           className={`text-sm md:text-base mb-2 flex justify-center items-center`}

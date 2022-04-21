@@ -15,7 +15,7 @@ const SocialMedia = () => {
       })}
       className="py-8 lg:py-16 border-t-2 border-[#dc271e] relative overflow-hidden"
     >
-      <Title order={2} className="mb-8">
+      <Title order={2} className="mb-8 text-xl md:text-3xl">
         Folge uns auf Facebook
       </Title>
       <Center>

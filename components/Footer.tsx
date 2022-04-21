@@ -7,7 +7,6 @@ import plusline from "../public/plusline.jpg"
 import gasthausXXL from "../public/gasthaus-xxl.png"
 import {
   Anchor,
-  Center,
   Container,
   Divider,
   Text,
@@ -32,7 +31,7 @@ const Footer = () => {
         className="border-t-2 border-[#dc271e]"
       >
         <Container>
-          <div className="grid md:grid-cols-3 justify-center gap-2 p-4 py-12 mx-auto">
+          <div className="grid lg:grid-cols-3 justify-center gap-2 p-4 py-12 mx-auto">
             <motion.a
               href="https://www.b-schmitt.de/"
               target="_blank"
@@ -101,8 +100,8 @@ const Footer = () => {
         })}
         className="pt-16 pb-8"
       >
-        <Container className="grid grid-cols-1 sm:grid-cols-2 mx-auto">
-          <div className="w-32 p-4 mx-auto">
+        <Container className="grid grid-cols-2 mx-auto p-0 md:p-2">
+          <div className="p-4 mx-auto">
             <Title
               order={3}
               className="mb-6 text-center text-lg text-[#dc271e]"
@@ -114,9 +113,14 @@ const Footer = () => {
               href="http://rw-walldorf.de"
               target="_blank"
               rel="noopener noreferrer"
-              className="block"
+              className="block w-20 md:w-24 mx-auto"
             >
-              <img src="/rww-logo.svg" alt="Rot-Weiß Walldorf Logo" />
+              <Image
+                src="/rww-logo.svg"
+                alt="Rot-Weiß Walldorf Logo"
+                width={96}
+                height={96}
+              />
             </motion.a>
           </div>
           <div className="p-4 mx-auto">

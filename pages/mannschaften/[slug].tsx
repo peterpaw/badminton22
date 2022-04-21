@@ -5,8 +5,15 @@ import { TeamTypes } from "types"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
-const TeamPage = ({ data }: { data: { team: TeamTypes } }) => {
-  return <Team team={data.team} />
+const TeamPage = ({
+  data,
+}: {
+  data: {
+    team: TeamTypes
+    teams: [{ slug: string; liga: string; mannschaft: string }]
+  }
+}) => {
+  return <Team team={data.team} teams={data.teams} />
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -31,6 +38,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           url
         }
         nuligaUrl
+      }
+      teams(where: { NOT: { slug: $slug } }) {
+        slug
+        liga
+        mannschaft
       }
     }
   `

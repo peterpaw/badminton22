@@ -8,7 +8,7 @@ import {
 import { PostType } from "types"
 import useEmblaCarousel from "embla-carousel-react"
 import Autoplay from "embla-carousel-autoplay"
-import { useEffect } from "react"
+// import { useEffect } from "react"
 
 const LatestPosts = ({ posts }: { posts: PostType[] }) => {
   const { colorScheme } = useMantineColorScheme()
@@ -44,7 +44,7 @@ const LatestPosts = ({ posts }: { posts: PostType[] }) => {
       className="pb-16"
     >
       <Container className="embla__container">
-        <Text component="h2" className="py-16 text-3xl font-black">
+        <Text component="h2" className="py-16 text-2xl md:text-3xl font-black">
           Neueste Beiträge
         </Text>
         <div ref={emblaRef} className="overflow-hidden">
