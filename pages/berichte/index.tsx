@@ -1,6 +1,6 @@
 import Grid from "@components/Grid"
 import PostPagination from "@components/PostPagination"
-import { Center, Text } from "@mantine/core"
+import { Center, Text, useMantineColorScheme } from "@mantine/core"
 import { config } from "@utils/config"
 import { gql, GraphQLClient } from "graphql-request"
 import { GetStaticProps, NextPage } from "next"
@@ -26,6 +26,9 @@ const BerichtePage: NextPage<PageProps> = ({ data }) => {
     data.postsConnection.aggregate.count / config.pagination.pageSize
   )
 
+  const { colorScheme } = useMantineColorScheme()
+  const dark = colorScheme === "dark"
+
   return (
     <div>
       <Head>
@@ -36,6 +39,15 @@ const BerichtePage: NextPage<PageProps> = ({ data }) => {
         className="text-3xl md:text-4xl pt-16 lg:py:24 font-black"
       >
         Presseberichte
+      </Text>
+      <Text
+        component="p"
+        sx={(theme) => ({
+          color: dark ? theme.colors.gray[6] : theme.colors.gray[7],
+        })}
+        className="text-center mt-2 text-sm"
+      >
+        Seite 1 von {total}
       </Text>
       <Grid posts={data.postsConnection.edges} />
       <Center className="mb-8">

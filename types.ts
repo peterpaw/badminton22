@@ -95,6 +95,7 @@ export interface TeamListTypes {
 
 export interface TeamTypes extends TeamListTypes {
   player: PlayerType[]
+  imageCaption: string
   nuligaUrl: string
 }
 

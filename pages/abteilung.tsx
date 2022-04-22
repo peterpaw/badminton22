@@ -80,6 +80,7 @@ const Person = ({
           },
         }}
         viewport={{ margin: "0px", once: true }}
+        whileHover={{ x: -4 }}
       >
         <Text
           component="p"

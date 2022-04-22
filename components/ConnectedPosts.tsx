@@ -1,11 +1,10 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/solid"
-import CategoryBadge from "./CategoryBadge"
 import { format } from "date-fns"
 import { de } from "date-fns/locale"
 import { AdjacentPostType } from "types"
-import { Text, useMantineColorScheme } from "@mantine/core"
+import { Container, Text, useMantineColorScheme } from "@mantine/core"
 
 const PrevNextLink = ({
   post,
@@ -35,9 +34,9 @@ const PrevNextLink = ({
 
   return (
     <Link href={`/berichte/${post.slug}`}>
-      <a className="max-w-[70%] mx-auto">
-        <h4
-          className={`text-sm md:text-base mb-2 flex justify-center items-center`}
+      <Text component="a" className="mx-auto block w-full">
+        <span
+          className={`text-sm md:text-base my-2 flex justify-center items-center`}
         >
           {prev ? (
             <ArrowLeftIcon
@@ -50,8 +49,8 @@ const PrevNextLink = ({
               style={{ color: dark ? "#d2d2d2" : "#3d3d3d" }}
             />
           )}
-        </h4>
-        <div className="p-2">
+        </span>
+        <Container className="p-2">
           <div className="hidden md:block aspect-w-16 aspect-h-9 w-full overflow-hidden">
             <Image
               src={post.featuredImage.url}
@@ -61,11 +60,6 @@ const PrevNextLink = ({
           </div>
           <div className="flex flex-wrap justify-center items-center gap-2 my-2">
             <span className="text-xs">{date}</span>
-            {/* <div className="flex">
-              {post.categories.map((tag) => {
-                return <CategoryBadge category={tag} key={tag.name} />
-              })}
-            </div> */}
           </div>
           <Text
             component="h3"
@@ -73,8 +67,8 @@ const PrevNextLink = ({
           >
             {post.title}
           </Text>
-        </div>
-      </a>
+        </Container>
+      </Text>
     </Link>
   )
 }

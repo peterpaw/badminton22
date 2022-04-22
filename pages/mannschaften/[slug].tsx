@@ -37,6 +37,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         teamPhoto {
           url
         }
+        imageCaption
         nuligaUrl
       }
       teams(where: { NOT: { slug: $slug } }) {

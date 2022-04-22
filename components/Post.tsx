@@ -130,8 +130,8 @@ const Post = ({
           nextPost={nextPost}
           className={
             prevPost === null || nextPost === null
-              ? "grid grid-cols-1 gap-4 my-4 justify-center mt-24"
-              : "grid grid-cols-2 gap-4 my-4 justify-center mt-24"
+              ? "grid grid-cols-1 my-4 justify-center mt-24 max-w-[50%] mx-auto"
+              : "grid grid-cols-2 gap-2 md:gap-4 my-4 justify-center mt-24"
           }
         />
       </main>
