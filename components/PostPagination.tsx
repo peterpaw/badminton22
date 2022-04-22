@@ -19,6 +19,7 @@ const PostPagination = ({
     } else {
       router.push(`/berichte/seite/${activePage}`)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activePage])
 
   return (

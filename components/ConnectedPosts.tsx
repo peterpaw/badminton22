@@ -33,7 +33,7 @@ const PrevNextLink = ({
   const dark = colorScheme === "dark"
 
   return (
-    <Link href={`/berichte/${post.slug}`}>
+    <Link href={`/berichte/${post.slug}`} passHref>
       <Text component="a" className="mx-auto block w-full">
         <span
           className={`text-sm md:text-base my-2 flex justify-center items-center`}

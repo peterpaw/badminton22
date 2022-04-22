@@ -19,6 +19,7 @@ import Footer from "@components/Footer"
 import { navigation } from "data/navigation"
 import { useState } from "react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -84,13 +85,17 @@ const Layout: React.FC = ({ children }) => {
           >
             <div
               style={{
-                width: 50,
                 padding: "0.25rem",
               }}
             >
               <Anchor component={Link} href="/">
-                <a>
-                  <img src="/rww-logo.svg" alt="Rot-Weiß Walldorf Logo" />
+                <a className="block leading-none">
+                  <Image
+                    src="/rww-logo.svg"
+                    alt="Rot-Weiß Walldorf Logo"
+                    width={40}
+                    height={40}
+                  />
                 </a>
               </Anchor>
             </div>
