@@ -1,6 +1,6 @@
 import { NextPage } from "next"
 import Head from "next/head"
-import { Text } from "@mantine/core"
+import { Anchor, Container, Text, Title } from "@mantine/core"
 
 const KontaktPage: NextPage = () => {
   return (
@@ -8,11 +8,21 @@ const KontaktPage: NextPage = () => {
       <Head>
         <title>Kontakt | Rot-Weiss Walldorf Badminton</title>
       </Head>
-      <div className="container-narrow py-8 md:py-16">
-        <Text component="h1" className="mb-8 md:mb-16 font-black md:text-4xl">
+      <Container className="py-16 text-center">
+        <Title order={1} className="mb-16 font-black md:text-4xl">
           Kontakt
+        </Title>
+        <Text component="p" className="text-2xl font-bold text- mb-8">
+          Schick uns eine Email:
         </Text>
-      </div>
+        <Anchor
+          href="mailto:info@badminton-walldorf.de"
+          sx={(theme) => ({ color: theme.colors.red[5] })}
+          className="text-xl"
+        >
+          info@badminton-walldorf.de
+        </Anchor>
+      </Container>
     </main>
   )
 }

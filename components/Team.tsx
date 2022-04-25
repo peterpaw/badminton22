@@ -187,7 +187,7 @@ const Team = ({
                     >
                       {p.lastName}
                       {p.captain && (
-                        <motion.div
+                        <motion.span
                           initial={{ opacity: 0 }}
                           whileInView={{ opacity: 1, transition: { delay: 1 } }}
                           viewport={{ once: true }}
@@ -199,7 +199,7 @@ const Team = ({
                             width={30}
                             height={30}
                           />
-                        </motion.div>
+                        </motion.span>
                       )}
                     </Text>
                   </motion.div>
@@ -266,7 +266,7 @@ const Team = ({
                   >
                     {p.lastName}
                     {p.captain && (
-                      <motion.div
+                      <motion.span
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1, transition: { delay: 1 } }}
                         viewport={{ once: true }}
@@ -278,7 +278,7 @@ const Team = ({
                           width={30}
                           height={30}
                         />
-                      </motion.div>
+                      </motion.span>
                     )}
                   </Text>
                 </motion.div>

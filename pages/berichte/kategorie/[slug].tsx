@@ -4,6 +4,8 @@ import { gql, GraphQLClient } from "graphql-request"
 import { GetStaticPaths, GetStaticProps } from "next"
 import CardGrid from "@components/CardGrid"
 import PostCard from "@components/PostCard"
+import { useMantineColorScheme } from "@mantine/styles"
+import { Title } from "@mantine/core"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
@@ -18,20 +20,26 @@ const CategorySlug = ({
 }) => {
   const { edges } = data?.postsConnection
 
+  const { colorScheme } = useMantineColorScheme()
+  const dark = colorScheme === "dark"
+
   return (
     <>
       <Head>
         <title>Kategorie: {slug.toUpperCase()} | Presse</title>
       </Head>
       <main className="py-16 mx-auto max-w-3xl">
-        <h1 className="text-4xl font-black text-center text-gray-600 mb-16">
-          Presseberichte sortiert nach Kategorie: {slug.toUpperCase()}
-        </h1>
-        <CardGrid>
+        <Title order={1} className="text-4xl font-black text-center">
+          Presseberichte
+        </Title>
+        <Title order={2} className="mb-16">
+          {slug.toUpperCase()}
+        </Title>
+        {/* <CardGrid>
           {edges?.map(({ node }: { node: any }, index: number) => (
             <PostCard key={node.slug} post={node} index={index} />
           ))}
-        </CardGrid>
+        </CardGrid> */}
 
         <p className="text-gray-500 text-xs md:text-sm text-center">
           Alle Kategorien:

@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import Head from "next/head"
 import { gql, GraphQLClient } from "graphql-request"
-import { Paper, Text, useMantineColorScheme } from "@mantine/core"
+import { Paper, Text, Title, useMantineColorScheme } from "@mantine/core"
 import { format } from "date-fns"
 import { de } from "date-fns/locale"
 import Link from "next/link"
@@ -11,6 +11,9 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 
 import { PostDetailsType } from "types"
+import AuthorBox from "@components/AuthorBox"
+import TagBox from "@components/TagBox"
+import SlimPost from "@components/SlimPost"
 
 interface PageProps {
   data: {
@@ -80,12 +83,12 @@ const AuthorPage: NextPage<PageProps> = ({ data }) => {
       </Head>
 
       <main className="py-16 mx-auto max-w-3xl">
-        <Text
-          component="h1"
+        <Title
+          order={1}
           className="text-xl md:text-2xl font-black text-center mb-0"
         >
           {author.name}
-        </Text>
+        </Title>
         <Text
           component="h3"
           sx={(theme) => ({
@@ -100,137 +103,15 @@ const AuthorPage: NextPage<PageProps> = ({ data }) => {
 
         <div className="md:grid md:grid-cols-12 gap-2">
           <div className="col-span-1 md:col-span-8">
-            {edges.map(({ node }) => {
-              const date = format(
-                new Date(node.postPublishDate),
-                "dd. MMMM yyyy",
-                {
-                  locale: de,
-                }
-              )
-
-              return (
-                <motion.div whileHover={{ translateX: 2 }} key={node.id}>
-                  <Link href={`/berichte/${node.slug}`} passHref>
-                    <Paper
-                      component="a"
-                      shadow="xs"
-                      p="md"
-                      m="sm"
-                      sx={(theme) => ({
-                        backgroundColor: dark
-                          ? theme.colors.dark[6]
-                          : theme.colors.gray[0],
-                        "&:hover": { color: theme.colors.red[5] },
-                      })}
-                      className="duration-500 ease-in-out"
-                    >
-                      <Text component="h2" className="text-left">
-                        {node.title}
-                      </Text>
-                      <Text
-                        component="p"
-                        size="xs"
-                        sx={(theme) => ({
-                          color: theme.colors.gray[6],
-                        })}
-                      >
-                        {date}
-                      </Text>
-                      <Text
-                        component="p"
-                        size="xs"
-                        sx={(theme) => ({
-                          color: theme.colors.gray[6],
-                        })}
-                      >
-                        {node.excerpt}
-                      </Text>
-                    </Paper>
-                  </Link>
-                </motion.div>
-              )
-            })}
+            {edges.map(({ node }) => (
+              <SlimPost post={node} key={node.id} />
+            ))}
           </div>
 
           <div className="mt-16 md:mt-0 md:col-span-4">
             <div className="md:sticky md:top-16">
-              <Paper
-                shadow="xs"
-                p="md"
-                m="sm"
-                sx={(theme) => ({
-                  backgroundColor: dark
-                    ? theme.colors.dark[6]
-                    : theme.colors.gray[0],
-                })}
-              >
-                <Text component="h3" mb="xs" align="left">
-                  Autoren:
-                </Text>
-
-                {authors.map((author) => (
-                  <Link
-                    key={author.slug}
-                    passHref
-                    href={`/autoren/${author.slug}`}
-                  >
-                    <Text
-                      component="a"
-                      sx={(theme) => ({
-                        color: dark
-                          ? theme.colors.gray[6]
-                          : theme.colors.gray[8],
-                        "&:hover": {
-                          color: theme.colors.red[5],
-                        },
-                      })}
-                      className="duration-300 ease-in-out font-normal block text-sm"
-                    >
-                      {author.name}
-                    </Text>
-                  </Link>
-                ))}
-              </Paper>
-
-              <Paper
-                shadow="xs"
-                p="md"
-                m="sm"
-                sx={(theme) => ({
-                  backgroundColor: dark
-                    ? theme.colors.dark[6]
-                    : theme.colors.gray[0],
-                })}
-                className="relative md:sticky md:top-16"
-              >
-                <Text component="h3" mb="xs" align="left">
-                  Tags:
-                </Text>
-
-                {categories.map((tag) => (
-                  <Link
-                    key={tag.slug}
-                    passHref
-                    href={`/berichte/tags/${tag.slug}`}
-                  >
-                    <Text
-                      component="a"
-                      sx={(theme) => ({
-                        color: dark
-                          ? theme.colors.gray[6]
-                          : theme.colors.gray[8],
-                        "&:hover": {
-                          color: theme.colors.red[5],
-                        },
-                      })}
-                      className="duration-300 ease-in-out font-normal block text-sm"
-                    >
-                      {tag.name}
-                    </Text>
-                  </Link>
-                ))}
-              </Paper>
+              <AuthorBox authors={authors} />
+              <TagBox categories={categories} />
             </div>
           </div>
         </div>
