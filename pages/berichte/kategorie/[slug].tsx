@@ -1,27 +1,50 @@
-import Link from "next/link"
 import Head from "next/head"
 import { gql, GraphQLClient } from "graphql-request"
-import { GetStaticPaths, GetStaticProps } from "next"
-import CardGrid from "@components/CardGrid"
-import PostCard from "@components/PostCard"
-import { useMantineColorScheme } from "@mantine/styles"
+import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import { Title } from "@mantine/core"
+import SlimPost from "@components/SlimPost"
+import AuthorBox from "@components/AuthorBox"
+import TagBox from "@components/TagBox"
+import { PostDetailsType } from "types"
+
+interface PageProps {
+  data: {
+    postsConnection: {
+      edges: [
+        {
+          node: PostDetailsType
+        }
+      ]
+    }
+    author: {
+      name: string
+      foto: {
+        url: string
+      }
+    }
+    authors: [
+      {
+        slug: string
+        name: string
+        posts: [{ id: string }]
+      }
+    ]
+    categories: [
+      {
+        name: string
+        slug: string
+        post: [{ id: string }]
+      }
+    ]
+  }
+  slug: string
+}
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
-const CategorySlug = ({
-  data,
-  slug,
-  categories,
-}: {
-  data: any
-  slug: string
-  categories: [{ name: string; slug: string }]
-}) => {
+const PostsByTags: NextPage<PageProps> = ({ data, slug }) => {
   const { edges } = data?.postsConnection
-
-  const { colorScheme } = useMantineColorScheme()
-  const dark = colorScheme === "dark"
+  const { categories, authors } = data
 
   return (
     <>
@@ -29,34 +52,33 @@ const CategorySlug = ({
         <title>Kategorie: {slug.toUpperCase()} | Presse</title>
       </Head>
       <main className="py-16 mx-auto max-w-3xl">
-        <Title order={1} className="text-4xl font-black text-center">
+        <Title
+          order={1}
+          className="text-3xl md:text-4xl font-black text-center"
+        >
           Presseberichte
         </Title>
-        <Title order={2} className="mb-16">
+        <Title
+          order={2}
+          sx={(theme) => ({ color: theme.colors.red[5] })}
+          className="mb-16 font-black text-xl"
+        >
           {slug.toUpperCase()}
         </Title>
-        {/* <CardGrid>
-          {edges?.map(({ node }: { node: any }, index: number) => (
-            <PostCard key={node.slug} post={node} index={index} />
-          ))}
-        </CardGrid> */}
 
-        <p className="text-gray-500 text-xs md:text-sm text-center">
-          Alle Kategorien:
-        </p>
-        <div className="p-4 flex justify-center items-center flex-wrap">
-          {categories.map((category) => (
-            <Link
-              href={`/presse/kategorie/${category.slug}`}
-              key={category.slug}
-            >
-              <a>
-                <span className="inline-flex items-center justify-center px-4 py-2 mr-2 text-sm font-medium leading-none bg-gray-100 rounded-full">
-                  {category.name}
-                </span>
-              </a>
-            </Link>
-          ))}
+        <div className="md:grid md:grid-cols-12 gap-2">
+          <div className="col-span-1 md:col-span-8">
+            {edges.map(({ node }) => (
+              <SlimPost post={node} key={node.id} />
+            ))}
+          </div>
+
+          <div className="mt-16 md:mt-0 md:col-span-4">
+            <div className="md:sticky md:top-16">
+              <AuthorBox authors={authors} />
+              <TagBox categories={categories} />
+            </div>
+          </div>
         </div>
       </main>
     </>
@@ -74,20 +96,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       ) {
         edges {
           node {
+            id
             title
             slug
             postPublishDate
             excerpt
-            featuredImage {
-              url
-            }
-            authors {
-              id
-              name
-              foto {
-                url
-              }
-            }
           }
         }
         pageInfo {
@@ -99,9 +112,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           count
         }
       }
+      authors(orderBy: name_ASC) {
+        slug
+        name
+        posts {
+          id
+        }
+      }
       categories {
         name
         slug
+        post {
+          id
+        }
       }
     }
   `
@@ -109,7 +132,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const data = await client.request(query, { slug })
 
   return {
-    props: { data, slug, categories: data.categories },
+    props: { data, slug },
     revalidate: 60 * 30,
   }
 }
@@ -133,4 +156,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export default CategorySlug
+export default PostsByTags

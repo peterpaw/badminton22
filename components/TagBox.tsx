@@ -8,11 +8,14 @@ const TagBox = ({
     {
       slug: string
       name: string
+      post: [{ id: string }]
     }
   ]
 }) => {
   const { colorScheme } = useMantineColorScheme()
   const dark = colorScheme === "dark"
+
+  const sortedByPosts = categories.sort((a, b) => b.post.length - a.post.length)
 
   return (
     <Paper
@@ -29,7 +32,7 @@ const TagBox = ({
       </Text>
 
       {categories.map((tag) => (
-        <Link key={tag.slug} passHref href={`/berichte/tags/${tag.slug}`}>
+        <Link key={tag.slug} passHref href={`/berichte/kategorie/${tag.slug}`}>
           <Text
             component="a"
             sx={(theme) => ({
@@ -40,7 +43,7 @@ const TagBox = ({
             })}
             className="duration-300 ease-in-out font-normal block text-sm"
           >
-            {tag.name}
+            {`${tag.name} (${tag.post.length})`}
           </Text>
         </Link>
       ))}

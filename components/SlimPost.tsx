@@ -27,7 +27,10 @@ const SlimPost = ({ post }: { post: PostDetailsType }) => {
           })}
           className="duration-500 ease-in-out"
         >
-          <Title order={2} className="text-left text-lg">
+          <Title
+            order={2}
+            className="text-left text-base md:text-lg leading-tight"
+          >
             {post.title}
           </Title>
           <Text

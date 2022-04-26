@@ -1,14 +1,10 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import Head from "next/head"
 import { gql, GraphQLClient } from "graphql-request"
-import { Paper, Text, Title, useMantineColorScheme } from "@mantine/core"
-import { format } from "date-fns"
-import { de } from "date-fns/locale"
-import Link from "next/link"
+import { Text, Title, useMantineColorScheme } from "@mantine/core"
 import Image from "next/image"
 import { cn } from "@utils/cn"
 import { useState } from "react"
-import { motion } from "framer-motion"
 
 import { PostDetailsType } from "types"
 import AuthorBox from "@components/AuthorBox"
@@ -34,12 +30,14 @@ interface PageProps {
       {
         slug: string
         name: string
+        posts: [{ id: string }]
       }
     ]
     categories: [
       {
         name: string
         slug: string
+        post: [{ id: string }]
       }
     ]
   }
@@ -156,10 +154,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       authors(where: { slug_not: $slug }, orderBy: name_ASC) {
         slug
         name
+        posts {
+          id
+        }
       }
       categories {
         name
         slug
+        post {
+          id
+        }
       }
     }
   `

@@ -8,11 +8,14 @@ const AuthorBox = ({
     {
       slug: string
       name: string
+      posts: [{ id: string }]
     }
   ]
 }) => {
   const { colorScheme } = useMantineColorScheme()
   const dark = colorScheme === "dark"
+
+  const sortedByPosts = authors.sort((a, b) => b.posts.length - a.posts.length)
 
   return (
     <Paper
@@ -27,22 +30,24 @@ const AuthorBox = ({
         Autoren:
       </Text>
 
-      {authors.map((author) => (
-        <Link key={author.slug} passHref href={`/autoren/${author.slug}`}>
-          <Text
-            component="a"
-            sx={(theme) => ({
-              color: dark ? theme.colors.gray[6] : theme.colors.gray[8],
-              "&:hover": {
-                color: theme.colors.red[5],
-              },
-            })}
-            className="duration-300 ease-in-out font-normal block text-sm"
-          >
-            {author.name}
-          </Text>
-        </Link>
-      ))}
+      {sortedByPosts.map((author) => {
+        return (
+          <Link key={author.slug} passHref href={`/autoren/${author.slug}`}>
+            <Text
+              component="a"
+              sx={(theme) => ({
+                color: dark ? theme.colors.gray[6] : theme.colors.gray[8],
+                "&:hover": {
+                  color: theme.colors.red[5],
+                },
+              })}
+              className="duration-300 ease-in-out font-normal block text-sm"
+            >
+              {`${author.name} (${author.posts.length})`}
+            </Text>
+          </Link>
+        )
+      })}
     </Paper>
   )
 }
