@@ -1,10 +1,11 @@
 import Link from "next/link"
-import Image from "next/image"
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/solid"
 import { format } from "date-fns"
 import { de } from "date-fns/locale"
 import { AdjacentPostType } from "types"
 import { Container, Text, useMantineColorScheme } from "@mantine/core"
+
+import BlurImg from "./BlurImg"
 
 const PrevNextLink = ({
   post,
@@ -52,10 +53,10 @@ const PrevNextLink = ({
         </span>
         <Container className="p-2">
           <div className="hidden md:block aspect-w-16 aspect-h-9 w-full overflow-hidden">
-            <Image
+            <BlurImg
               src={post.featuredImage.url}
               alt={post.title}
-              layout="fill"
+              priority="true"
             />
           </div>
           <div className="flex flex-wrap justify-center items-center gap-2 my-2">
