@@ -22,7 +22,7 @@ const Impressum = () => {
         Kontakt
       </Title>
       <Text>Abteilungsleiter: Florian Bernhard-Kolbe</Text>
-      <Text>E-Mail: florian.bernhard@posteo.de</Text>
+      <Text>E-Mail: vorstand.rwwb@gmail.com</Text>
 
       <Title order={4} className="text-left mb-4 mt-8">
         Umsatzsteuer-ID
