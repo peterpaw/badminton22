@@ -73,7 +73,7 @@ const Datenschutz = () => {
         Abteilung Badminton <br />
         Abteilungsleiter: Florian Bernhard-Kolbe
         <br />
-        E-Mail: florian.bernhard@posteo.de
+        E-Mail: vorstand.rwwb@gmail.com
         <br />
         Verantwortliche Stelle ist die natürliche oder juristische Person, die
         allein oder gemeinsam mit anderen über die Zwecke und Mittel der
