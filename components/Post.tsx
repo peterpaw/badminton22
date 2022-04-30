@@ -28,27 +28,57 @@ const Post = ({
 
   const components = {
     h1: (props: any) => (
-      <h1 {...props} className={dark ? "text-[#b4b4b4]" : "text-gray-800"} />
+      <h1
+        {...props}
+        className={dark ? "text-[#b4b4b4]" : "text-gray-800"}
+        style={{ marginBottom: "1rem" }}
+      />
     ),
     h2: (props: any) => (
-      <h2 {...props} className={dark ? "text-[#b4b4b4]" : "text-gray-800"} />
+      <h2
+        {...props}
+        className={dark ? "text-[#b4b4b4]" : "text-gray-800"}
+        style={{ marginBottom: "1rem" }}
+      />
     ),
     h3: (props: any) => (
-      <h3 {...props} className={dark ? "text-[#b4b4b4]" : "text-gray-800"} />
+      <h3
+        {...props}
+        className={dark ? "text-[#b4b4b4]" : "text-gray-800"}
+        style={{ marginBottom: "1rem" }}
+      />
     ),
     h4: (props: any) => (
-      <h4 {...props} className={dark ? "text-[#b4b4b4]" : "text-gray-800"} />
+      <h4
+        {...props}
+        className={dark ? "text-[#b4b4b4]" : "text-gray-800"}
+        style={{ marginBottom: "1rem" }}
+      />
     ),
     h5: (props: any) => (
-      <h5 {...props} className={dark ? "text-[#b4b4b4]" : "text-gray-800"} />
+      <h5
+        {...props}
+        className={dark ? "text-[#b4b4b4]" : "text-gray-800"}
+        style={{ marginBottom: "1rem" }}
+      />
     ),
     p: (props: any) => (
-      <p {...props} className={dark ? "text-[#b4b4b4]" : "text-gray-800"} />
+      <p
+        {...props}
+        className={dark ? "text-[#b4b4b4]" : "text-gray-800"}
+        style={{ marginBottom: "1rem" }}
+      />
     ),
     strong: (props: any) => (
       <strong
         {...props}
         className={dark ? "text-[#b4b4b4]" : "text-gray-800"}
+      />
+    ),
+    a: (props: any) => (
+      <a
+        {...props}
+        className="text-[#dc271e] no-underline hover:text-red-500 duration-300"
       />
     ),
   }
@@ -122,7 +152,7 @@ const Post = ({
             className="my-4 mx-auto"
           />
         </div>
-        <article className="px-2 prose md:prose-lg mx-auto mt-8 text-white">
+        <article className="mx-auto mt-8 text-white">
           <MDXRemote {...post.source} components={components} />
         </article>
         <ConnectedPosts
