@@ -16,11 +16,11 @@ const KontaktPage: NextPage = () => {
           Schick uns eine Email:
         </Text>
         <Anchor
-          href="mailto:info@badminton-walldorf.de"
+          href="mailto:vorstand.rwwb@gmail.com"
           sx={(theme) => ({ color: theme.colors.red[5] })}
           className="text-xl"
         >
-          info@badminton-walldorf.de
+          vorstand.rwwb@gmail.com
         </Anchor>
       </Container>
     </main>
