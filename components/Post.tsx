@@ -88,7 +88,8 @@ const Post = ({
   return (
     <>
       <Head>
-        <title>{post.title}</title>
+        <title>{`${post.title} - Rot-Weiß Walldorf Badminton`}</title>
+        <meta name="description" content={post.seoMetaTag}></meta>
       </Head>
       <main className="py-16 px-4 container mx-auto max-w-3xl text-lg lg:text-xl">
         <div className="text-center">

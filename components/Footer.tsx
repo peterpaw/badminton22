@@ -129,20 +129,20 @@ const Footer = () => {
             </Title>
             <div className="flex flex-col">
               {navigation.map((link) => (
-                <Anchor component={Link} href={link.href} key={link.name}>
+                <Link passHref key={link.name} href={link.href}>
                   <Text
                     component="a"
-                    className="text-base cursor-pointer duration-300"
                     sx={(theme) => ({
                       color: theme.colors.gray[6],
                       "&:hover": {
                         color: theme.colors.red[5],
                       },
                     })}
+                    className="text-lg my-1 md:text-base cursor-pointer duration-300"
                   >
                     {link.name}
                   </Text>
-                </Anchor>
+                </Link>
               ))}
             </div>
           </div>
@@ -163,6 +163,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             whileHover={{ y: -2 }}
             className="inline-block"
+            aria-label="Link to Facebook page"
           >
             <FaFacebook size={24} color="#1b74e4" className="inline" />
           </motion.a>

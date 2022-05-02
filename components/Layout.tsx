@@ -123,6 +123,7 @@ const Layout: React.FC = ({ children }) => {
                 onClick={() => setOpened((o) => !o)}
                 size="md"
                 color={dark ? theme.colors.gray[2] : theme.colors.gray[8]}
+                aria-label="Toggle Mobile Menu"
               />
             </MediaQuery>
           </div>

@@ -41,6 +41,9 @@
   .badge-red {
     @apply bg-red-100;
   }
+  .badge-indigo {
+    @apply bg-indigo-100;
+  }
 
   .card {
     border-radius: 8px;

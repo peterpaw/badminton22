@@ -70,7 +70,7 @@ const LatestPosts = ({ posts }: { posts: PostType[] }) => {
                   >
                     <Image src={post.featuredImage.url} alt={post.title} />
                     <Title
-                      order={4}
+                      order={3}
                       className="text-xs md:text-xl font-bold mt-4"
                     >
                       {post.title}

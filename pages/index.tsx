@@ -86,6 +86,10 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
     <>
       <Head>
         <title>Badminton | Rot-Weiss Walldorf</title>
+        <meta
+          name="description"
+          content="Webseite der Badmintonabteilung von Rot-Weiß Walldorf. Trainingszeiten, Presseberichte, Mannschaften und Tabellen sowie Infos über unsere Abteilung."
+        />
       </Head>
       <main>
         <section className="relative bg-gradient-to-r from-red-600 to-purple-900 w-full md:min-h-[500px] h-[60vh] max-h-[60vh]">

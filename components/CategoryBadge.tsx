@@ -14,6 +14,8 @@ const CategoryBadge = ({
           ? "badge-yellow"
           : category.color === "red"
           ? "badge-red"
+          : category.color === "indigo"
+          ? "badge-indigo"
           : ""
       }`}
     >

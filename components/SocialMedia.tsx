@@ -23,6 +23,7 @@ const SocialMedia = () => {
           href="https://facebook.com/rww.badminton"
           target="_blank"
           whileHover={{ y: -2 }}
+          aria-label="Link to Facebook page"
         >
           <FaFacebook size={48} color="#1b74e4" />
         </motion.a>
