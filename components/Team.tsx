@@ -7,6 +7,7 @@ import BlurImg from "./BlurImg"
 
 import captain from "../assets/icons/captain.svg"
 import Image from "next/image"
+import Head from "next/head"
 
 const TeamLink = ({
   slug,
@@ -93,6 +94,13 @@ const Team = ({
 
   return (
     <>
+      <Head>
+        <title>{`${team.mannschaft} - Rot-Weiß Walldorf Badminton`}</title>
+        <meta
+          name="description"
+          content={`Rot-Weiß Walldorf Badminton - Alle Infos zur ${team.mannschaft}: Mannschaftsfoto, Spieler, Kapitän:in und Tabellen.`}
+        />
+      </Head>
       <Container className="py-16 mx-auto">
         <Title order={1} className="text-3xl font-bold">
           {team.mannschaft}

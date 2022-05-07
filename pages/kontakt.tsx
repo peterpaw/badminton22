@@ -7,6 +7,10 @@ const KontaktPage: NextPage = () => {
     <main>
       <Head>
         <title>Kontakt | Rot-Weiss Walldorf Badminton</title>
+        <meta
+          name="description"
+          content="Kontaktiere die Abteilung Badminton per Email."
+        />
       </Head>
       <Container className="py-16 text-center">
         <Title order={1} className="mb-16 font-black md:text-4xl">

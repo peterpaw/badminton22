@@ -66,6 +66,10 @@ const TrainingPage: NextPage = () => {
     <Container className="py-16">
       <Head>
         <title>Training | Rot-Weiss Walldorf Badminton</title>
+        <meta
+          name="description"
+          content="Übersicht über Trainingszeiten und Orte der Abteilung Badminton - Rot-Weiß Walldorf."
+        />
       </Head>
       <Title order={1} className="mb-16 font-black md:text-4xl">
         Training

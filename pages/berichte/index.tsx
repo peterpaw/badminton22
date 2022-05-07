@@ -32,7 +32,11 @@ const BerichtePage: NextPage<PageProps> = ({ data }) => {
   return (
     <div>
       <Head>
-        <title>{`Presseberichte Rot-Weiss Walldorf Badminton`}</title>
+        <title>{`Presseberichte Seite 1 Rot-Weiss Walldorf Badminton`}</title>
+        <meta
+          name="description"
+          content="Auflistung aller Presseartikel und Berichte von Rot-Weiß Walldorf Badminton."
+        />
       </Head>
       <Text
         component="h1"

@@ -42,7 +42,11 @@ const Page: NextPage<PageProps> = ({ data, currentPage }) => {
   return (
     <div>
       <Head>
-        <title>{`Presseberichte Rot-Weiss Walldorf Badminton - Seite ${currentPage}`}</title>
+        <title>{`Presseberichte Seite ${currentPage} - Rot-Weiss Walldorf Badminton`}</title>
+        <meta
+          name="description"
+          content={`Seite ${currentPage} - Auflistung aller Presseartikel und Berichte von Rot-Weiß Walldorf Badminton.`}
+        />
       </Head>
       <Text component="h1" className="text-4xl pt-16 lg:py:24 font-black">
         Presseberichte

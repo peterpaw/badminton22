@@ -1,5 +1,10 @@
+import BlurImg from "@components/BlurImg"
 import { Container, Text, Title, useMantineColorScheme } from "@mantine/core"
 import { motion } from "framer-motion"
+import Head from "next/head"
+
+import passiv from "assets/images/rww_mitgliedschaft_passiv.jpg"
+import Image from "next/image"
 
 const personData = [
   {
@@ -112,6 +117,13 @@ const Abteilung = () => {
 
   return (
     <>
+      <Head>
+        <title>Abteilung - Rot-Weiß Walldorf Badminton</title>
+        <meta
+          name="description"
+          content="Abteilung Rot-Weiß Walldorf Badminton: Infos zum Vorstand und der Mitgliedschaft im Verein."
+        />
+      </Head>
       <Container fluid className="py-16">
         <Title order={1} className="font-black text-3xl md:text-4xl">
           Abteilung
@@ -135,7 +147,7 @@ const Abteilung = () => {
         <Title
           order={2}
           sx={(theme) => ({
-            color: dark ? theme.colors.gray[3] : theme.colors.gray[6],
+            color: dark ? theme.colors.gray[3] : theme.colors.gray[7],
           })}
           className="text-2xl md:text-3xl font-black mb-16"
         >
@@ -149,6 +161,26 @@ const Abteilung = () => {
             position={person.position}
           />
         ))}
+      </Container>
+      <Container className="py-16">
+        <Title
+          order={2}
+          sx={(theme) => ({
+            color: dark ? theme.colors.gray[3] : theme.colors.gray[7],
+          })}
+          className="text-2xl md:text-3xl font-black mb-16"
+        >
+          Mitgliedschaft
+        </Title>
+        <div className="max-w-md mx-auto">
+          <Image
+            src={passiv}
+            alt="Passive Mitgliedschaft mit QR-Code"
+            width={800}
+            height={1131}
+            layout="responsive"
+          />
+        </div>
       </Container>
     </>
   )

@@ -63,6 +63,10 @@ const JugendPage: NextPage = () => {
     <main>
       <Head>
         <title>Jugend | Rot-Weiss Walldorf Badminton</title>
+        <meta
+          name="description"
+          content="Rot-Weiß Walldorf Badminton Jugend. Infos zur Minimannschaft, den Spielern und den Trainern. Infos über das Training der Kids."
+        />
       </Head>
       <Container className="pt-8 md:pt-16">
         <Title
