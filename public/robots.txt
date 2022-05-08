@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://badminton-walldorf.de
+
+# Sitemaps
+Sitemap: https://badminton-walldorf.de/sitemap.xml

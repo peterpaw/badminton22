@@ -1,7 +1,8 @@
+☐ 404 Page?
 ☐ Animate mobile menu link appearance
 ☐ Improve latest posts
-☐ Add custom font for headings
-☐ Change posts page to SSR
+☐ Add custom font for headings?
+☐ Change posts page to SSR?
 ✔ Fix different image sizes in prev/next post component @done(22-04-22 11:11)
 ✔ Improve footer @done(22-04-22 10:33)
   Remove the red background at the bottom
