@@ -1,10 +1,11 @@
-import BlurImg from "@components/BlurImg"
+import Image from "next/image"
 import { Container, Text, Title, useMantineColorScheme } from "@mantine/core"
 import { motion } from "framer-motion"
 import Head from "next/head"
 
+import PricingPlans from "@components/PricingPlans"
+
 import passiv from "assets/images/rww_mitgliedschaft_passiv.jpg"
-import Image from "next/image"
 
 const personData = [
   {
@@ -137,6 +138,55 @@ const Abteilung = () => {
           Badminton
         </Title>
       </Container>
+
+      <Container
+        fluid
+        sx={(theme) => ({
+          backgroundColor: dark ? theme.colors.dark[9] : theme.colors.gray[1],
+        })}
+        className="py-16 px-0"
+      >
+        <Title
+          order={2}
+          sx={(theme) => ({
+            color: dark ? theme.colors.gray[3] : theme.colors.gray[7],
+          })}
+          className="text-2xl md:text-3xl font-black mb-16"
+        >
+          Mitgliedschaft
+        </Title>
+        <PricingPlans />
+        <Container
+          fluid
+          sx={(theme) => ({
+            backgroundColor: dark ? theme.colors.dark[5] : theme.colors.gray[0],
+          })}
+          className="py-16 mb-16 text-center"
+        >
+          <Text
+            component="p"
+            className="text-center text-lg leading-tight font-bold"
+          >
+            <span className="underline">Mitgliedsantrag</span> im PDF-Format:
+          </Text>
+          <a
+            href="/rww-mitgliedsantrag.pdf"
+            className="inline-block bg-[#dc271e] px-4 py-2 mt-8 text-white uppercase font-semibold hover:bg-red-500 duration-300"
+          >
+            Download
+          </a>
+        </Container>
+        <div className="max-w-md mx-auto">
+          <Image
+            src={passiv}
+            alt="Passive Mitgliedschaft mit QR-Code"
+            width={800}
+            height={1131}
+            layout="responsive"
+          />
+        </div>
+      </Container>
+
       <Container
         fluid
         sx={(theme) => ({
@@ -161,26 +211,6 @@ const Abteilung = () => {
             position={person.position}
           />
         ))}
-      </Container>
-      <Container className="py-16">
-        <Title
-          order={2}
-          sx={(theme) => ({
-            color: dark ? theme.colors.gray[3] : theme.colors.gray[7],
-          })}
-          className="text-2xl md:text-3xl font-black mb-16"
-        >
-          Mitgliedschaft
-        </Title>
-        <div className="max-w-md mx-auto">
-          <Image
-            src={passiv}
-            alt="Passive Mitgliedschaft mit QR-Code"
-            width={800}
-            height={1131}
-            layout="responsive"
-          />
-        </div>
       </Container>
     </>
   )

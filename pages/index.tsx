@@ -6,7 +6,7 @@ import Image from "next/image"
 import { useInView } from "react-intersection-observer"
 import { GetStaticProps, NextPage } from "next"
 import { gql, GraphQLClient } from "graphql-request"
-import { Container, Text } from "@mantine/core"
+import { Container, Text, Title, useMantineColorScheme } from "@mantine/core"
 
 import LatestPosts from "@components/LatestPosts"
 
@@ -18,6 +18,8 @@ import TeamSection from "@components/TeamSection"
 import SocialMedia from "@components/SocialMedia"
 import BlurImg from "@components/BlurImg"
 import Card from "@components/Card"
+
+import passiv from "assets/images/rww_mitgliedschaft_passiv.jpg"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
@@ -31,6 +33,9 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
   const [ref2, inView2] = useInView({ threshold: 0.4 })
   const animation = useAnimation()
   const animation2 = useAnimation()
+
+  const { colorScheme } = useMantineColorScheme()
+  const dark = colorScheme === "dark"
 
   useEffect(() => {
     if (inView1) {
@@ -222,6 +227,54 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
         <LatestPosts posts={posts} />
         <TeamSection teams={teams} />
         <SocialMedia />
+        <Container
+          fluid
+          sx={(theme) => ({
+            backgroundColor: dark ? theme.colors.dark[5] : "white",
+          })}
+          className="py-16 text-center"
+        >
+          <Title
+            order={3}
+            className="text-center text-3xl leading-tight font-bold"
+          >
+            Mitgliedschaft
+          </Title>
+          <Text
+            component="p"
+            sx={(theme) => ({
+              color: dark ? theme.colors.dark[1] : theme.colors.dark[4],
+            })}
+            className="text-center my-4 font-semibold md:text-lg"
+          >
+            Du möchtest wissen was es kostet bei Rot-Weiß Walldorf Badminton zu
+            spielen?
+            <br />
+            Hier erfährst du mehr:
+          </Text>
+          <Link href="/abteilung">
+            <a className="inline-block bg-[#dc271e] px-4 py-2 mt-8 text-white uppercase font-semibold hover:bg-red-500 duration-300">
+              MITGLIEDSCHAFT{" "}
+            </a>
+          </Link>
+        </Container>
+        <Container
+          fluid
+          sx={(theme) => ({
+            backgroundColor: dark ? theme.colors.dark[7] : theme.colors.gray[0],
+          })}
+          className="py-16"
+        >
+          <div className="max-w-md mx-auto">
+            <Image
+              src={passiv}
+              alt="Passive Mitgliedschaft mit QR-Code"
+              width={800}
+              height={1131}
+              layout="responsive"
+            />
+          </div>
+        </Container>
       </main>
     </>
   )
