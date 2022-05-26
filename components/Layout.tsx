@@ -17,7 +17,7 @@ import { SunIcon, MoonIcon } from "@heroicons/react/outline"
 import NavLink from "@components/NavLink"
 import Footer from "@components/Footer"
 import { navigation } from "data/navigation"
-import { useState } from "react"
+import React, { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 
@@ -35,7 +35,7 @@ const useStyles = createStyles((theme) => ({
   },
 }))
 
-const Layout: React.FC = ({ children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const [opened, setOpened] = useState(false)
   const theme = useMantineTheme()
   const { classes } = useStyles()

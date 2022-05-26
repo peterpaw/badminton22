@@ -3,7 +3,12 @@ import { motion } from "framer-motion"
 import { NextPage } from "next"
 import Head from "next/head"
 
-type Props = { day: string; gym: string; address: string }
+type Props = {
+  day: string
+  gym: string
+  address: string
+  children: React.ReactNode
+}
 
 const TrainingCard: React.FC<Props> = ({ day, gym, address, children }) => {
   const { colorScheme } = useMantineColorScheme()
