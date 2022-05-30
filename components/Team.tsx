@@ -2,8 +2,9 @@ import { Container, Text, Title, useMantineColorScheme } from "@mantine/core"
 import { useHover } from "@mantine/hooks"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { PlayerType, TeamTypes } from "types"
+import { PlayerType, TableData, TeamTypes } from "types"
 import BlurImg from "./BlurImg"
+import Table from "./Table"
 
 import captain from "../assets/icons/captain.svg"
 import Image from "next/image"
@@ -69,9 +70,11 @@ const TeamLink = ({
 const Team = ({
   team,
   teams,
+  tableData,
 }: {
   team: TeamTypes
   teams: [{ slug: string; liga: string; mannschaft: string }]
+  tableData: TableData
 }) => {
   let men: PlayerType[] = []
   let women: PlayerType[] = []
@@ -105,21 +108,23 @@ const Team = ({
         <Title order={1} className="text-3xl font-bold">
           {team.mannschaft}
         </Title>
-        <Text
-          component="a"
-          href={team.nuligaUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          sx={(theme) => ({
-            color: theme.colors.red[5],
-            "&:hover": {
-              color: theme.colors.red[2],
-            },
-          })}
-          className="mb-8 font-medium text-xl duration-300 block mx-auto text-center"
-        >
-          {team.liga}
-        </Text>
+        <div className="text-center">
+          <Text
+            component="a"
+            href={team.nuligaUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={(theme) => ({
+              color: theme.colors.red[5],
+              "&:hover": {
+                color: theme.colors.red[2],
+              },
+            })}
+            className="mb-8 font-medium text-xl duration-300 mx-auto inline-block"
+          >
+            {team.liga}
+          </Text>
+        </div>
         <div className="aspect-w-16 aspect-h-9">
           <BlurImg
             src={team.teamPhoto.url}
@@ -294,16 +299,23 @@ const Team = ({
             ))}
           </div>
         </div>
-        <Container className="py-8 text-center mt-16">
-          <motion.a
-            href={team.nuligaUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="bg-[#dc271e] px-4 py-2 text-white uppercase tracking-wider font-semibold hover:bg-red-500 duration-300"
-          >
-            Tabelle
-          </motion.a>
-        </Container>
+      </Container>
+      <Container
+        fluid
+        sx={(theme) => ({
+          backgroundColor: dark ? theme.colors.dark[8] : theme.colors.gray[1],
+        })}
+        className="py-8 text-center mt-16 pb-16"
+      >
+        <Table tableData={tableData} />
+        <motion.a
+          href={team.nuligaUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="bg-[#dc271e] px-4 py-2 text-white uppercase tracking-wider font-semibold hover:bg-red-500 duration-300"
+        >
+          HBV-Tabelle
+        </motion.a>
       </Container>
       <Container
         fluid

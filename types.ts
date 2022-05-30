@@ -108,3 +108,17 @@ export interface PlayerType {
   captain: boolean
   clubRank: number
 }
+
+export interface TableData {
+  data: [
+    {
+      id: number
+      position: number
+      team_name: string
+      games: string
+      points: string
+    }
+  ]
+  placing: number
+  message: string | null
+}
