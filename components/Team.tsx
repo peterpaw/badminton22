@@ -4,8 +4,6 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { PlayerType, TableData, TeamTypes } from "types"
 import BlurImg from "./BlurImg"
-import Table from "./Table"
-
 import captain from "../assets/icons/captain.svg"
 import Image from "next/image"
 import Head from "next/head"
@@ -70,11 +68,9 @@ const TeamLink = ({
 const Team = ({
   team,
   teams,
-  tableData,
 }: {
   team: TeamTypes
   teams: [{ slug: string; liga: string; mannschaft: string }]
-  tableData: TableData
 }) => {
   let men: PlayerType[] = []
   let women: PlayerType[] = []
@@ -305,9 +301,8 @@ const Team = ({
         sx={(theme) => ({
           backgroundColor: dark ? theme.colors.dark[8] : theme.colors.gray[1],
         })}
-        className="py-8 text-center mt-16 pb-16"
+        className="py-16 text-center mt-16"
       >
-        <Table tableData={tableData} />
         <motion.a
           href={team.nuligaUrl}
           target="_blank"

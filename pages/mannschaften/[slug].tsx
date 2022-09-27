@@ -7,15 +7,13 @@ const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
 const TeamPage = ({
   data,
-  tableData,
 }: {
   data: {
     team: TeamTypes
     teams: [{ slug: string; liga: string; mannschaft: string }]
   }
-  tableData: TableData
 }) => {
-  return <Team team={data.team} teams={data.teams} tableData={tableData} />
+  return <Team team={data.team} teams={data.teams} />
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -37,10 +35,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       teamAsNumber = ""
   }
 
-  const res = await fetch(
-    `${process.env.TABLES_API_URL}/api/rww${teamAsNumber}`
-  )
-  const tableData = await res.json()
+  // const res = await fetch(
+  //   `${process.env.TABLES_API_URL}/api/rww${teamAsNumber}`
+  // )
+  // const tableData = await res.json()
 
   const query = gql`
     query Team($slug: String!) {
@@ -80,7 +78,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   return {
-    props: { data, tableData },
+    props: { data },
     revalidate: 60 * 30,
   }
 }
