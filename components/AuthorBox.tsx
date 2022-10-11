@@ -41,7 +41,7 @@ const AuthorBox = ({
                   color: theme.colors.red[5],
                 },
               })}
-              className="duration-300 ease-in-out font-normal block text-sm"
+              className="duration-300 ease-in-out font-normal block text-md"
             >
               {`${author.name} (${author.posts.length})`}
             </Text>

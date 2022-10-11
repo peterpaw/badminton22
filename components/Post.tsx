@@ -65,7 +65,7 @@ const Post = ({
     p: (props: any) => (
       <p
         {...props}
-        className={dark ? "text-[#b4b4b4]" : "text-gray-800"}
+        className={dark ? "text-[#b4b4b4] text-lg" : "text-gray-800 text-lg"}
         style={{ marginBottom: "1rem" }}
       />
     ),

@@ -44,7 +44,7 @@ const SlimPost = ({ post }: { post: PostDetailsType }) => {
           </Text>
           <Text
             component="p"
-            size="xs"
+            size="md"
             sx={(theme) => ({
               color: theme.colors.gray[6],
             })}
