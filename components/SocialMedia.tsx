@@ -1,7 +1,7 @@
 import { Center, Container, Title } from "@mantine/core"
 import { useMantineColorScheme } from "@mantine/styles"
 import { motion } from "framer-motion"
-import { FaFacebook } from "react-icons/fa"
+import { FaInstagram, FaFacebook } from "react-icons/fa"
 
 const SocialMedia = () => {
   const { colorScheme } = useMantineColorScheme()
@@ -16,12 +16,22 @@ const SocialMedia = () => {
       className="py-8 lg:py-16 border-t-2 border-[#dc271e] relative overflow-hidden"
     >
       <Title order={2} className="mb-8 text-xl md:text-3xl">
-        Folge uns auf Facebook
+        Folge uns...
       </Title>
-      <Center>
+      <Center className="flex gap-2">
+        <motion.a
+          href="https://instagram.com/rwwalldorf_badminton"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ y: -2 }}
+          aria-label="Link to Facebook page"
+        >
+          <FaInstagram size={48} color="#dc271e" />
+        </motion.a>
         <motion.a
           href="https://facebook.com/rww.badminton"
           target="_blank"
+          rel="noopener noreferrer"
           whileHover={{ y: -2 }}
           aria-label="Link to Facebook page"
         >

@@ -7,13 +7,14 @@ import plusline from "../public/plusline.jpg"
 import gasthausXXL from "../public/gasthaus-xxl.png"
 import {
   Anchor,
+  Center,
   Container,
   Divider,
   Text,
   Title,
   useMantineColorScheme,
 } from "@mantine/core"
-import { FaFacebook } from "react-icons/fa"
+import { FaFacebook, FaInstagram } from "react-icons/fa"
 import { navigation } from "data/navigation"
 import { motion } from "framer-motion"
 
@@ -157,16 +158,26 @@ const Footer = () => {
       >
         <Container>
           <Divider my="lg" />
-          <motion.a
-            href="https://facebook.com/rww.badminton"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ y: -2 }}
-            className="inline-block"
-            aria-label="Link to Facebook page"
-          >
-            <FaFacebook size={24} color="#1b74e4" className="inline" />
-          </motion.a>
+          <Center className="flex gap-2">
+            <motion.a
+              href="https://instagram.com/rwwalldorf_badminton"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ y: -2 }}
+              aria-label="Link to Facebook page"
+            >
+              <FaInstagram size={24} color="#dc271e" />
+            </motion.a>
+            <motion.a
+              href="https://facebook.com/rww.badminton"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ y: -2 }}
+              aria-label="Link to Facebook page"
+            >
+              <FaFacebook size={24} color="#1b74e4" />
+            </motion.a>
+          </Center>
         </Container>
         <div className="flex justify-center gap-2 mt-4 leading-none">
           <Link href="/impressum" passHref>
