@@ -16,6 +16,7 @@ import gruppenFoto from "../public/badminton-jugend-gruppenfoto.jpg"
 import gasthausXXL from "../public/gasthaus-xxl.png"
 import xxlWirt from "../public/wirt-joschi-mauri.jpg"
 import joschiMats from "../public/joschi-mats.jpg"
+import kindertraining01 from "../public/training_kids-01.jpg"
 
 import { jugend } from "data/jugend"
 
@@ -86,6 +87,65 @@ const JugendPage: NextPage = () => {
             priority="true"
           />
         </div>
+      </Container>
+      <Container
+        fluid
+        sx={(theme) => ({
+          backgroundColor: dark ? theme.colors.dark[8] : theme.colors.gray[1],
+        })}
+        className="py-16"
+      >
+        <Container className="text-lg">
+          <Title className="text-2xl mb-12">
+            Unsere Jugendabteilung wächst
+          </Title>
+          <Text className="mb-4">
+            Der Nachwuchs hat die Freude am Badminton entdeckt. Erstmals seit
+            vielen Jahren wieder hat die Abteilung wieder eine Jugend- und eine
+            Schüler-Mannschaft gemeldet. Und es können noch mehr Mannschaften
+            werden, denn im Training sind über 30 Kids mit dem Schläger aktiv.
+          </Text>
+          <Text>
+            Der Trainer <span className="font-bold">Maurizio Battaglia</span>{" "}
+            begeistert den Nachwuchs jeden Montag und jeden Mittwoch mit seinen
+            sportlichen Ideen.
+          </Text>
+          <Text>
+            Die Jüngsten werden von{" "}
+            <span className="font-bold">Janosch Kreuz</span> spielerisch an den
+            Schläger und Federball herangeführt , ca. Fünfzehn 6 -7 jährige Kids
+            üben vorerst nur einmal die Woche, mittwochs von 17:30 - 18:30 Uhr,
+            das schnelle Spiel.
+          </Text>
+          <Container className="relative mt-16 mx-0 px-0">
+            <Image
+              src={kindertraining01}
+              alt="Kindertraining"
+              width={1024}
+              height={576}
+            />
+          </Container>
+          <Title className="text-xl mt-16 mb-4 text-left">
+            Training mit Plan und Konzept
+          </Title>
+          <Text>
+            Das Trainingskonzept von Maurizio ist aufgebaut auf 3 Säulen,
+            nämlich Grundlagen, Aufbau und Leistung. Jedes Kind, vom Hobby- bis
+            Leistungslevel, wird entsprechend betreut und gefördert.
+          </Text>
+          <Text className="mt-4">
+            Nicht nur Badminton spielt im Training eine grosse Rolle, sondern
+            auch die körperliche Weiterentwicklung (Koordination, Stabilisation,
+            Kraft/Ausdauer und Belastungssteuerung). Teamwork und Teamspirit
+            wird ebenfalls gefordert und gefördert. Das Training ist
+            entsprechend ausgewogen und lässt zudem ausreichend Zeit fürs freie
+            Spielen.
+          </Text>
+          <Text>
+            Die Kids bekommen eine Rundum-Betreuung bei den Rundenspielen und
+            Teilnahmen an Turnieren, auch mit Hilfe der Eltern.
+          </Text>
+        </Container>
       </Container>
       <Container
         fluid
