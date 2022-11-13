@@ -12,6 +12,7 @@ import {
 } from "@mantine/core"
 import BlurImg from "@components/BlurImg"
 
+import jugendTitle from "../public/jugend_title.jpg"
 import gruppenFoto from "../public/badminton-jugend-gruppenfoto.jpg"
 import gasthausXXL from "../public/gasthaus-xxl.png"
 import xxlWirt from "../public/wirt-joschi-mauri.jpg"
@@ -82,8 +83,8 @@ const JugendPage: NextPage = () => {
         </Title>
         <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden mb-16">
           <BlurImg
-            src={gruppenFoto}
-            alt="Jugend-Minimannschaft mit Coaches"
+            src={jugendTitle}
+            alt="Gruppenfoto der Rot-Weiss Walldorf Badminton Schülermannschaft mit Trainer Maurizio Battaglia"
             priority="true"
           />
         </div>
@@ -106,16 +107,17 @@ const JugendPage: NextPage = () => {
             werden, denn im Training sind über 30 Kids mit dem Schläger aktiv.
           </Text>
           <Text>
-            Der Trainer <span className="font-bold">Maurizio Battaglia</span>{" "}
+            Der Trainer{" "}
+            <span className="font-bold text-primary">Maurizio Battaglia</span>{" "}
             begeistert den Nachwuchs jeden Montag und jeden Mittwoch mit seinen
             sportlichen Ideen.
           </Text>
           <Text>
             Die Jüngsten werden von{" "}
-            <span className="font-bold">Janosch Kreuz</span> spielerisch an den
-            Schläger und Federball herangeführt , ca. Fünfzehn 6 -7 jährige Kids
-            üben vorerst nur einmal die Woche, mittwochs von 17:30 - 18:30 Uhr,
-            das schnelle Spiel.
+            <span className="font-bold text-primary">Janosch Kreuz</span>{" "}
+            spielerisch an den Schläger und Federball herangeführt , ca.
+            Fünfzehn 6 -7 jährige Kids üben vorerst nur einmal die Woche,
+            mittwochs von 17:30 - 18:30 Uhr, das schnelle Spiel.
           </Text>
           <Container className="relative mt-16 mx-0 px-0">
             <Image
@@ -156,7 +158,7 @@ const JugendPage: NextPage = () => {
       >
         <Container>
           <Title order={2} className="mb-0 font-black md:text-3xl">
-            Minimannschaft
+            Jugend-Minimannschaft
           </Title>
           <Title
             order={3}
@@ -190,14 +192,14 @@ const JugendPage: NextPage = () => {
       </Container>
       <Container className="py-16">
         <Title order={2} className="mb-0 font-black md:text-3xl">
-          Trainerstab
+          Trainer
         </Title>
         <Title
           order={3}
           sx={(theme) => ({ color: theme.colors.red[5] })}
           className="mb-16"
         >
-          meet the coaches:
+          meet the coach:
         </Title>
         <div className="grid grid-cols-fluid-16 mt-8 gap-1 justify-center">
           {jugend

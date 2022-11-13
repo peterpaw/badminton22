@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: "#dc271e",
+      },
       backgroundImage: {
         landing: "url('/landing01.jpg')",
       },
