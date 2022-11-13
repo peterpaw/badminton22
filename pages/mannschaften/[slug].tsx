@@ -1,7 +1,7 @@
 import Team from "@components/Team"
 import { gql, GraphQLClient } from "graphql-request"
 import { GetStaticPaths, GetStaticProps } from "next"
-import { TableData, TeamTypes } from "types"
+import { TeamTypes } from "types"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
@@ -34,11 +34,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     default:
       teamAsNumber = ""
   }
-
-  // const res = await fetch(
-  //   `${process.env.TABLES_API_URL}/api/rww${teamAsNumber}`
-  // )
-  // const tableData = await res.json()
 
   const query = gql`
     query Team($slug: String!) {

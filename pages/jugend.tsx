@@ -13,13 +13,13 @@ import {
 import BlurImg from "@components/BlurImg"
 
 import jugendTitle from "../public/jugend_title.jpg"
-import gruppenFoto from "../public/badminton-jugend-gruppenfoto.jpg"
 import gasthausXXL from "../public/gasthaus-xxl.png"
 import xxlWirt from "../public/wirt-joschi-mauri.jpg"
 import joschiMats from "../public/joschi-mats.jpg"
 import kindertraining01 from "../public/training_kids-01.jpg"
 
 import { jugend } from "data/jugend"
+import { schueler } from "data/schueler"
 
 const JugendPage: NextPage = () => {
   const { colorScheme } = useMantineColorScheme()
@@ -149,6 +149,7 @@ const JugendPage: NextPage = () => {
           </Text>
         </Container>
       </Container>
+
       <Container
         fluid
         sx={(theme) => ({
@@ -190,7 +191,82 @@ const JugendPage: NextPage = () => {
           </motion.div>
         </Container>
       </Container>
-      <Container className="py-16">
+      <Container
+        fluid
+        sx={(theme) => ({
+          backgroundColor: dark ? theme.colors.dark[8] : theme.colors.gray[1],
+        })}
+        className="py-16 text-center border-b-2 border-primary"
+      >
+        <motion.a
+          href="https://hbv-badminton.liga.nu/cgi-bin/WebObjects/nuLigaBADDE.woa/wa/groupPage?championship=Frankfurt+22%2F23&group=29518"
+          target="_blank"
+          rel="noreferrer"
+          className="bg-[#dc271e] px-4 py-2 text-white uppercase tracking-wider font-semibold hover:bg-red-500 duration-300"
+        >
+          Tabelle
+        </motion.a>
+      </Container>
+
+      <Container
+        fluid
+        sx={(theme) => ({
+          backgroundColor: dark ? theme.colors.gray[9] : theme.colors.gray[0],
+        })}
+        className="py-16"
+      >
+        <Container>
+          <Title order={2} className="mb-0 font-black md:text-3xl">
+            Schülermannschaft
+          </Title>
+          <Title
+            order={3}
+            sx={(theme) => ({ color: theme.colors.red[5] })}
+            className="mb-16"
+          >
+            meet the players:
+          </Title>
+          <motion.div className="grid grid-cols-fluid-sm md:grid-cols-fluid gap-1">
+            {schueler
+              .sort((a, b) => a.id - b.id)
+              .filter((p) => p.role === "player")
+              .map((person) => (
+                <motion.div key={person.id} whileHover={{ y: -2 }}>
+                  <div className="aspect-w-[27] aspect-h-[36] overflow-hidden">
+                    <BlurImg
+                      src={person.foto}
+                      alt={`Spielerfoto von ${person.name}`}
+                    />
+                  </div>
+                  <Text
+                    component="h2"
+                    className="text-base font-medium leading-none mt-4 mb-8"
+                  >
+                    {person.name}
+                  </Text>
+                </motion.div>
+              ))}
+          </motion.div>
+        </Container>
+      </Container>
+      <Container
+        fluid
+        sx={(theme) => ({
+          backgroundColor: dark ? theme.colors.dark[8] : theme.colors.gray[1],
+        })}
+        className="py-16 text-center border-b-2 border-primary"
+      >
+        <motion.a
+          href="https://hbv-badminton.liga.nu/cgi-bin/WebObjects/nuLigaBADDE.woa/wa/groupPage?championship=Frankfurt+22%2F23&group=29520"
+          target="_blank"
+          rel="noreferrer"
+          className="bg-[#dc271e] px-4 py-2 text-white uppercase tracking-wider font-semibold hover:bg-red-500 duration-300"
+        >
+          Tabelle
+        </motion.a>
+      </Container>
+
+      <Container fluid className="py-16 border-b-2 border-primary">
         <Title order={2} className="mb-0 font-black md:text-3xl">
           Trainer
         </Title>
