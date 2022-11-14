@@ -46,7 +46,7 @@ export const jugend = [
   },
   {
     id: 6,
-    name: "Noah Carpintero Carron",
+    name: "Noah Carpintero Carrion",
     gender: "male",
     role: "player",
     foto: noahcc,
