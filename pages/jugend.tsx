@@ -17,6 +17,7 @@ import gasthausXXL from "../public/gasthaus-xxl.png"
 import xxlWirt from "../public/wirt-joschi-mauri.jpg"
 import joschiMats from "../public/joschi-mats.jpg"
 import kindertraining01 from "../public/training_kids-01.jpg"
+import jugendmannschaft from "../public/jugendmannschaft_2022.jpg"
 
 import { jugend } from "data/jugend"
 import { schueler } from "data/schueler"
@@ -159,7 +160,7 @@ const JugendPage: NextPage = () => {
       >
         <Container>
           <Title order={2} className="mb-0 font-black md:text-3xl">
-            Jugend-Minimannschaft
+            Jugendmannschaft
           </Title>
           <Title
             order={3}
@@ -189,6 +190,17 @@ const JugendPage: NextPage = () => {
                 </motion.div>
               ))}
           </motion.div>
+        </Container>
+      </Container>
+      <Container fluid>
+        <Container className="pt-16">
+          <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden mb-16">
+            <BlurImg
+              src={jugendmannschaft}
+              alt="Gruppenfoto der Rot-Weiss Walldorf Badminton Schülermannschaft mit Trainer Maurizio Battaglia"
+              priority="true"
+            />
+          </div>
         </Container>
       </Container>
       <Container

@@ -6,6 +6,7 @@ import noahcc from "../public/noahcc.jpg"
 import levine from "../public/levine.jpg"
 import angelinas from "../public/angelinas.jpg"
 import emelys from "../public/emelys.jpg"
+import mihailoc from "../public/mihailoc.jpg"
 
 export const jugend = [
   {
@@ -58,9 +59,15 @@ export const jugend = [
     role: "player",
     foto: levine,
   },
-
   {
     id: 8,
+    name: "Mihailo Cirovic",
+    gender: "male",
+    role: "player",
+    foto: mihailoc,
+  },
+  {
+    id: 99,
     name: "Maurizio Battaglia",
     gender: "male",
     role: "coach",
