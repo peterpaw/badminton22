@@ -5,6 +5,7 @@ import bens from "../public/bens.jpg"
 import benf from "../public/benf.jpg"
 import omarc from "../public/omarc.jpg"
 import yosefn from "../public/yosefn.jpg"
+import levine from "../public/levine.jpg"
 
 export const schueler = [
   {
@@ -55,5 +56,12 @@ export const schueler = [
     gender: "male",
     role: "player",
     foto: yosefn,
+  },
+  {
+    id: 8,
+    name: "Levin Eigler",
+    gender: "male",
+    role: "player",
+    foto: levine,
   },
 ]

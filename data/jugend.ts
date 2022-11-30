@@ -1,5 +1,5 @@
 import corneliusf from "../public/corneliusf.jpg"
-import jonass from "../public/jonas-schuhmann.jpg"
+import jonass from "../public/jonass.jpg"
 import juliam from "../public/juliam.jpg"
 import maurib from "../public/maurizio_b.jpg"
 import noahcc from "../public/noahcc.jpg"
@@ -7,6 +7,8 @@ import levine from "../public/levine.jpg"
 import angelinas from "../public/angelinas.jpg"
 import emelys from "../public/emelys.jpg"
 import mihailoc from "../public/mihailoc.jpg"
+import romyo from "../public/romyo.jpg"
+import bens from "../public/bens.jpg"
 
 export const jugend = [
   {
@@ -72,5 +74,19 @@ export const jugend = [
     gender: "male",
     role: "coach",
     foto: maurib,
+  },
+  {
+    id: 9,
+    name: "Romy Oliva",
+    gender: "female",
+    role: "player",
+    foto: romyo,
+  },
+  {
+    id: 10,
+    name: "Ben Seibold",
+    gender: "male",
+    role: "player",
+    foto: bens,
   },
 ]
