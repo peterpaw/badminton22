@@ -12,7 +12,8 @@ import {
 } from "@mantine/core"
 import BlurImg from "@components/BlurImg"
 
-import jugendTitle from "../public/jugend_title.jpg"
+import schuelerGruppe from "../public/schueler_gruppenfoto.jpg"
+import jugendHeader from "../public/jugend_header.jpg"
 import gasthausXXL from "../public/gasthaus-xxl.png"
 import xxlWirt from "../public/wirt-joschi-mauri.jpg"
 import joschiMats from "../public/joschi-mats.jpg"
@@ -84,7 +85,7 @@ const JugendPage: NextPage = () => {
         </Title>
         <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden mb-16">
           <BlurImg
-            src={jugendTitle}
+            src={jugendHeader}
             alt="Gruppenfoto der Rot-Weiss Walldorf Badminton Schülermannschaft mit Trainer Maurizio Battaglia"
             priority="true"
           />
@@ -197,7 +198,7 @@ const JugendPage: NextPage = () => {
           <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden mb-16">
             <BlurImg
               src={jugendmannschaft}
-              alt="Gruppenfoto der Rot-Weiss Walldorf Badminton Schülermannschaft mit Trainer Maurizio Battaglia"
+              alt="Gruppenfoto der Rot-Weiss Walldorf Badminton Jugendmannschaft mit Trainer Maurizio Battaglia"
               priority="true"
             />
           </div>
@@ -259,6 +260,17 @@ const JugendPage: NextPage = () => {
                 </motion.div>
               ))}
           </motion.div>
+        </Container>
+      </Container>
+      <Container fluid>
+        <Container className="pt-16">
+          <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden mb-16">
+            <BlurImg
+              src={schuelerGruppe}
+              alt="Gruppenfoto der Rot-Weiss Walldorf Badminton Schülermannschaft mit Trainer Maurizio Battaglia"
+              priority="true"
+            />
+          </div>
         </Container>
       </Container>
       <Container
