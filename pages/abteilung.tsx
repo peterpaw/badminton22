@@ -29,8 +29,8 @@ const personData = [
     position: "Jugendwart",
   },
   {
-    firstName: "Steffen",
-    lastName: "Schöneberger",
+    firstName: "Patrick",
+    lastName: "Coutandin",
     position: "Stellv. Sportwart",
   },
 ]
