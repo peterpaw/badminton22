@@ -104,22 +104,12 @@ const JugendPage: NextPage = () => {
           </Title>
           <Text className="mb-4">
             Der Nachwuchs hat die Freude am Badminton entdeckt. Erstmals seit
-            vielen Jahren wieder hat die Abteilung wieder eine Jugend- und eine
+            vielen Jahren hat die Abteilung wieder eine Jugend- und eine
             Schüler-Mannschaft gemeldet. Und es können noch mehr Mannschaften
             werden, denn im Training sind über 30 Kids mit dem Schläger aktiv.
           </Text>
           <Text>
-            Der Trainer{" "}
-            <span className="font-bold text-primary">Maurizio Battaglia</span>{" "}
-            begeistert den Nachwuchs jeden Montag und jeden Mittwoch mit seinen
-            sportlichen Ideen.
-          </Text>
-          <Text>
-            Die Jüngsten werden von{" "}
-            <span className="font-bold text-primary">Janosch Kreuz</span>{" "}
-            spielerisch an den Schläger und Federball herangeführt , ca.
-            Fünfzehn 6 -7 jährige Kids üben vorerst nur einmal die Woche,
-            mittwochs von 17:30 - 18:30 Uhr, das schnelle Spiel.
+            Unsere Trainer begeistern den Nachwuchs jeden Montag und jeden Mittwoch mit ihren sportlichen Ideen.
           </Text>
           <Container className="relative mt-16 mx-0 px-0">
             <Image
@@ -132,11 +122,6 @@ const JugendPage: NextPage = () => {
           <Title className="text-xl mt-16 mb-4 text-left">
             Training mit Plan und Konzept
           </Title>
-          <Text>
-            Das Trainingskonzept von Maurizio ist aufgebaut auf 3 Säulen,
-            nämlich Grundlagen, Aufbau und Leistung. Jedes Kind, vom Hobby- bis
-            Leistungslevel, wird entsprechend betreut und gefördert.
-          </Text>
           <Text className="mt-4">
             Nicht nur Badminton spielt im Training eine grosse Rolle, sondern
             auch die körperliche Weiterentwicklung (Koordination, Stabilisation,
@@ -290,7 +275,7 @@ const JugendPage: NextPage = () => {
         </motion.a>
       </Container>
 
-      <Container fluid className="py-16 border-b-2 border-primary">
+      {/* <Container fluid className="py-16 border-b-2 border-primary">
         <Title order={2} className="mb-0 font-black md:text-3xl">
           Trainer
         </Title>
@@ -330,7 +315,7 @@ const JugendPage: NextPage = () => {
               </motion.div>
             ))}
         </div>
-      </Container>
+      </Container> */}
       <Container
         fluid
         sx={(theme) => ({
@@ -464,7 +449,7 @@ const JugendPage: NextPage = () => {
             className="text-center block text-xs md:text-sm mt-2"
           >
             {`Jugendwart Janosch Kreuz, Gasthaus XXL Pächter Predrag "Pedja"
-            Prodanovic, Jugendtrainer Maurizio Battaglia.`}
+            Prodanovic, Maurizio Battaglia.`}
           </Text>
           <Title order={3} className="my-16">
             Ein <span className="text-[#dc271e]">großes Dankeschön</span> ❤️ im
