@@ -134,6 +134,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const data = await client.request(query)
 
+  // @ts-ignore
   const totalPages = data.postsConnection.aggregate.count / pageSize
 
   let paths = []

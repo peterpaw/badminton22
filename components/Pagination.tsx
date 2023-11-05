@@ -19,6 +19,7 @@ const Pagination = ({ page }: { page: string }) => {
   const fetchData = async () => {
     const res = await client.request(query)
     if (res) {
+      // @ts-ignore
       setTotalPages(res.postsConnection.aggregate.count)
     }
   }

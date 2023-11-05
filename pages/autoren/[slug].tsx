@@ -191,6 +191,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await client.request(query)
 
   return {
+    // @ts-ignore
     paths: data.authors.map(({ slug }: { slug: string }) => ({
       params: { slug },
     })),

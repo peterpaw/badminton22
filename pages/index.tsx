@@ -311,7 +311,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
+      // @ts-ignore
       posts: data.posts,
+      // @ts-ignore
       teams: data.teams,
     },
     revalidate: 60 * 30,

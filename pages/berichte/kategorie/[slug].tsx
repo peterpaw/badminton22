@@ -149,6 +149,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await client.request(query)
 
   return {
+    // @ts-ignore
     paths: data.categories.map((category: any) => ({
       params: { slug: category.slug },
     })),

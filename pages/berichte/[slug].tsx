@@ -117,6 +117,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await client.request(query)
 
   return {
+    // @ts-ignore
     paths: data.posts.map((post: any) => ({ params: { slug: post.slug } })),
     fallback: "blocking",
   }

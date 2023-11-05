@@ -154,6 +154,7 @@ const Post = ({
           />
         </div>
         <article className="mx-auto mt-8 text-white">
+          {/* @ts-ignore */}
           <MDXRemote {...post.source} components={components} />
         </article>
         <ConnectedPosts

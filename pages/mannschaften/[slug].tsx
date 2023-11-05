@@ -90,6 +90,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await client.request(query)
 
   return {
+    // @ts-ignore
     paths: data.teams.map((team: any) => ({ params: { slug: team.slug } })),
     fallback: "blocking",
   }
