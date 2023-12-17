@@ -7,7 +7,7 @@ export default function LeagueTable({ table }: { table: Table }) {
   let lastUpdated = "";
   if (table[0].created_at) {
     const date = new Date(table[0].created_at);
-    lastUpdated = date.toLocaleString('de-DE', { timeZone: 'Europe/Berlin' });
+    lastUpdated = date.toLocaleString('de-DE', { timeZone: 'Europe/Berlin', dateStyle: 'medium' });
   }
 
   const rows = table.map((element) => (
@@ -41,7 +41,7 @@ export default function LeagueTable({ table }: { table: Table }) {
       <Text
         component="p"
         className="text-xs font-semibold leading-none text-center mt-8"
-      >Zuletzt aktualisiert am {lastUpdated} Uhr</Text>
+      >Zuletzt aktualisiert am {lastUpdated}</Text>
     </Container>
 
   );
