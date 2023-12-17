@@ -1,19 +1,22 @@
 import Team from "@components/Team"
+import axios from "axios"
 import { gql, GraphQLClient } from "graphql-request"
 import { GetStaticPaths, GetStaticProps } from "next"
-import { TeamTypes } from "types"
+import { Table, TeamTypes } from "types"
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
 
 const TeamPage = ({
   data,
+  table
 }: {
   data: {
     team: TeamTypes
     teams: [{ slug: string; liga: string; mannschaft: string }]
-  }
+  },
+  table: Table
 }) => {
-  return <Team team={data.team} teams={data.teams} />
+  return <Team team={data.team} teams={data.teams} table={table} />
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -31,8 +34,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     case "mannschaft-3":
       teamAsNumber = "3"
       break
+    case "mannschaft-4":
+      teamAsNumber = "4"
+      break
     default:
-      teamAsNumber = ""
+      teamAsNumber = "1"
   }
 
   const query = gql`
@@ -66,6 +72,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const data: { team: TeamTypes | null } = await client.request(query, { slug })
 
+  let table = [];
+
+  async function fetchTableData() {
+    try {
+      const tableData = await axios.get(`${process.env.TABLES_API_URL}${teamAsNumber}`);
+      return tableData.data;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  }
+
+  table = await fetchTableData();
+
   if (!data.team) {
     return {
       notFound: true,
@@ -73,7 +93,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   return {
-    props: { data },
+    props: { data, table },
     revalidate: 60 * 30,
   }
 }

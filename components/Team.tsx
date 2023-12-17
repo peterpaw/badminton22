@@ -2,11 +2,12 @@ import { Container, Text, Title, useMantineColorScheme } from "@mantine/core"
 import { useHover } from "@mantine/hooks"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { PlayerType, TableData, TeamTypes } from "types"
+import { PlayerType, Table, TeamTypes } from "types"
 import BlurImg from "./BlurImg"
 import captain from "../assets/icons/captain.svg"
 import Image from "next/image"
 import Head from "next/head"
+import LeagueTable from "./Table"
 
 const TeamLink = ({
   slug,
@@ -51,8 +52,8 @@ const TeamLink = ({
                 color: hovered
                   ? "white"
                   : dark
-                  ? theme.colors.dark[2]
-                  : theme.colors.gray[6],
+                    ? theme.colors.dark[2]
+                    : theme.colors.gray[6],
               })}
               className="text-sm font-normal duration-300"
             >
@@ -68,9 +69,11 @@ const TeamLink = ({
 const Team = ({
   team,
   teams,
+  table
 }: {
   team: TeamTypes
-  teams: [{ slug: string; liga: string; mannschaft: string }]
+  teams: [{ slug: string; liga: string; mannschaft: string }],
+  table: Table
 }) => {
   let men: PlayerType[] = []
   let women: PlayerType[] = []
@@ -296,12 +299,24 @@ const Team = ({
           </div>
         </div>
       </Container>
+
+      {table.length > 0 ? (
+        <Container
+          fluid
+          sx={(theme) => ({
+            backgroundColor: dark ? theme.colors.dark[6] : theme.colors.gray[0],
+          })}
+          className="py-16 text-center mt-16">
+          <LeagueTable table={table} />
+        </Container>
+      ) : null}
+
       <Container
         fluid
         sx={(theme) => ({
           backgroundColor: dark ? theme.colors.dark[8] : theme.colors.gray[1],
         })}
-        className="py-16 text-center mt-16"
+        className="py-16 text-center"
       >
         <motion.a
           href={team.nuligaUrl}

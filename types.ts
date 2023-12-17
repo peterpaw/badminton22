@@ -122,3 +122,18 @@ export interface TableData {
   placing: number
   message: string | null
 }
+
+export type Table = {
+  id?: number;
+  rang: number;
+  mannschaft: string;
+  begegnungen: number;
+  's': number;
+  'u': number;
+  'n': number;
+  punkte: string;
+  spiele: string;
+  saetze: string;
+  created_at?: string;
+  clubteam_name?: string;
+}[]

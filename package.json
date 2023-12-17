@@ -13,6 +13,7 @@
     "@mantine/core": "^5.3.3",
     "@mantine/hooks": "^5.3.3",
     "@mantine/next": "^5.3.3",
+    "axios": "^1.6.2",
     "cookies-next": "^2.1.1",
     "date-fns": "^2.29.3",
     "embla-carousel-autoplay": "^7.0.3",

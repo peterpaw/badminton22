@@ -1,49 +1,48 @@
-import { Text, Title, useMantineColorScheme } from "@mantine/core"
-import { TableData } from "types"
+import { Container, Table as MTable, Text } from '@mantine/core';
+import { Table } from 'types';
 
-const Table = ({ tableData }: { tableData: TableData }) => {
-  const { data, placing } = tableData
+const regex = /walldorf/i; // i flag for case insensitive matching
 
-  const { colorScheme } = useMantineColorScheme()
-  const dark = colorScheme === "dark"
+export default function LeagueTable({ table }: { table: Table }) {
+  let lastUpdated = "";
+  if (table[0].created_at) {
+    const date = new Date(table[0].created_at);
+    lastUpdated = date.toLocaleString('de-DE', { timeZone: 'Europe/Berlin' });
+  }
+
+  const rows = table.map((element) => (
+    <tr key={element.id}>
+      <td>{element.rang}</td>
+      <td>{element.mannschaft}</td>
+      <td>{element.s}</td>
+      <td>{element.u}</td>
+      <td>{element.n}</td>
+      <td>{element.begegnungen}</td>
+      <td>{element.punkte}</td>
+    </tr>
+  ));
 
   return (
-    <div className="my-16">
-      <Title order={2} className="">
-        Tabelle
-      </Title>
-      <Title
-        order={3}
-        sx={(theme) => ({
-          color: dark ? theme.colors.gray[6] : theme.colors.gray[7],
-        })}
-        className="mb-16 text-base"
-      >
-        Saison 2021 / 22
-      </Title>
-      <div className="text-left max-w-fit mx-auto">
-        {tableData.data.map((team, index) => {
-          const isHomeTeam = placing === index + 1
-          return (
-            <Text
-              key={team.id}
-              component="p"
-              sx={(theme) => ({
-                color: isHomeTeam
-                  ? theme.colors.red[5]
-                  : dark
-                  ? theme.colors.gray[6]
-                  : theme.colors.gray[7],
-              })}
-              className="font-semibold"
-            >
-              {`${team.position}. ${team.team_name}`}
-            </Text>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
+    <Container>
+      <MTable withColumnBorders>
+        <thead>
+          <tr>
+            <th style={{ textAlign: "center" }}>Rang</th>
+            <th style={{ textAlign: "center" }}>Mannschaft</th>
+            <th style={{ textAlign: "center" }}>S</th>
+            <th style={{ textAlign: "center" }}>U</th>
+            <th style={{ textAlign: "center" }}>N</th>
+            <th style={{ textAlign: "center" }}>Spiele</th>
+            <th style={{ textAlign: "center" }}>Punkte</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </MTable>
+      <Text
+        component="p"
+        className="text-xs font-semibold leading-none text-center mt-8"
+      >Zuletzt aktualisiert am {lastUpdated} Uhr</Text>
+    </Container>
 
-export default Table
+  );
+}
