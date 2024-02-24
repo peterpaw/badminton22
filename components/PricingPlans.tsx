@@ -4,14 +4,14 @@ const pricingData = [
   {
     title: "Jugendliche",
     description: "Unter 18 Jahren",
-    price: "11 Euro",
-    additional: "2",
+    price: "12 Euro",
+    additional: "3",
   },
   {
     title: "Erwachsene",
     description: "Ab 18 Jahren",
-    price: "13 Euro",
-    additional: "4",
+    price: "17 Euro",
+    additional: "8",
   },
 ]
 

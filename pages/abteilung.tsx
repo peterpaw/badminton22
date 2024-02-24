@@ -170,7 +170,7 @@ const Abteilung = () => {
             <span className="underline">Mitgliedsantrag</span> im PDF-Format:
           </Text>
           <a
-            href="/rww-mitgliedsantrag.pdf"
+            href="/Mitgliedsantrag.pdf"
             className="inline-block bg-[#dc271e] px-4 py-2 mt-8 text-white uppercase font-semibold hover:bg-red-500 duration-300"
           >
             Download
