@@ -1,41 +1,44 @@
-import { useEffect } from "react"
-import Head from "next/head"
-import Link from "next/link"
-import { motion, useAnimation } from "framer-motion"
-import Image from "next/image"
-import { useInView } from "react-intersection-observer"
-import { GetStaticProps, NextPage } from "next"
-import { gql, GraphQLClient } from "graphql-request"
-import { Container, Text, Title, useMantineColorScheme } from "@mantine/core"
+import { useEffect } from "react";
+import Head from "next/head";
+import Link from "next/link";
+import { motion, useAnimation } from "framer-motion";
+import Image from "next/image";
+import { useInView } from "react-intersection-observer";
+import { GetStaticProps, NextPage } from "next";
+import { gql, GraphQLClient } from "graphql-request";
+import { Container, Text, Title, useMantineColorScheme } from "@mantine/core";
 
-import LatestPosts from "@components/LatestPosts"
+import LatestPosts from "@components/LatestPosts";
 
-import { PostType } from "types"
+import { PostType } from "types";
 
-import landing from "../public/landing02.jpg"
-import niklasSandra from "../public/niklas-sandra.jpg"
-import TeamSection from "@components/TeamSection"
-import SocialMedia from "@components/SocialMedia"
-import BlurImg from "@components/BlurImg"
-import Card from "@components/Card"
+import landing from "../public/landing02.jpg";
+import niklasSandra from "../public/niklas-sandra.jpg";
+import TeamSection from "@components/TeamSection";
+import SocialMedia from "@components/SocialMedia";
+import BlurImg from "@components/BlurImg";
+import Card from "@components/Card";
 
-import passiv from "assets/images/rww_mitgliedschaft_passiv.jpg"
+import passiv from "assets/images/rww_mitgliedschaft_passiv.jpg";
+import CardTraining from "@components/CardTraining";
 
-const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_URL as string)
+const client = new GraphQLClient(
+  process.env.NEXT_PUBLIC_GRAPHCMS_URL as string
+);
 
 interface PageProps {
-  posts: PostType[]
-  teams: [{ mannschaft: string; slug: string; liga: string }]
+  posts: PostType[];
+  teams: [{ mannschaft: string; slug: string; liga: string }];
 }
 
 const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
-  const [ref1, inView1] = useInView({ threshold: 0.4 })
-  const [ref2, inView2] = useInView({ threshold: 0.4 })
-  const animation = useAnimation()
-  const animation2 = useAnimation()
+  const [ref1, inView1] = useInView({ threshold: 0.4 });
+  const [ref2, inView2] = useInView({ threshold: 0.4 });
+  const animation = useAnimation();
+  const animation2 = useAnimation();
 
-  const { colorScheme } = useMantineColorScheme()
-  const dark = colorScheme === "dark"
+  const { colorScheme } = useMantineColorScheme();
+  const dark = colorScheme === "dark";
 
   useEffect(() => {
     if (inView1) {
@@ -45,7 +48,7 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
         transition: {
           duration: 0.7,
         },
-      })
+      });
     } else if (!inView1) {
       animation.start({
         opacity: 0,
@@ -53,9 +56,9 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
         transition: {
           duration: 0.5,
         },
-      })
+      });
     }
-  }, [inView1, animation])
+  }, [inView1, animation]);
 
   useEffect(() => {
     if (inView2) {
@@ -65,7 +68,7 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
         transition: {
           duration: 0.7,
         },
-      })
+      });
     } else if (!inView2) {
       animation2.start({
         opacity: 0,
@@ -73,9 +76,9 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
         transition: {
           duration: 0.5,
         },
-      })
+      });
     }
-  }, [inView2, animation2])
+  }, [inView2, animation2]);
 
   const container = {
     hidden: { opacity: 0 },
@@ -85,7 +88,7 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   return (
     <>
@@ -159,7 +162,7 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
               text="Alle Infos zur Jugend, Minimannschaft, Trainigszeiten und Coaches"
               href="/jugend"
             />
-            <Card
+            <CardTraining
               heading="Training"
               text="Trainingstage, Uhrzeiten und Trainingsorte"
               href="/training"
@@ -277,8 +280,8 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
         </Container>
       </main>
     </>
-  )
-}
+  );
+};
 
 export const getStaticProps: GetStaticProps = async () => {
   const query = gql`
@@ -305,9 +308,9 @@ export const getStaticProps: GetStaticProps = async () => {
         liga
       }
     }
-  `
+  `;
 
-  const data = await client.request(query)
+  const data = await client.request(query);
 
   return {
     props: {
@@ -317,7 +320,7 @@ export const getStaticProps: GetStaticProps = async () => {
       teams: data.teams,
     },
     revalidate: 60 * 30,
-  }
-}
+  };
+};
 
-export default HomePage
+export default HomePage;
