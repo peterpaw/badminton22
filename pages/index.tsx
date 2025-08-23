@@ -162,7 +162,7 @@ const HomePage: NextPage<PageProps> = ({ posts, teams }) => {
               text="Alle Infos zur Jugend, Minimannschaft, Trainigszeiten und Coaches"
               href="/jugend"
             />
-            <CardTraining
+            <Card
               heading="Training"
               text="Trainingstage, Uhrzeiten und Trainingsorte"
               href="/training"

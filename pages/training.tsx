@@ -81,32 +81,32 @@ const TrainingPage: NextPage = () => {
       <Title order={1} className="mb-16 font-black md:text-4xl">
         Training
       </Title>
-      <div className="flex flex-col items-center justify-center pb-16">
-        <div className="w-16 flex">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke={colorScheme === "dark" ? "yellow" : "orange"}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
-            />
-          </svg>
-        </div>
-        <Text>
-          In den Sommerferien sind beide Hallen vorerst geschlossen und es
-          findet kein Training statt.
-        </Text>
-        <Text>
-          Das Training am Montag beginnt wieder am{" "}
-          <span className="font-bold">28.07.25</span> und mittwochs geht es am{" "}
-          <span className="font-bold">13.08.25</span> weiter.
-        </Text>
-      </div>
+      {/* <div className="flex flex-col items-center justify-center pb-16"> */}
+      {/*   <div className="w-16 flex"> */}
+      {/*     <svg */}
+      {/*       xmlns="http://www.w3.org/2000/svg" */}
+      {/*       fill="none" */}
+      {/*       viewBox="0 0 24 24" */}
+      {/*       strokeWidth={1.5} */}
+      {/*       stroke={colorScheme === "dark" ? "yellow" : "orange"} */}
+      {/*     > */}
+      {/*       <path */}
+      {/*         strokeLinecap="round" */}
+      {/*         strokeLinejoin="round" */}
+      {/*         d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" */}
+      {/*       /> */}
+      {/*     </svg> */}
+      {/*   </div> */}
+      {/*   <Text> */}
+      {/*     In den Sommerferien sind beide Hallen vorerst geschlossen und es */}
+      {/*     findet kein Training statt. */}
+      {/*   </Text> */}
+      {/*   <Text> */}
+      {/*     Das Training am Montag beginnt wieder am{" "} */}
+      {/*     <span className="font-bold">28.07.25</span> und mittwochs geht es am{" "} */}
+      {/*     <span className="font-bold">13.08.25</span> weiter. */}
+      {/*   </Text> */}
+      {/* </div> */}
 
       <div className="grid md:grid-cols-2 gap-8">
         <TrainingCard
