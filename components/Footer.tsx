@@ -1,10 +1,10 @@
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 
-import bschmitt from "../public/bschmitt.jpg"
-import pjourdan from "../public/phjourdan.jpg"
-import plusline from "../public/plusline.jpg"
-import gasthausXXL from "../public/gasthaus-xxl.png"
+import bschmitt from "../public/bschmitt.jpg";
+import pjourdan from "../public/phjourdan.jpg";
+import plusline from "../public/plusline.jpg";
+import gasthausXXL from "../public/gasthaus-xxl.png";
 import {
   Anchor,
   Center,
@@ -13,14 +13,14 @@ import {
   Text,
   Title,
   useMantineColorScheme,
-} from "@mantine/core"
-import { FaFacebook, FaInstagram } from "react-icons/fa"
-import { navigation } from "data/navigation"
-import { motion } from "framer-motion"
+} from "@mantine/core";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { navigation } from "data/navigation";
+import { motion } from "framer-motion";
 
 const Footer = () => {
-  const { colorScheme } = useMantineColorScheme()
-  const dark = colorScheme === "dark"
+  const { colorScheme } = useMantineColorScheme();
+  const dark = colorScheme === "dark";
 
   return (
     <footer>
@@ -111,7 +111,7 @@ const Footer = () => {
             </Title>
             <motion.a
               whileHover={{ y: -2 }}
-              href="http://rw-walldorf.de"
+              href="https://rot-weiss-walldorf.de/"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-20 md:w-24 mx-auto"
@@ -246,7 +246,7 @@ const Footer = () => {
               })}
               className="text-sm"
             >
-              Mit ❤️ erstellt von{" "}
+              Mit ❤ erstellt von{" "}
               <a
                 href="https://peterpaw.de"
                 target="_blank"
@@ -259,7 +259,7 @@ const Footer = () => {
         </Container>
       </Container>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

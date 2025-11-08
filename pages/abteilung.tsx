@@ -1,11 +1,11 @@
-import Image from "next/image"
-import { Container, Text, Title, useMantineColorScheme } from "@mantine/core"
-import { motion } from "framer-motion"
-import Head from "next/head"
+import Image from "next/image";
+import { Container, Text, Title, useMantineColorScheme } from "@mantine/core";
+import { motion } from "framer-motion";
+import Head from "next/head";
 
-import PricingPlans from "@components/PricingPlans"
+import PricingPlans from "@components/PricingPlans";
 
-import passiv from "assets/images/rww_mitgliedschaft_passiv.jpg"
+import passiv from "assets/images/rww_mitgliedschaft_passiv.jpg";
 
 const personData = [
   {
@@ -14,9 +14,9 @@ const personData = [
     position: "1. Vorsitzender",
   },
   {
-    firstName: "Stefanie",
-    lastName: "Kreuz",
-    position: "2. Vorsitzende",
+    firstName: "Steffen",
+    lastName: "Schöneberger",
+    position: "2. Vorsitzender",
   },
   {
     firstName: "Antonio",
@@ -33,19 +33,19 @@ const personData = [
     lastName: "Coutandin",
     position: "Stellv. Sportwart",
   },
-]
+];
 
 const Person = ({
   firstName,
   lastName,
   position,
 }: {
-  firstName: string
-  lastName: string
-  position: string
+  firstName: string;
+  lastName: string;
+  position: string;
 }) => {
-  const { colorScheme } = useMantineColorScheme()
-  const dark = colorScheme === "dark"
+  const { colorScheme } = useMantineColorScheme();
+  const dark = colorScheme === "dark";
 
   return (
     <Container className="my-8 max-w-lg mx-auto">
@@ -109,12 +109,12 @@ const Person = ({
         </Text>
       </motion.div>
     </Container>
-  )
-}
+  );
+};
 
 const Abteilung = () => {
-  const { colorScheme } = useMantineColorScheme()
-  const dark = colorScheme === "dark"
+  const { colorScheme } = useMantineColorScheme();
+  const dark = colorScheme === "dark";
 
   return (
     <>
@@ -213,7 +213,7 @@ const Abteilung = () => {
         ))}
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default Abteilung
+export default Abteilung;
